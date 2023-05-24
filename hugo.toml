@@ -1,4 +1,4 @@
-baseUrl = 'http://example.org/'
+baseUrl = 'https://javascript-manual.netlify.app/'
 languageCode = 'en-us'
 title = 'JavaScript Manual'
 theme = 'paper'

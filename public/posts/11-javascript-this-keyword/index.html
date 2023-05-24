@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready text-sm lg:text-base"
+  style="--bg: #faf6f1"
+  lang="en-us"
+>
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>JavaScript `this` Keyword - JavaScript Manual</title>
+
+  
+  <meta name="theme-color" />
+
+  
+  
+  
+  <meta name="description" content="Table of Content
+this Keyword this in function this in methods this in event handlers this in arrow functions Function Borrowing Implicit Binding Explicit Binding bind() 🤝 call() 🤙 apply() 👏 this Keyword In simple terms, this keyword in JavaScript refers to an object upon which a function is invoked. This means that this can only be used in a function, or globally.
+this is used to point to an instance of an object from its own constructor or its method and also to keep track of the execution context (lexical scope) - which is often based on where the function is called from." />
+  <meta name="author" content="Prabesh Thapa" />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="/main.min.css" />
+
+  
+  <script
+    defer
+    src="highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
+  
+
+  
+   
+  <link rel="preload" as="image" href="theme.png" />
+
+  
+  
+  
+  <link rel="preload" as="image" href="https://gravatar.com/avatar/bc5b4d21951d97f450e166dbaea458f6" />
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  <link rel="icon" href="favicon.ico" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.112.2">
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="JavaScript `this` Keyword" />
+<meta property="og:description" content="Table of Content
+this Keyword this in function this in methods this in event handlers this in arrow functions Function Borrowing Implicit Binding Explicit Binding bind() 🤝 call() 🤙 apply() 👏 this Keyword In simple terms, this keyword in JavaScript refers to an object upon which a function is invoked. This means that this can only be used in a function, or globally.
+this is used to point to an instance of an object from its own constructor or its method and also to keep track of the execution context (lexical scope) - which is often based on where the function is called from." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/11-javascript-this-keyword/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-05-11T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-05-11T00:00:00+00:00" />
+
+  
+  <meta itemprop="name" content="JavaScript `this` Keyword">
+<meta itemprop="description" content="Table of Content
+this Keyword this in function this in methods this in event handlers this in arrow functions Function Borrowing Implicit Binding Explicit Binding bind() 🤝 call() 🤙 apply() 👏 this Keyword In simple terms, this keyword in JavaScript refers to an object upon which a function is invoked. This means that this can only be used in a function, or globally.
+this is used to point to an instance of an object from its own constructor or its method and also to keep track of the execution context (lexical scope) - which is often based on where the function is called from."><meta itemprop="datePublished" content="2023-05-11T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2023-05-11T00:00:00+00:00" />
+<meta itemprop="wordCount" content="1909">
+<meta itemprop="keywords" content="" />
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="JavaScript `this` Keyword"/>
+<meta name="twitter:description" content="Table of Content
+this Keyword this in function this in methods this in event handlers this in arrow functions Function Borrowing Implicit Binding Explicit Binding bind() 🤝 call() 🤙 apply() 👏 this Keyword In simple terms, this keyword in JavaScript refers to an object upon which a function is invoked. This means that this can only be used in a function, or globally.
+this is used to point to an instance of an object from its own constructor or its method and also to keep track of the execution context (lexical scope) - which is often based on where the function is called from."/>
+
+  
+  
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[5rem] max-w-3xl px-8 lg:justify-center">
+  <div class="relative z-50 mr-auto flex items-center">
+    <a
+      class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
+      href="/"
+      >JavaScript Manual</a
+    >
+    <div
+      class="btn-dark text-[0] ml-6 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.png)_left_center/_auto_theme('spacing.6')_no-repeat] [transition:_background-position_0.4s_steps(5)] dark:[background-position:right]"
+      role="button"
+      aria-label="Dark"
+    ></div>
+  </div>
+
+  <div
+    class="btn-menu relative z-50 -mr-8 flex h-[5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
+    role="button"
+    aria-label="Menu"
+  ></div>
+
+  
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = `"#faf6f1"`.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+  >
+    
+    
+
+    
+  </div>
+</header>
+
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-10rem)] max-w-3xl px-8 pt-16 pb-24 dark:prose-invert"
+    >
+      
+
+<article>
+  <header class="mb-20">
+    <h1 class="!my-0 pb-2.5">JavaScript `this` Keyword</h1>
+
+    
+    <div class="text-sm opacity-60">
+      
+      <time>May 11, 2023</time>
+      
+      
+      
+      
+      <span class="mx-1">&middot;</span>
+      <span>Prabesh Thapa</span>
+      
+    </div>
+    
+  </header>
+
+  <section><p><strong>Table of Content</strong></p>
+<ul>
+<li><a href="#this-keyword"><code>this</code> Keyword</a>
+<ul>
+<li><a href="#this-in-function"><code>this</code> in function</a></li>
+<li><a href="#this-in-methods"><code>this</code> in methods</a></li>
+<li><a href="#this-in-event-handlers"><code>this</code> in event handlers</a></li>
+<li><a href="#this-in-arrow-functions"><code>this</code> in arrow functions</a></li>
+</ul>
+</li>
+<li><a href="#function-borrowing">Function Borrowing</a>
+<ul>
+<li><a href="#implicit-binding">Implicit Binding</a></li>
+<li><a href="#explicit-binding">Explicit Binding</a>
+<ul>
+<li><a href="#bind-">bind() 🤝</a></li>
+<li><a href="#call-">call() 🤙</a></li>
+<li><a href="#apply-">apply() 👏</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="this-keyword"><code>this</code> Keyword</h1>
+<p>In simple terms, <code>this</code> keyword in JavaScript refers to an object upon which a function is invoked. This means that <code>this</code> can only be used in a function, or globally.</p>
+<p><code>this</code> is used to point to an instance of an object from its own constructor or its method and also to keep track of the execution context (lexical scope) - which is often based on where the function is called from.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">myself</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Prabesh&#34;</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#66d9ef">this</span>); <span style="color:#75715e">// OUTPUT: myself {&#34;name&#34;: &#34;Prabesh&#34;}
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">intro</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">myself</span>();
+</span></span></code></pre></div><p>In the example above, <code>myself</code> is used as constructor for the object of type <code>myself</code>. Here, <code>this</code> reference points to itself i.e. myself {name: &ldquo;Prabesh&rdquo;}.</p>
+<p>When we use the <code>new</code> keyword to create an instance of the <code>myself()</code> function, it creates new object and sets <code>this</code> to refer to that object. In this case, the <code>name</code> property is set to the new object created by the <code>new</code> operator.</p>
+<p>So, when we create a new instance of <code>myself()</code> using <code>let intro = new myself()</code>, the <code>name</code> property is set on the newly created object, and <code>this</code> refers to that object. Therefore, <code>intro</code> will refer to an object with a <code>name</code> property of &ldquo;Prabesh&rdquo;.</p>
+<h2 id="this-in-function"><code>this</code> in function</h2>
+<p>When used in either of function or globally, <code>this</code> refers to the window object.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">foo</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#66d9ef">this</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">foo</span>(); <span style="color:#75715e">// OUTPUT : Window
+</span></span></span></code></pre></div><p>Here, when we call the <code>foo()</code> function without <code>new</code> keyword, <code>this</code> refers to the global object (which could be <code>window</code> in browser or <code>global</code> in Node.js).</p>
+<p>However, when we want to use the function as constructor of an object (create an object of type <code>foo</code>), <code>this</code> keyword changes its context to the instance of <code>bar</code> object itself and no longer global object.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">foo</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#66d9ef">this</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">bar</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">foo</span>(); <span style="color:#75715e">//Output: foo{}
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">typeof</span> <span style="color:#a6e22e">bar</span>; <span style="color:#75715e">//Ouput: &#39;object&#39;
+</span></span></span></code></pre></div><h2 id="this-in-methods"><code>this</code> in methods</h2>
+<p>When a function is a method of an object, then <code>this</code> refers to object that the method is a member of. This allows us to access and manipulate the properties of the object within the method.</p>
+<p><em>Example:</em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">user</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Prabesh&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">age</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">23</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">greet</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span> () {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`Hello, my name is </span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">greet</span>(); <span style="color:#75715e">// Output: &#34;Hello, my name is Prabesh&#34;
+</span></span></span></code></pre></div><p>In the above example, <code>user</code> is an object that has a <code>greet()</code> method. When we call <code>user.greet()</code>, <code>this</code> refers to the <code>user</code> object. Hence, within the <code>greet()</code> method, we can access the <code>name</code> property of <code>user</code> object using <code>this.name</code>.</p>
+<h2 id="this-in-event-handlers"><code>this</code> in event handlers</h2>
+<p>The value of <code>this</code> inside handler function may not be what we expect it to be. The value of <code>this</code> inside an event handler function is determined by how the function is called. In most cases, <code>this</code> will refer to DOM element that triggered the event.</p>
+<p>For example, if you have a button with an <code>onClick</code> attribute that calls a function, the value of <code>this</code> inside that function will be the button element. We can use <code>this</code> keyword to access properties and methods of the object that the event is asscoiated with. For example, we can use <code>this.textContent</code> property to get the text content of the button object.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">button</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;myButton&#34;</span><span style="color:#f92672">&gt;</span><span style="color:#a6e22e">Click</span> <span style="color:#a6e22e">me</span><span style="color:#f92672">&lt;/</span><span style="color:#a6e22e">button</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">script</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">myFunction</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span><span style="color:#f92672">.</span><span style="color:#a6e22e">log</span>(<span style="color:#66d9ef">this</span>); <span style="color:#75715e">// logs the button element
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// Output: &lt;button id=&#34;myButton&#34;&gt;Click me&lt;/button&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Attach the event handler to the button&#39;s click event.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">document</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;myButton&#34;</span>)<span style="color:#f92672">.</span><span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#34;click&#34;</span>, <span style="color:#a6e22e">myFunction</span>);
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/</span><span style="color:#a6e22e">script</span><span style="color:#f92672">&gt;</span>
+</span></span></code></pre></div><p>When the button is clicked, the <code>myClickHandler()</code> function will be called. The <code>this</code> keyword will refer to the button object, so you can use the <code>this</code> keyword to access and modify the button&rsquo;s properties and methods.</p>
+<p>Now, let&rsquo;s consider annther example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">cookFood</span>(<span style="color:#a6e22e">dish</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">dish</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">dish</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">time</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">time</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">setTime</span>(<span style="color:#a6e22e">sec</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">setTimeout</span>(<span style="color:#66d9ef">function</span> () {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">dish</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; cooked for &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">sec</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; seconds&#34;</span>);
+</span></span><span style="display:flex;"><span>    }, <span style="color:#a6e22e">sec</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">1000</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">curry</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cookFood</span>(<span style="color:#e6db74">&#34;Curry&#34;</span>); <span style="color:#75715e">// this.dish = &#34;Curry&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">curry</span>.<span style="color:#a6e22e">setTime</span>(<span style="color:#ae81ff">3</span>); <span style="color:#75715e">// Output: undefined cooked for 2 seconds
+</span></span></span></code></pre></div><p>So, what happened here? We have set <code>this.dish=&quot;Curry&quot;</code> when constructing the <code>cookFood</code> object but we get &ldquo;undefined cooked for 2 seconds&rdquo; when we expected the output to be &ldquo;Curry cooked for 2 seconds&rdquo;.</p>
+<p>Here, when we call the <code>setTimeout</code> function, it creates a nre execution context for the anonymous function that we pass as an argument, which has its own <code>this</code> context. Hence, when the anonymous function executes, <code>this.dish</code> will be <code>undefined</code> because <code>this</code> refers to the global object, not the <code>cookFood</code> object we created.</p>
+<p>This is where arrow functions comes into rescue.</p>
+<h2 id="this-in-arrow-functions"><code>this</code> in arrow functions</h2>
+<p>Arrow functions help us write more concise and efficient code. Arrow functions does not create it&rsquo;s own execution context but inherits <code>this</code> from outside function where the function is defined.</p>
+<p>Therefore, the problem in the above code can be fixed just br replacing the regular function for the anonymous function with arrow function.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">cookFood</span>(<span style="color:#a6e22e">dish</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">dish</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">dish</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">time</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">time</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">setTime</span>(<span style="color:#a6e22e">sec</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">setTimeout</span>(() =&gt; {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">dish</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; cooked for &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">sec</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; seconds&#34;</span>);
+</span></span><span style="display:flex;"><span>    }, <span style="color:#a6e22e">sec</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">1000</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">curry</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cookFood</span>(<span style="color:#e6db74">&#34;Curry&#34;</span>); <span style="color:#75715e">// this.dish = &#34;Curry&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">curry</span>.<span style="color:#a6e22e">setTime</span>(<span style="color:#ae81ff">3</span>); <span style="color:#75715e">// Output: Curry cooked for 2 seconds
+</span></span></span></code></pre></div><p>Since, arrow functions do not create their own <code>this</code> context. the <code>this</code> will refer to the <code>cookFood</code> object we created.</p>
+<h1 id="function-borrowing">Function Borrowing</h1>
+<p>Function borrowing is a concept that allows us to reuse the methods of one object on another object. Simply put, we can borrow the methods of one object and use them on other object.</p>
+<h2 id="implicit-binding">Implicit Binding</h2>
+<p>Implicit binding is the default way that <code>this</code> is determined in a function call. Whenever we invoke a method of an object using the dot notation, the <code>this</code> keyword will point to the object with which it was invoked. In simple terms, when a function is called as a method of an object, <code>this</code> is set to the object itself.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">user</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;John&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">greetUser</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span> () {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Welcome to JavaScript &#34;</span> <span style="color:#f92672">+</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span>);
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">greetUser</span>(); <span style="color:#75715e">// Output: &#34;Welcome to JavaScript John&#34;
+</span></span></span></code></pre></div><p>In this example, <code>greetUser()</code> is called as a method of <code>user</code>, so <code>this</code> is set to <code>user</code>.</p>
+<h2 id="explicit-binding">Explicit Binding</h2>
+<p>Explicit binding in JavaScript refers to the technique of manually setting the <code>this</code> keyword inisde a function using the <code>call()</code>, <code>apply()</code> or <code>bind()</code> methods. We use explicit binding when we want to access the methods of an object with the values provided by another object.</p>
+<h3 id="bind-">bind() 🤝</h3>
+<p>The <code>bind()</code> method creates and returns a new function, whose <code>this</code> keyword is set to object which was passed to it. It <em>binds</em> a method to an object and returns to be invoked later.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">greet</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Welcome &#34;</span> <span style="color:#f92672">+</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">user1</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Prabesh&#34;</span>,
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">user2</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Laxmi&#34;</span>,
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">greetUser1</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">greet</span>.<span style="color:#a6e22e">bind</span>(<span style="color:#a6e22e">user1</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">greetUser2</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">greet</span>.<span style="color:#a6e22e">bind</span>(<span style="color:#a6e22e">user2</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">greetUser1</span>(); <span style="color:#75715e">// Output: &#34;Welcome Prabesh&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">greetUser2</span>(); <span style="color:#75715e">// Output: &#34;Welcome Laxmi&#34;
+</span></span></span></code></pre></div><p>In the above example, we have function <code>greet()</code> and objects <code>user1</code> and <code>user2</code> with <code>name</code> properties. We are using the <code>bind()</code> method to create two new functions <code>greetUser1()</code> and <code>greetUser2()</code> which
+have their <code>this</code> value bound to <code>user1</code> and <code>user2</code> respectively.</p>
+<p>Let&rsquo;s have a look at another example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">user</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">firstName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Super&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">lastName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Mario&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">greet</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span> () {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Hello, I am &#34;</span> <span style="color:#f92672">+</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">firstName</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#f92672">+</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">lastName</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;.&#34;</span>);
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">greet</span>(); <span style="color:#75715e">// Output: &#34;Hello, I am Super Mario.&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">user2</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">firstName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Bob&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">lastName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Builder&#34;</span>,
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">intro</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">greet</span>.<span style="color:#a6e22e">bind</span>(<span style="color:#a6e22e">user2</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">intro</span>(); <span style="color:#75715e">// Output: Hello, I am Bob Builder.
+</span></span></span></code></pre></div><p>Here, we defined an object call <code>user</code> that has three properties: <code>firstName</code>, <code>lastName</code> and <code>greet</code>. The <code>greet</code> property is a function that logs a message including <code>firstName</code> and <code>lastName</code>. When we call <code>user.greet()</code>, we are invoking the <code>greet</code> function with <code>this</code> referring to <code>user</code> object. Hence, we get a output of &ldquo;Hello, I am Super Mario&rdquo;. This concept is referred as <code>impilicit binding</code>.</p>
+<p>Next, we define another object called <code>user2</code> that has two properties: <code>firstName</code> and <code>lastName</code>. We then create a function called <code>intro</code> by using the <code>bind()</code> method to bind the <code>this</code> keyword of the <code>greet</code> function to the <code>user2</code> object. This means when we call <code>intro()</code> function, <code>this</code> inside the <code>greet</code> function will refer to the <code>user2</code> object and the output will be &ldquo;Hello, I am Bob Builder.&rdquo;</p>
+<p>To summarize, by using <code>bind()</code>, we are essentially creating a new function that has its <code>this</code> value set to <code>user2</code> object. This allows us to resue the <code>greet</code> function with a different object. This concept is referred as <code>explicit binding</code>.</p>
+<h3 id="call-">call() 🤙</h3>
+<p>The <code>call()</code> method works similar to <code>bind()</code> but has one major difference. As we know, <code>bind()</code> method returns a function that can be invoked later but the <code>call()</code> method invokes a function and returns the result.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">greet</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Hello, my name is &#34;</span> <span style="color:#f92672">+</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">person</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Ninja&#34;</span>,
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">greet</span>.<span style="color:#a6e22e">call</span>(<span style="color:#a6e22e">person</span>); <span style="color:#75715e">// Output: &#34;Hello, my name is Ninja&#34;
+</span></span></span></code></pre></div><p>Here, we hava a <code>greet</code> function and an object <code>person</code> with a <code>name</code> property. We are using the <code>call()</code> method to call <code>greet()</code> function with <code>person</code> as the context to <code>this</code>. As a result, we get an output of &ldquo;Hello, my name is Ninja&rdquo;.</p>
+<p>let us consider another example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">user</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">firstName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Sonic&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">lastName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Hedgehog&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">greet</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">place</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`I am </span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">firstName</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> </span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">lastName</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> from </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">place</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">greet</span>(<span style="color:#e6db74">&#34;Colorado&#34;</span>); <span style="color:#75715e">// Output: I am Sonic Hedgehog from Colorado
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">user2</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">firstName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Ninja&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">lastName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Turtle&#34;</span>,
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">greet</span>.<span style="color:#a6e22e">call</span>(<span style="color:#a6e22e">user2</span>, <span style="color:#e6db74">&#34;Texas&#34;</span>); <span style="color:#75715e">// Output: I am Ninja Turtle from Texas
+</span></span></span></code></pre></div><p>In this example, we have two objects: <code>user</code> and <code>user2</code>. We are borrowing the <code>greet()</code> function from <code>user</code> object using <code>call()</code> method abnd binding it with <code>user2</code> object.</p>
+<p>By using the <code>call()</code> method, we are invoking the <code>greet</code> function in the context of <code>user2</code> object. The first argument to <code>call()</code> is the object that <code>this</code> should refer to inside the fucntion, and any subsequent arguments are passed as arguments to the function itself.</p>
+<h3 id="apply-">apply() 👏</h3>
+<p>The <code>apply()</code> method is similar to <code>call()</code> method, but takes an array of arguments instead of inidividual arguments. In the <code>call()</code> method, we can pass multiple parameters, but in <code>apply()</code> method, we have to pass in single array that would contain all the parameters.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">user</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">firstName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Cristiano&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">lastName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Ronaldo&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">greet</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">club</span>, <span style="color:#a6e22e">country</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">`I am </span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">firstName</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> </span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">lastName</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> from </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">country</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> playing for </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">club</span><span style="color:#e6db74">}</span><span style="color:#e6db74">.`</span>
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">greet</span>(<span style="color:#e6db74">&#34;Al-Nassr&#34;</span>, <span style="color:#e6db74">&#34;Portugal&#34;</span>); <span style="color:#75715e">// Output: I am Cristiano Ronaldo from Portugal playing for Al-Nassr.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">user2</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">firstName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Lionel&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">lastName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Messi&#34;</span>,
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">greet</span>.<span style="color:#a6e22e">apply</span>(<span style="color:#a6e22e">user2</span>, [<span style="color:#e6db74">&#34;PSG&#34;</span>, <span style="color:#e6db74">&#34;Argentina&#34;</span>]); <span style="color:#75715e">// Output: I am Lionel Messi from Argentina playing for PSG.
+</span></span></span></code></pre></div><p>By using <code>apply()</code>, we&rsquo;re essentially invoking the <code>greet</code> function in the context of the <code>user2</code> object. The first argument to <code>apply()</code> is the object that <code>this</code> should refer to inside the function, and the second argument is an array of arguments to pass to the function itself. In this case, we&rsquo;re passing an array of two elements, &ldquo;PSG&rdquo; and &ldquo;Argentina&rdquo;, which are used as the <code>club</code> and <code>country</code> parameters in the <code>greet</code> function, respectively.</p>
+<p><strong><em>Summary:</em></strong></p>
+<ul>
+<li>By default, the methods of an object are implicitly bounded to the object itself, and we can access them using the dot (.) operator.</li>
+<li>To access the methods of other objects, we need to explicitly bind them to the object using the <code>bind()</code>, <code>call()</code>, or <code>apply()</code> methods, with each one of them having its own use cases.</li>
+</ul>
+</section>
+
+  
+  
+
+  
+  
+  
+  <nav class="mt-24 flex rounded-lg bg-black/[3%] text-lg dark:bg-white/[8%]">
+    
+    <a
+      class="flex w-1/2 items-center rounded-l-md p-6 pr-3 no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
+      href="/posts/12-asynchronous-javascript/"
+      ><span class="mr-1.5">←</span><span>Understanding  Asynchronous JavaScript</span></a
+    >
+    
+    
+    <a
+      class="ml-auto flex w-1/2 items-center justify-end rounded-r-md p-6 pl-3 no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
+      href="/posts/09-javascript-operators/"
+      ><span>JavaScript Expressions and Operators</span><span class="ml-1.5">→</span></a
+    >
+    
+  </nav>
+  
+
+  
+  
+
+  
+  
+</article>
+
+
+    </main>
+
+    <footer
+  class="opaco mx-auto flex h-[5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
+>
+  <div class="mr-auto">
+    &copy; 2023
+    <a class="link" href="">JavaScript Manual</a>
+  </div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >Powered by Hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >Theme Paper</a
+  >
+</footer>
+
+  </body>
+</html>

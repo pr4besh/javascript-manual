@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready text-sm lg:text-base"
+  style="--bg: #faf6f1"
+  lang="en-us"
+>
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>Understanding  Asynchronous JavaScript - JavaScript Manual</title>
+
+  
+  <meta name="theme-color" />
+
+  
+  
+  
+  <meta name="description" content="Table of Content
+Understanding Asynchronous JavaScript Callbacks Synchronous Callbacks Asynchronous Callbacks Promises .then() promise handler .catch() promise handler .finally() promise handler Promise Chaining ⛓️ Async/Await async await Error Handling async/await Understanding Asynchronous JavaScript JavaScript is single-threaded programming language which means only one thing can happen at a time. This helps us to simplify our code but this also means that we can&rsquo;t perform long operations such as reading from a file without blocking the main thread." />
+  <meta name="author" content="Prabesh Thapa" />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="/main.min.css" />
+
+  
+  <script
+    defer
+    src="highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
+  
+
+  
+   
+  <link rel="preload" as="image" href="theme.png" />
+
+  
+  
+  
+  <link rel="preload" as="image" href="https://gravatar.com/avatar/bc5b4d21951d97f450e166dbaea458f6" />
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  <link rel="icon" href="favicon.ico" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.112.2">
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="Understanding  Asynchronous JavaScript" />
+<meta property="og:description" content="Table of Content
+Understanding Asynchronous JavaScript Callbacks Synchronous Callbacks Asynchronous Callbacks Promises .then() promise handler .catch() promise handler .finally() promise handler Promise Chaining ⛓️ Async/Await async await Error Handling async/await Understanding Asynchronous JavaScript JavaScript is single-threaded programming language which means only one thing can happen at a time. This helps us to simplify our code but this also means that we can&rsquo;t perform long operations such as reading from a file without blocking the main thread." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/12-asynchronous-javascript/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-05-12T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-05-12T00:00:00+00:00" />
+
+  
+  <meta itemprop="name" content="Understanding  Asynchronous JavaScript">
+<meta itemprop="description" content="Table of Content
+Understanding Asynchronous JavaScript Callbacks Synchronous Callbacks Asynchronous Callbacks Promises .then() promise handler .catch() promise handler .finally() promise handler Promise Chaining ⛓️ Async/Await async await Error Handling async/await Understanding Asynchronous JavaScript JavaScript is single-threaded programming language which means only one thing can happen at a time. This helps us to simplify our code but this also means that we can&rsquo;t perform long operations such as reading from a file without blocking the main thread."><meta itemprop="datePublished" content="2023-05-12T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2023-05-12T00:00:00+00:00" />
+<meta itemprop="wordCount" content="2989">
+<meta itemprop="keywords" content="" />
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Understanding  Asynchronous JavaScript"/>
+<meta name="twitter:description" content="Table of Content
+Understanding Asynchronous JavaScript Callbacks Synchronous Callbacks Asynchronous Callbacks Promises .then() promise handler .catch() promise handler .finally() promise handler Promise Chaining ⛓️ Async/Await async await Error Handling async/await Understanding Asynchronous JavaScript JavaScript is single-threaded programming language which means only one thing can happen at a time. This helps us to simplify our code but this also means that we can&rsquo;t perform long operations such as reading from a file without blocking the main thread."/>
+
+  
+  
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[5rem] max-w-3xl px-8 lg:justify-center">
+  <div class="relative z-50 mr-auto flex items-center">
+    <a
+      class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
+      href="/"
+      >JavaScript Manual</a
+    >
+    <div
+      class="btn-dark text-[0] ml-6 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.png)_left_center/_auto_theme('spacing.6')_no-repeat] [transition:_background-position_0.4s_steps(5)] dark:[background-position:right]"
+      role="button"
+      aria-label="Dark"
+    ></div>
+  </div>
+
+  <div
+    class="btn-menu relative z-50 -mr-8 flex h-[5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
+    role="button"
+    aria-label="Menu"
+  ></div>
+
+  
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = `"#faf6f1"`.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+  >
+    
+    
+
+    
+  </div>
+</header>
+
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-10rem)] max-w-3xl px-8 pt-16 pb-24 dark:prose-invert"
+    >
+      
+
+<article>
+  <header class="mb-20">
+    <h1 class="!my-0 pb-2.5">Understanding  Asynchronous JavaScript</h1>
+
+    
+    <div class="text-sm opacity-60">
+      
+      <time>May 12, 2023</time>
+      
+      
+      
+      
+      <span class="mx-1">&middot;</span>
+      <span>Prabesh Thapa</span>
+      
+    </div>
+    
+  </header>
+
+  <section><p><strong>Table of Content</strong></p>
+<ul>
+<li><a href="#understanding-asynchronous-javascript">Understanding Asynchronous JavaScript</a>
+<ul>
+<li><a href="#callbacks">Callbacks</a>
+<ul>
+<li><a href="#synchronous-callbacks">Synchronous Callbacks</a></li>
+<li><a href="#asynchronous-callbacks">Asynchronous Callbacks</a></li>
+</ul>
+</li>
+<li><a href="#promises">Promises</a>
+<ul>
+<li><a href="#then-promise-handler"><code>.then()</code> promise handler</a></li>
+<li><a href="#catch-promise-handler"><code>.catch()</code> promise handler</a></li>
+<li><a href="#finally-promise-handler"><code>.finally()</code> promise handler</a></li>
+<li><a href="#promise-chaining-%EF%B8%8F">Promise Chaining ⛓️</a></li>
+</ul>
+</li>
+<li><a href="#asyncawait">Async/Await</a>
+<ul>
+<li><a href="#async"><code>async</code></a></li>
+<li><a href="#await"><code>await</code></a></li>
+<li><a href="#error-handling-asyncawait">Error Handling <code>async</code>/<code>await</code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="understanding-asynchronous-javascript">Understanding Asynchronous JavaScript</h1>
+<p>JavaScript is single-threaded programming language which means only one thing can happen at a time. This helps us to simplify our code but this also means that we can&rsquo;t perform long operations such as reading from a file without blocking the main thread. That&rsquo;s where asynchronous JavaScript helps us.</p>
+<p>Asynchronous JavaScript helps us to perform tasks without having to wait for a pervious task to complete, which results in a faster and more efficient code execution. When we use asynchronous programming, the browser will continue to render the page while the task is running in the background. This means that the user will not have to wait for the task to finish before they can interact with the webpage.</p>
+<p>Before we dive into asynchronous JavaScript, we need to first understand how synchronous JavaScript gets executed by JavaScript engine.</p>
+<p><em>Reminder:</em></p>
+<pre tabindex="0"><code>**Execution Context**: abstract concept of environment where JavaScript code is evaluated and executes.
+
+**Call Stack**: used to store all the execution context created during the code execution.
+</code></pre><p>Let us consider a example.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">second</span> <span style="color:#f92672">=</span> () =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;This is second function.&#34;</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">first</span> <span style="color:#f92672">=</span> () =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;This is first function.&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">second</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">End</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">first</span>();
+</span></span></code></pre></div><p>When this code is executed, a gloval execution context <code>main()</code> is created and pushed to the top of call stack.</p>
+<pre tabindex="0"><code>|           |
+|           |
+|  main()   |
+|___________|
+</code></pre><p>The <code>first</code> and <code>second</code> functions are then added to the global memory. The <code>first</code> function is called within the main function and the cal to <code>first</code> function is added to the top of call stack.</p>
+<pre tabindex="0"><code>|           |
+| `first()` |
+|___________|
+</code></pre><p>The <code>first</code> function is executed and logs &ldquo;I am the first function.&rdquo; to the console. The <code>second()</code> is called within the <code>first</code> function so, the <code>second()</code> is added to the top of the call stack.</p>
+<pre tabindex="0"><code>|           |
+|  second() |
+|  first()  |
+|___________|
+</code></pre><p>The <code>second</code> function is also executed and logs &ldquo;This is the second fucntion.&rdquo; to the console. The call to the <code>second()</code> is then removed form the call stack.</p>
+<pre tabindex="0"><code>|           |
+|           |
+|  first()  |
+|___________|
+</code></pre><p>The <code>first</code> function then logs &ldquo;End&rdquo; to the console and the call to the <code>first</code> function is also removed from the call stack. The <code>main()</code> function or global execution context finishes executing and is removed from the stack.</p>
+<pre tabindex="0"><code>Note: Call Stack is Last In, First Out (LIFO) data structure, that means that the last function to be added to the stack is the first one to be removed.
+</code></pre><p><strong><em>Problem caused by Synchronous behavior of JavaScript:</em></strong></p>
+<p>One common problem caused by this synchronous behavior of JavaScript is that it can block the browser&rsquo;s user interface and make it unresponsive. This happens when a time-consuming tasks such as fetching data from server is executed synchronously on the main thread.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">processImage</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">img</span>) =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Processing &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">img</span>);
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">downloadImage</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">url</span>) =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">setTimeout</span>(() =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Downloading Image from &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">url</span>);
+</span></span><span style="display:flex;"><span>  }, <span style="color:#ae81ff">2000</span>);
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">downloadImage</span>(<span style="color:#e6db74">&#34;www.someimage.com&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">processImage</span>(<span style="color:#e6db74">&#34;Poo.jpg&#34;</span>);
+</span></span></code></pre></div><p><em>Output:</em></p>
+<pre tabindex="0"><code>Processing Poo.jpg
+Downloading Image from www.someimage.com
+</code></pre><p>This is something we do not expect because the <code>process()</code> function gets executed before the <code>download()</code> function. We would expect image to be downloaded before we process it.</p>
+<p>To avoid such problems, we can use asynchrnous programming concepts such as <code>callbacks</code>, <code>promises</code>, and <code>async/await</code> to allow long-running tasks to be executed in the background without blocking the UI.</p>
+<p><strong><em>So, How does Asynchronous JavaScript work?</em></strong></p>
+<h2 id="callbacks">Callbacks</h2>
+<p>We can pass a fucntion to another function as an argument in JavaScript. By definition, <code>callback</code> is a function that we pass into another function as an argument for executing later when the execution of first function is completed.</p>
+<p>Let us consider an example where a function accepts an array of number as argument and returns a new array of odd numbers.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">filterOdd</span>(<span style="color:#a6e22e">numbers</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">results</span> <span style="color:#f92672">=</span> [];
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">number</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">numbers</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">number</span> <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">results</span>.<span style="color:#a6e22e">push</span>(<span style="color:#a6e22e">number</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">results</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">numbers</span> <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">9</span>];
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">filterOdd</span>(<span style="color:#a6e22e">numbers</span>)); <span style="color:#75715e">// Output: [1,3,5,7,9]
+</span></span></span></code></pre></div><p>In this example, we have a function that accpets an array of numbers and returns new array of odd numbers. But if we want to return an array of even numbers, we now need to modify the <code>filterOdd</code> function. This is not an ideal condition.</p>
+<p>We need to make our function more generic and resuable. We can do so by extracting the logic in <code>if</code> block and wrap it in a new function and pass the <code>filter</code> function as an argument.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">isOdd</span>(<span style="color:#a6e22e">number</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">number</span> <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">!==</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">filter</span>(<span style="color:#a6e22e">numbers</span>, <span style="color:#a6e22e">callback</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">results</span> <span style="color:#f92672">=</span> [];
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">number</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">numbers</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">callback</span>(<span style="color:#a6e22e">number</span>)) {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">results</span>.<span style="color:#a6e22e">push</span>(<span style="color:#a6e22e">number</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">results</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">numbers</span> <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">9</span>];
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">filter</span>(<span style="color:#a6e22e">numbers</span>, <span style="color:#a6e22e">isOdd</span>)); <span style="color:#75715e">// Output: [1,3,5,7,9]
+</span></span></span></code></pre></div><p>We get the same output as previous one but now with the updated code, we can pass any function that accepts an argument and returns a boolean value to the second argument of the <code>filter</code> function.</p>
+<p>For example, we can now use this <code>filter</code> function to return an array of even numbers too.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">isOdd</span>(<span style="color:#a6e22e">number</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">number</span> <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">!==</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">isEven</span>(<span style="color:#a6e22e">number</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">number</span> <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">filter</span>(<span style="color:#a6e22e">numbers</span>, <span style="color:#a6e22e">callback</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">results</span> <span style="color:#f92672">=</span> [];
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">number</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">numbers</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">callback</span>(<span style="color:#a6e22e">number</span>)) {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">results</span>.<span style="color:#a6e22e">push</span>(<span style="color:#a6e22e">number</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">results</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">numbers</span> <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">9</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">filter</span>(<span style="color:#a6e22e">numbers</span>, <span style="color:#a6e22e">isOdd</span>)); <span style="color:#75715e">// Output: [1,3,5,7,9]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">filter</span>(<span style="color:#a6e22e">numbers</span>, <span style="color:#a6e22e">isEven</span>)); <span style="color:#75715e">// Ouput: [2,4,6,8]
+</span></span></span></code></pre></div><p>Here, <code>isOdd</code> and <code>isEven</code> are callback functions or callbacks.</p>
+<h3 id="synchronous-callbacks">Synchronous Callbacks</h3>
+<p>Synchronous callbacks is a callback function that is exeucuted immediately when it is called, blocking the main thread until it completes. Synchronous callbacks are executed in the same order as they are called, and they can cause the program to become unresponsive if they take too long to complete.</p>
+<p>The <code>isOdd</code> and <code>isEven</code> are examples of synchronous function because they execute immediately during the execution of <code>filter()</code> function.</p>
+<h3 id="asynchronous-callbacks">Asynchronous Callbacks</h3>
+<p>Asynchronous callbacks are the functions that are executed after the execution of high-order function that uses the callback. This allows us to write a non-blocking code that will execute the rest of the code if it has to wait for certain operation to complete. This helps us to execute long-running operations without freezing the UI or blocking the execution of other code.</p>
+<p>Let us consider example from previous where we wrote a program to download a picture and process it. Downloading a picture takes time depending upon the speed and size of the picture. This may halt or slow down our program as we seen before.</p>
+<p>To resolcve such issues, we can update our code as below -</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">downloadImage</span>(<span style="color:#a6e22e">url</span>, <span style="color:#a6e22e">callback</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">setTimeout</span>(() =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// download image
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Downloading image from &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">url</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// process image after download
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">callback</span>(<span style="color:#a6e22e">url</span>);
+</span></span><span style="display:flex;"><span>  }, <span style="color:#ae81ff">1000</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">process</span>(<span style="color:#a6e22e">picture</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Processing &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">picture</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">downloadImage</span>(<span style="color:#e6db74">&#34;www.someimage.com/foo.jpg&#34;</span>, <span style="color:#a6e22e">process</span>);
+</span></span></code></pre></div><p><em>Output:</em></p>
+<pre tabindex="0"><code>Downloading image from www.someimage.com/foo.jpg
+Processing www.someimage.com/foo.jpg
+</code></pre><p>In this example, we call the <code>downloadImage</code> function with a URL and a <code>process()</code> callback function which downloads the image from the URL. However, downloading an image can take some time, so we don&rsquo;t want the function to block the execution of the code. Therefore, we set a timeout of 1 second (1000 milliseconds) to <code>downloadImage()</code> function.</p>
+<p>Once the image is downloaded, the <code>callback</code> function is called with the url of the downloaded image as an argument. In this case, the <code>callback</code> fucntion is the <code>process</code> function. The <code>process</code> function is executed asynchronously, after the image is downlaoded and the <code>callback</code> fucntion is called.</p>
+<p><em>Note</em>: <code>setTimeout</code> is not a part of JavaScript engine but it is a part of Web APIs (in browsers).</p>
+<h2 id="promises">Promises</h2>
+<p>Promises are alo a way to handle asynchronous functions in JavaScript. Promises provides us a cleaner and more structured way to write asynchronous code than callbacks. A <code>Promise</code> is an object that represents the <strong>success</strong> or <strong>failure</strong> of an asynchronous code and provides a way to handle the result of that operation once it is completed.</p>
+<p>A <code>Promise</code> has three possible states: <code>Pending</code>, <code>Fulfilled</code>, <code>Rejected</code>. <code>Promise</code> starts in <code>Pending</code> state and will either be <code>Fulfilled</code> with a value or <code>Rejected</code> with an error message.</p>
+<ul>
+<li><em>pending</em>: initial state</li>
+<li><em>fulfilled</em>: operation was completed successfully</li>
+<li><em>rejected</em>: operation failed</li>
+</ul>
+<p>When we create a new <code>Promise</code>, we pass in a function that takes two arguments, <code>resolve</code> and <code>reject</code>. These arguments are functions themselves that we can call when the asynchronous operation is complete.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">myPromise</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Promise((<span style="color:#a6e22e">resolve</span>, <span style="color:#a6e22e">reject</span>) =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Asynchronus Code Here
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">if</span> (<span style="color:#75715e">/* successfull operation */</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">resolve</span>(<span style="color:#75715e">/* result */</span>)
+</span></span><span style="display:flex;"><span>  } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">reject</span>(<span style="color:#75715e">/* reason for failure */</span>)
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>})
+</span></span></code></pre></div><p>Inside the <code>Promise</code> function, we can perform some asynchronous operations such as making an HTTP request or reading a file from the disk. If the operation succeeds, we can call the <code>resolve</code> function with the result of the operation. If the operation fails, we can call the <code>reject</code> function with the reason of failure.</p>
+<p>Once the <code>Promise</code> is created, we can attach one or more <code>then</code> methods to ot. The <code>then</code> method takes one or two arguments: a function to be called when the <code>Promise</code> is resolved, and optionally a fucntion to be called when the <code>Promise</code> is rejected.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">myPromise</span>
+</span></span><span style="display:flex;"><span>  .<span style="color:#a6e22e">then</span>((<span style="color:#a6e22e">result</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Do something with the result
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  })
+</span></span><span style="display:flex;"><span>  .<span style="color:#66d9ef">catch</span>((<span style="color:#a6e22e">error</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Handle the error
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  });
+</span></span></code></pre></div><p>When the asynchronous operation completes, the <code>Promise</code> is either resolved or rejected. If it&rsquo;s resolved, the function passed to <code>then</code> method is called with the result of the operation as its argument. If it is rejected, the function passed to the <code>catch</code> method is called with the reason for the failure as its argument.</p>
+<h3 id="then-promise-handler"><code>.then()</code> promise handler</h3>
+<p>The <code>.then()</code> method is used to handle the <em>fulfilled</em> or <em>rejected</em> state of promise. We can think <code>then</code> as &ldquo;<em>this works and then do this with the data returned from the promise</em>&rdquo;. It takes two optional arguments: a callback function (result) to be executed when the promise the <em>fulfilled</em>, and a callback fucntion (error) to be executed when the promise is <em>rejected</em>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">promise</span>.<span style="color:#a6e22e">then</span>(
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">result</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">result</span>);
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">error</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">error</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>);
+</span></span></code></pre></div><p>When a promise is fulfiled, we can access the resolved data by passing just one argument.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">promise</span>.<span style="color:#a6e22e">then</span>((<span style="color:#a6e22e">result</span>) =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">result</span>);
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p>When the promise fails and we are interested in only the error, we can pass <code>null</code> to the first argument and access the error.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">promise</span>.<span style="color:#a6e22e">then</span>(<span style="color:#66d9ef">null</span>, (<span style="color:#a6e22e">error</span>) =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">error</span>);
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p>It&rsquo;s bit odd to pass <code>null</code> value explicily for an error case so, we have another method <code>.catch()</code> for this purpose. We can think of <code>catch</code> as &ldquo;<em>this does not work so, catch the error so it does not break the code</em>.</p>
+<h3 id="catch-promise-handler"><code>.catch()</code> promise handler</h3>
+<p>A <code>catch()</code> promise handler is a function that is executed when a promise is rejected. It is a method that can be called on a promise object and takes a single argument. As mentioned above, it is a much better syntax to handle the errors than usign the <code>then()</code> method.</p>
+<p>When a promise is rejected, it will skip the <code>then()</code> methods and jump directly to the <code>catch()</code> method. The <code>catch()</code> handler can be used to handle errors and exceptions that may occur.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">promise</span>.<span style="color:#a6e22e">then</span>(<span style="color:#a6e22e">result</span> =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// do something with result
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  }
+</span></span><span style="display:flex;"><span>  .<span style="color:#66d9ef">catch</span>(<span style="color:#a6e22e">error</span> =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// handle the error
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  })
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><h3 id="finally-promise-handler"><code>.finally()</code> promise handler</h3>
+<p>The <code>finally()</code> promise handler is a function that is executed regardless of whether a promise is resolved or rejected. It is a method that can be called on promise object and takes no arguments.</p>
+<p>The <code>finally</code> handler is useful for clean up taks such as resetting state, that needs to be executed regardless of whether the promise is succeessful or not.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">fs</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;fs&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">promises</span>
+</span></span><span style="display:flex;"><span>  .<span style="color:#a6e22e">open</span>(<span style="color:#e6db74">&#34;myfile.txt&#34;</span>, <span style="color:#e6db74">&#34;r&#34;</span>)
+</span></span><span style="display:flex;"><span>  .<span style="color:#a6e22e">then</span>((<span style="color:#a6e22e">file</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// do something with the file
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  })
+</span></span><span style="display:flex;"><span>  .<span style="color:#66d9ef">catch</span>((<span style="color:#a6e22e">error</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// handle the error
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  })
+</span></span><span style="display:flex;"><span>  .<span style="color:#66d9ef">finally</span>(() =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// close the file
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">promises</span>.<span style="color:#a6e22e">close</span>(<span style="color:#a6e22e">file</span>);
+</span></span><span style="display:flex;"><span>  });
+</span></span></code></pre></div><h3 id="promise-chaining-">Promise Chaining ⛓️</h3>
+<p>The promise handlers <code>then</code>, <code>catch</code> and <code>finally</code> helps us to handle any number of asynchronous operations that depend on each other. We can chain the handler methods to pass a value or error from one promise to another.</p>
+<p>Promise chaining is a technique used in JavaScript to handle the asynchronous taks in a sequential and organized manner. It involves chaining multiple promises together in specific order to execute a series of asynchronous tasks.</p>
+<p>Every promises gives us a <code>.then()</code> handler method. Every rejected promise gives us a <code>.catch()</code> handler. After creating a promise, we can call the <code>.then()</code> method to handle the value.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// Creating a Promise
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">promise</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Promise((<span style="color:#a6e22e">resolve</span>, <span style="color:#a6e22e">reject</span>) =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">resolve</span>(<span style="color:#e6db74">&#34;Resolving a Promise.&#34;</span>);
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">promise</span>.<span style="color:#a6e22e">then</span>((<span style="color:#a6e22e">value</span>) =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">value</span>); <span style="color:#75715e">// Output: Resolving a Promise.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>});
+</span></span></code></pre></div><p>We can handle the rejected promise with <code>.catch()</code> handler.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// Creating a Promise
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">promise</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Promise((<span style="color:#a6e22e">resolve</span>, <span style="color:#a6e22e">reject</span>) =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">reject</span>(<span style="color:#66d9ef">new</span> Error(<span style="color:#e6db74">&#34;Rejecting a Promise.&#34;</span>));
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">promise</span>.<span style="color:#66d9ef">catch</span>((<span style="color:#a6e22e">error</span>) =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">error</span>); <span style="color:#75715e">// Output: Error: Rejecting a Promise.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>});
+</span></span></code></pre></div><p>The <code>.then()</code> method allows us to handle the result of a Promise once it is completed. There are three main things we can do with the result.</p>
+<ul>
+<li>💡 <code>Return another Promise</code>: If we need to perform asynchronous operation that depends on the result of the previous <code>Promise</code>, we can return another <code>Promsie</code> object from the <code>.then()</code> method. This allows us to chain multiple Promises together and perform a series of asynchronous operations.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">getUser</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Promise((<span style="color:#a6e22e">resolve</span>, <span style="color:#a6e22e">reject</span>) =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">user</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Lionel Messi&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">club</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;PSG&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">country</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Argentina&#34;</span>,
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">resolve</span>(<span style="color:#a6e22e">user</span>);
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">getUser</span>
+</span></span><span style="display:flex;"><span>  .<span style="color:#a6e22e">then</span>((<span style="color:#a6e22e">user</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;You picked &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; from &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">country</span>); <span style="color:#75715e">// Output: You picked Lionel Messi from Argentina
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// Return a new Promise
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Promise((<span style="color:#a6e22e">resolve</span>, <span style="color:#a6e22e">reject</span>) =&gt; {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">setTimeout</span>(() =&gt; {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// fetching the rating based on user
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#a6e22e">resolve</span>(<span style="color:#ae81ff">93</span>);
+</span></span><span style="display:flex;"><span>      }, <span style="color:#ae81ff">1000</span>);
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>  })
+</span></span><span style="display:flex;"><span>  .<span style="color:#a6e22e">then</span>((<span style="color:#a6e22e">rating</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Your player is rated &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">rating</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;.&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Output:  Your player is rated 93.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  });
+</span></span></code></pre></div><ul>
+<li>💡<code>Return a Value</code>: In some situations, we may not have to make an asynchronous call to get a value. We can simply return a simple value from the <code>.then()</code> method rather than returning a promise in these situations.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">getUser</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Promise((<span style="color:#a6e22e">resolve</span>, <span style="color:#a6e22e">reject</span>) =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">user</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Lionel Messi&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">club</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;PSG&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">country</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Argentina&#34;</span>,
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">resolve</span>(<span style="color:#a6e22e">user</span>);
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">getUser</span>
+</span></span><span style="display:flex;"><span>  .<span style="color:#a6e22e">then</span>((<span style="color:#a6e22e">user</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;You picked &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; from &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">country</span>); <span style="color:#75715e">// Output: You picked Lionel Messi from Argentina
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// Return a simple value
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">club</span>;
+</span></span><span style="display:flex;"><span>  })
+</span></span><span style="display:flex;"><span>  .<span style="color:#a6e22e">then</span>((<span style="color:#a6e22e">club</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Your player plays for &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">club</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;.&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Output:  Your player plays for PSG.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  });
+</span></span></code></pre></div><ul>
+<li>🚫 <code>throw and error</code>: If there is an error in the Promise chain and we want to stop the execution of the chain, we can throw an error from the <code>.then()</code> method. This will cause the Promise chain to skip all remaining <code>.then()</code> methods and jump to nearest <code>.catch()</code> method to handle error.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">getUser</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Promise((<span style="color:#a6e22e">resolve</span>, <span style="color:#a6e22e">reject</span>) =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">user</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Lionel Messi&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">club</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;PSG&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">country</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Argentina&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">position</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#34;st&#34;</span>, <span style="color:#e6db74">&#34;rw&#34;</span>, <span style="color:#e6db74">&#34;cam&#34;</span>],
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">resolve</span>(<span style="color:#a6e22e">user</span>);
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">getUser</span>
+</span></span><span style="display:flex;"><span>  .<span style="color:#a6e22e">then</span>((<span style="color:#a6e22e">user</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;You picked &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; from &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">country</span>); <span style="color:#75715e">// Output: You picked Lionel Messi from Argentina
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">//Checking the postiton user can play
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">position</span>.<span style="color:#a6e22e">includes</span>(<span style="color:#e6db74">&#34;def&#34;</span>)) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> Error(<span style="color:#e6db74">&#34;You player cannot play in defending position.&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Return a simple value
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">club</span>;
+</span></span><span style="display:flex;"><span>  })
+</span></span><span style="display:flex;"><span>  .<span style="color:#a6e22e">then</span>((<span style="color:#a6e22e">club</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Your player plays for &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">club</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;.&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Output:  Your player plays for PSG.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  })
+</span></span><span style="display:flex;"><span>  .<span style="color:#66d9ef">catch</span>((<span style="color:#a6e22e">error</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">error</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Output - Error: You player cannot play in defending position.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  });
+</span></span></code></pre></div><p>To summarize, the <code>.then()</code> method allows us to handle the result of a Promise and perform additional operations based on the result. We can return another promise, a value or throw an error, depending upon the situation.</p>
+<h2 id="asyncawait">Async/Await</h2>
+<p>Async/Await is the most straightforward way to deal with asyanchronous operations in JavaScript. JavaScript provides us with two keywords: <code>async</code> and <code>await</code> that makes the use of promises musch easier. In simple terms, we use <code>async</code> to return a promise and use <code>await</code> to wait and handle a promise. This helps us to write cleaner and efficinet code.</p>
+<p>Let us consider a program that gets data from the server, process it and returns a promise.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getUser</span>(<span style="color:#a6e22e">name</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">server</span>.<span style="color:#a6e22e">registeredUsers</span>().<span style="color:#a6e22e">then</span>((<span style="color:#a6e22e">user</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">verified</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">map</span>((<span style="color:#a6e22e">person</span>) =&gt; <span style="color:#a6e22e">person</span>.<span style="color:#a6e22e">name</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">verified</span>;
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Let&rsquo;s rewrite this program using <code>async</code> and <code>await</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getUser</span>(<span style="color:#a6e22e">name</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">user</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">server</span>.<span style="color:#a6e22e">registeredUsers</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">verified</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">map</span>((<span style="color:#a6e22e">person</span>) =&gt; <span style="color:#a6e22e">person</span>.<span style="color:#a6e22e">name</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">verified</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="async"><code>async</code></h3>
+<p>The <code>async</code> keyword lets the JavaScript engine know that we are declaring an asynchronous function. When a function is marked as <code>async</code>, it returns a <code>Promise</code>. Async functions are just the syntatic sugar for <code>Promises</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">myAsyncFucntion</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">async</span> () =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// perform asynchronous tasks and return a Promise
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>};
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">myArray</span>.<span style="color:#a6e22e">forEach</span>(<span style="color:#66d9ef">async</span> (<span style="color:#a6e22e">item</span>) =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// fo something asynchronous for each item in myArray
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>});
+</span></span></code></pre></div><h3 id="await"><code>await</code></h3>
+<p><code>await</code> keyword tells the JavaScript engine to wait for asynchronus operations to complete before continuing the function. The <code>await</code> keyword is used to get a value from a function where we would normally use <code>.then()</code> promise handler. Instead of calling the <code>.then()</code> method, we can simply assign a variable to the result using <code>await</code>.</p>
+<h3 id="error-handling-asyncawait">Error Handling <code>async</code>/<code>await</code></h3>
+<p>We know that the Promsies have <code>catch()</code> method for handling rejected promises. Since, <code>async</code> functions just return a promise, we can simply append a <code>catch()</code> method at the end of function call.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">myAsyncFunction</span>().<span style="color:#66d9ef">catch</span>((<span style="color:#a6e22e">error</span>) =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">error</span>);
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p>We can also use the <code>try</code>/<code>catch</code> block to handle the error directly inside the <code>async</code> function.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getUser</span>(<span style="color:#a6e22e">name</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">user</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">server</span>.<span style="color:#a6e22e">registeredUsers</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">verified</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">map</span>((<span style="color:#a6e22e">person</span>) =&gt; <span style="color:#a6e22e">person</span>.<span style="color:#a6e22e">name</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">verified</span>;
+</span></span><span style="display:flex;"><span>  } <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">error</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// handler the error here
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></section>
+
+  
+  
+
+  
+  
+  
+  <nav class="mt-24 flex rounded-lg bg-black/[3%] text-lg dark:bg-white/[8%]">
+    
+    <a
+      class="flex w-1/2 items-center rounded-l-md p-6 pr-3 no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
+      href="/posts/10-javascript-functions/"
+      ><span class="mr-1.5">←</span><span>JavaScript Functions</span></a
+    >
+    
+    
+    <a
+      class="ml-auto flex w-1/2 items-center justify-end rounded-r-md p-6 pl-3 no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
+      href="/posts/11-javascript-this-keyword/"
+      ><span>JavaScript `this` Keyword</span><span class="ml-1.5">→</span></a
+    >
+    
+  </nav>
+  
+
+  
+  
+
+  
+  
+</article>
+
+
+    </main>
+
+    <footer
+  class="opaco mx-auto flex h-[5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
+>
+  <div class="mr-auto">
+    &copy; 2023
+    <a class="link" href="">JavaScript Manual</a>
+  </div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >Powered by Hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >Theme Paper</a
+  >
+</footer>
+
+  </body>
+</html>

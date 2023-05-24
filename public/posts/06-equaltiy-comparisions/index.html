@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready text-sm lg:text-base"
+  style="--bg: #faf6f1"
+  lang="en-us"
+>
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>JavaScript Equality Comparision - JavaScript Manual</title>
+
+  
+  <meta name="theme-color" />
+
+  
+  
+  
+  <meta name="description" content="Table of Content
+Value Comparison Operators Comparing Objects in JavaScript Referential Equality Manual Comparision Shallow Equality Deep Equality Value Comparison Operators When we have to compare two values in JavaScript, we use comparison operators provided by default in JavaScript. When we compare twovalues, a boolean (true or false) value is returned.
+There are eight comparision operators in JavaScript.
+&gt; : greater than - Returns true if the operand on the left is greater than on the right of the operand." />
+  <meta name="author" content="Prabesh Thapa" />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="/main.min.css" />
+
+  
+  <script
+    defer
+    src="highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
+  
+
+  
+   
+  <link rel="preload" as="image" href="theme.png" />
+
+  
+  
+  
+  <link rel="preload" as="image" href="https://gravatar.com/avatar/bc5b4d21951d97f450e166dbaea458f6" />
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  <link rel="icon" href="favicon.ico" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.112.2">
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="JavaScript Equality Comparision" />
+<meta property="og:description" content="Table of Content
+Value Comparison Operators Comparing Objects in JavaScript Referential Equality Manual Comparision Shallow Equality Deep Equality Value Comparison Operators When we have to compare two values in JavaScript, we use comparison operators provided by default in JavaScript. When we compare twovalues, a boolean (true or false) value is returned.
+There are eight comparision operators in JavaScript.
+&gt; : greater than - Returns true if the operand on the left is greater than on the right of the operand." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/06-equaltiy-comparisions/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-05-06T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-05-06T00:00:00+00:00" />
+
+  
+  <meta itemprop="name" content="JavaScript Equality Comparision">
+<meta itemprop="description" content="Table of Content
+Value Comparison Operators Comparing Objects in JavaScript Referential Equality Manual Comparision Shallow Equality Deep Equality Value Comparison Operators When we have to compare two values in JavaScript, we use comparison operators provided by default in JavaScript. When we compare twovalues, a boolean (true or false) value is returned.
+There are eight comparision operators in JavaScript.
+&gt; : greater than - Returns true if the operand on the left is greater than on the right of the operand."><meta itemprop="datePublished" content="2023-05-06T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2023-05-06T00:00:00+00:00" />
+<meta itemprop="wordCount" content="1396">
+<meta itemprop="keywords" content="" />
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="JavaScript Equality Comparision"/>
+<meta name="twitter:description" content="Table of Content
+Value Comparison Operators Comparing Objects in JavaScript Referential Equality Manual Comparision Shallow Equality Deep Equality Value Comparison Operators When we have to compare two values in JavaScript, we use comparison operators provided by default in JavaScript. When we compare twovalues, a boolean (true or false) value is returned.
+There are eight comparision operators in JavaScript.
+&gt; : greater than - Returns true if the operand on the left is greater than on the right of the operand."/>
+
+  
+  
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[5rem] max-w-3xl px-8 lg:justify-center">
+  <div class="relative z-50 mr-auto flex items-center">
+    <a
+      class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
+      href="/"
+      >JavaScript Manual</a
+    >
+    <div
+      class="btn-dark text-[0] ml-6 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.png)_left_center/_auto_theme('spacing.6')_no-repeat] [transition:_background-position_0.4s_steps(5)] dark:[background-position:right]"
+      role="button"
+      aria-label="Dark"
+    ></div>
+  </div>
+
+  <div
+    class="btn-menu relative z-50 -mr-8 flex h-[5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
+    role="button"
+    aria-label="Menu"
+  ></div>
+
+  
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = `"#faf6f1"`.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+  >
+    
+    
+
+    
+  </div>
+</header>
+
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-10rem)] max-w-3xl px-8 pt-16 pb-24 dark:prose-invert"
+    >
+      
+
+<article>
+  <header class="mb-20">
+    <h1 class="!my-0 pb-2.5">JavaScript Equality Comparision</h1>
+
+    
+    <div class="text-sm opacity-60">
+      
+      <time>May 6, 2023</time>
+      
+      
+      
+      
+      <span class="mx-1">&middot;</span>
+      <span>Prabesh Thapa</span>
+      
+    </div>
+    
+  </header>
+
+  <section><p><strong>Table of Content</strong></p>
+<ul>
+<li><a href="#value-comparison-operators">Value Comparison Operators</a>
+<ul>
+<li><a href="#comparing-objects-in-javascript">Comparing Objects in JavaScript</a>
+<ul>
+<li><a href="#referential-equality">Referential Equality</a></li>
+<li><a href="#manual-comparision">Manual Comparision</a></li>
+<li><a href="#shallow-equality">Shallow Equality</a></li>
+<li><a href="#deep-equality">Deep Equality</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="value-comparison-operators">Value Comparison Operators</h1>
+<p>When we have to compare two values in JavaScript, we use comparison operators provided by default in JavaScript. When we compare twovalues, a <code>boolean (true or false)</code> value is returned.</p>
+<p>There are eight comparision operators in JavaScript.</p>
+<ul>
+<li><code>&gt;</code> : greater than - Returns <code>true</code> if the operand on the left is greater than on the right of the operand.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">40</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">60</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">result</span>); <span style="color:#75715e">//OUTPUT: false
+</span></span></span></code></pre></div><ul>
+<li><code>&lt;</code> : less than - Returns <code>true</code> is the operand on the left is less than the operand on the right.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">40</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">60</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">result</span>); <span style="color:#75715e">//OUTPUT: true
+</span></span></span></code></pre></div><ul>
+<li><code>&gt;=</code> : greater than or equal to - Returns <code>true</code> if the oeprand on the left is greater or equal to the operand on right.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">result1</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span> <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">10</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">result2</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span> <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">10</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">result1</span>); <span style="color:#75715e">//OUTPUT: true
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">cosnole</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">result2</span>); <span style="color:#75715e">//OUTPUT: true
+</span></span></span></code></pre></div><ul>
+<li><code>&lt;=</code> : less than or equal to - Returns <code>true</code> if the operand on the left is less than or equal to the operand on the right.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">40</span> <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">60</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">result</span>); <span style="color:#75715e">//OUTPUT: true
+</span></span></span></code></pre></div><ul>
+<li><code>==</code> : equal to - Returns <code>true</code> if the operand on the left is equal to the operand on the right.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;4&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">result</span>); <span style="color:#75715e">//OUTPUT: true
+</span></span></span></code></pre></div><p><code>==</code> operators converts both of our values into a common data type and returns true if both operands are equal in value.</p>
+<ul>
+<li><code>===</code> : strictly equal to - returns <code>true</code> if the operand on the left is strictly equal to the operand on the right.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;4&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">result</span>); <span style="color:#75715e">//OUTPUT: false
+</span></span></span></code></pre></div><p><code>===</code> operators do not convert the operands into same data type and hence only returns <code>true</code> id both the operands are equal in values and also of same data type.</p>
+<ul>
+<li><code>!=</code> : not equal to - returns <code>true</code> if the operand on the left is not equal to the operand on the right.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span> <span style="color:#f92672">!=</span> <span style="color:#e6db74">&#34;4&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">result</span>); <span style="color:#75715e">//OUTPUT: false
+</span></span></span></code></pre></div><ul>
+<li><code>!==</code> : strict not equal to - returns <code>true</code> if the operand on the left is strictly not equal to the operand on the right.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span> <span style="color:#f92672">!==</span> <span style="color:#e6db74">&#34;4&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">result</span>); <span style="color:#75715e">//OUTPUT: true
+</span></span></span></code></pre></div><p><strong>Equal Operator (==) vs Strict Equal Operator (===)</strong></p>
+<table>
+<thead>
+<tr>
+<th>Equal Operator (==)</th>
+<th>Strict Equal Operator (===)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Converts the operands to same data type before comparision.</td>
+<td>Does not convert the operands to same data type before comparison.</td>
+</tr>
+<tr>
+<td>Returns <code>true</code> if both values are equal irrespective of their data type.</td>
+<td>Returns <code>true</code> only if both the values and the data type of the operands are same.</td>
+</tr>
+<tr>
+<td>Example: As <code>undefined</code> and <code>null</code> are losely equal, <code>undefined</code> == <code>null</code> returns as <code>true</code>.</td>
+<td>Example: As <code>undefined</code> and <code>null</code> are strictly not equal, <code>undefined</code> === <code>null</code> returns as <code>false</code>.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="comparing-objects-in-javascript">Comparing Objects in JavaScript</h2>
+<p>Comparing Object in JavaScript is difficult than comparing primitive data types since objects are structured data. JavaScript essentially provides us three ways to compare values:</p>
+<ul>
+<li>Strict Equality Operator (===)</li>
+<li>Loose Equality Operator (==)</li>
+<li><code>Object.is()</code> function</li>
+</ul>
+<h3 id="referential-equality">Referential Equality</h3>
+<p>When we compare objects using any of the above operator, it only returns <code>true</code> if the comapred value refers to the same object instance. This is called <code>referential equality</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">hero1</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Spider Man&#34;</span>,
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">hero2</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Spider Man&#34;</span>,
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">hero1</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">hero1</span>); <span style="color:#75715e">// OUTPUT: true
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">hero1</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">hero2</span>); <span style="color:#75715e">// OUTPUT: false
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">hero1</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">hero1</span>); <span style="color:#75715e">// OUTPUT: true
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">hero1</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">hero2</span>); <span style="color:#75715e">// OUTPUT: false
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(Object.<span style="color:#a6e22e">is</span>(<span style="color:#a6e22e">hero1</span>, <span style="color:#a6e22e">hero1</span>)); <span style="color:#75715e">// OUTPUT: true
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(Object.<span style="color:#a6e22e">is</span>(<span style="color:#a6e22e">hero1</span>, <span style="color:#a6e22e">hero2</span>)); <span style="color:#75715e">// OUTPUT: false
+</span></span></span></code></pre></div><p>Here, <code>hero1 === hero1</code> evaluates to <code>true</code> because both operands points to the same object instance <code>hero1</code> however <code>hero1 === hero2</code>returns <code>false</code> because <code>hero1</code> and <code>hero2</code> are two different object instances although both objects have the same property <code>name</code> with the same value of <code>Spider Man</code>.</p>
+<p>Hence, <code>Referential Equality</code> is used when we want to compare the object references, rather than their content (property and value).</p>
+<h3 id="manual-comparision">Manual Comparision</h3>
+<p>We can compare the contents in the object simply by accessing the properties and comparing them manually.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">isUserSame</span>(<span style="color:#a6e22e">obj1</span>, <span style="color:#a6e22e">obj2</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">obj1</span>.<span style="color:#a6e22e">fullName</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">obj2</span>.<span style="color:#a6e22e">fullName</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">user1</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fullName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Prabesh Thapa&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">user2</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fullName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Prabesh Thapa&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">user1</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fullName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Laxmi Thapa&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">isUserSame</span>(<span style="color:#a6e22e">user1</span>, <span style="color:#a6e22e">user2</span>)); <span style="color:#75715e">//OUTPUT: true
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">isUserSame</span>(<span style="color:#a6e22e">user1</span>, <span style="color:#a6e22e">user3</span>)); <span style="color:#75715e">//OUTPUT: false
+</span></span></span></code></pre></div><p>Manual comparision is the best possible way to to compare the properties of simple objects but it isn&rsquo;t convenient when we have to deal with bigger objects. This is where we can use <code>Shallow Equality</code>.</p>
+<h3 id="shallow-equality">Shallow Equality</h3>
+<p>We can get the list of properties in both the objects using the <code>Object.keys()</code> method and later check the properties values for equality.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">isUserSame</span>(<span style="color:#a6e22e">obj1</span>, <span style="color:#a6e22e">obj2</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">keys1</span> <span style="color:#f92672">=</span> Object.<span style="color:#a6e22e">keys</span>(<span style="color:#a6e22e">obj1</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">keys2</span> <span style="color:#f92672">=</span> Object.<span style="color:#a6e22e">keys</span>(<span style="color:#a6e22e">obj2</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">keys1</span>); <span style="color:#75715e">//OUTPUT: [&#34;firstName&#34;, &#34;lastName&#34;, &#34;age&#34;]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">keys2</span>); <span style="color:#75715e">//OUTPUT: [&#34;firstName&#34;, &#34;lastName&#34;, &#34;age&#34;]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">keys1</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">!==</span> <span style="color:#a6e22e">keys2</span>.<span style="color:#a6e22e">length</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">key</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">keys1</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">obj1</span>[<span style="color:#a6e22e">key</span>] <span style="color:#f92672">!==</span> <span style="color:#a6e22e">obj2</span>[<span style="color:#a6e22e">key</span>]) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">user1</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">firstName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Prabesh&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">lastName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Thapa&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">age</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">23</span>,
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">user2</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">firstName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Prabesh&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">lastName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Thapa&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">age</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">23</span>,
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">user3</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">firstName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Laxmi&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">lastName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Thapa&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">age</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">21</span>,
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">isUserSame</span>(<span style="color:#a6e22e">user1</span>, <span style="color:#a6e22e">user2</span>)); <span style="color:#75715e">//OUTPUT: true
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">isUserSame</span>(<span style="color:#a6e22e">user1</span>, <span style="color:#a6e22e">user3</span>)); <span style="color:#75715e">//OUTPUT: false
+</span></span></span></code></pre></div><p>Inside the function, <code>keys1</code> and <code>keys2</code> are arrays containg the property names of <code>obj1</code> and <code>obj2</code>. Here, <code>isUserSame(user1, user2)</code> returns <code>true</code> because both <code>user1</code> and <code>user2</code> have the same properties with same values.</p>
+<p><strong>Shallow Equality doesn&rsquo;t work so well with nested objects however.</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">user1</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">firstName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Prabesh&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">lastName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Thapa&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">age</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">23</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">address</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">city</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Pokhara&#34;</span>,
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">user2</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">firstName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Prabesh&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">lastName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Thapa&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">age</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">23</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">address</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">city</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Pokhara&#34;</span>,
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">isUserSame</span>(<span style="color:#a6e22e">user1</span>, <span style="color:#a6e22e">user2</span>)); <span style="color:#75715e">//OUTPUT: false
+</span></span></span></code></pre></div><p>Interestingly, although <code>user1</code> and <code>user2</code> both have same properties and values, shallow equality returns <code>false</code>. This is because, the nested object <code>user1.address</code> and <code>user2.address</code> are different object instances, hence shallow equality considers them to be not equal.</p>
+<p>This problem can fortunately be solved with <code>Deep Equality</code>.</p>
+<h3 id="deep-equality">Deep Equality</h3>
+<p>Deep equality is similar to shallow equality but with one major difference. During the comparision, a recursive check is performed on the nested objects.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">deepEqual</span>(<span style="color:#a6e22e">obj1</span>, <span style="color:#a6e22e">obj2</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">keys1</span> <span style="color:#f92672">=</span> Object.<span style="color:#a6e22e">keys</span>(<span style="color:#a6e22e">obj1</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">keys2</span> <span style="color:#f92672">=</span> Object.<span style="color:#a6e22e">keys</span>(<span style="color:#a6e22e">obj2</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">keys1</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">!==</span> <span style="color:#a6e22e">keys2</span>.<span style="color:#a6e22e">length</span>) <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">key</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">keys1</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">val1</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">obj1</span>[<span style="color:#a6e22e">key</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">val2</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">obj2</span>[<span style="color:#a6e22e">key</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">areObjects</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">isObject</span>(<span style="color:#a6e22e">val1</span>) <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">isObject</span>(<span style="color:#a6e22e">val2</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (
+</span></span><span style="display:flex;"><span>      (<span style="color:#a6e22e">areObjects</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span><span style="color:#a6e22e">deepEqual</span>(<span style="color:#a6e22e">val1</span>, <span style="color:#a6e22e">val2</span>)) <span style="color:#f92672">||</span>
+</span></span><span style="display:flex;"><span>      (<span style="color:#f92672">!</span><span style="color:#a6e22e">areObjects</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">val1</span> <span style="color:#f92672">!==</span> <span style="color:#a6e22e">val2</span>)
+</span></span><span style="display:flex;"><span>    ) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">isObject</span>(<span style="color:#a6e22e">obj</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> (<span style="color:#a6e22e">obj</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span>) <span style="color:#f92672">&amp;</span> (<span style="color:#66d9ef">typeof</span> <span style="color:#a6e22e">obj</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;object&#34;</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The <code>isObject</code> function checks if an object is not <code>null</code> or <code>undefined</code>, and if its type is <code>object</code>, returning a boolean value accordingly.</p>
+<p>The <code>deepEqual</code> function takes two objects as input and recursively compares their properties and values to determine if they are deeply equal (i.e., if they have the same properties with the same values).</p>
+<p>To do this, it first gets an array of the keys of each object using <code>Object.keys()</code>. If the length of these arrays is not the same, the function immediately returns false.</p>
+<p>Then, for each key in the <code>keys1</code> array, the function gets the corresponding values from both objects (val1 and val2) and checks if they are both objects using the <code>isObject</code> function. If they are, the function recursively calls <code>deepEqual</code> on these nested objects to determine if they are equal. If they are not both objects, the function checks if their values are equal using the <code>!==</code> operator.</p>
+<p>If any of the comparisons in the for loop fail, the function immediately returns false. If all of the comparisons pass, the function returns true.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">user1</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">firstName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Prabesh&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">lastName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Thapa&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">age</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">23</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">address</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">city</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Pokhara&#34;</span>,
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">user2</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">firstName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Prabesh&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">lastName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Thapa&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">age</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">23</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">address</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">city</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Pokhara&#34;</span>,
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">deepEqual</span>(<span style="color:#a6e22e">user1</span>, <span style="color:#a6e22e">user2</span>)); <span style="color:#75715e">//OUTPUT: true
+</span></span></span></code></pre></div><p>Here, deep equality function correctly determines that both <code>user1</code> and <code>user2</code> have same properties and values, including the nested objects.</p>
+<p><strong>Summary:</strong></p>
+<ul>
+<li>Referential equality using <code>==</code>, <code>===</code> and <code>Object.is()</code> checks whether the operands are the instance of same object.</li>
+<li>We can also manually compare the values of properties in the object by accessing the properties of those objects.</li>
+<li>We use shallow equality when the objects to be compared have a lot of properties or if the object is determined at the runtime.</li>
+<li>We use deep equality check if the compared objects have nested objects.</li>
+</ul>
+</section>
+
+  
+  
+
+  
+  
+  
+  <nav class="mt-24 flex rounded-lg bg-black/[3%] text-lg dark:bg-white/[8%]">
+    
+    <a
+      class="flex w-1/2 items-center rounded-l-md p-6 pr-3 no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
+      href="/posts/07-loops-and-iterations/"
+      ><span class="mr-1.5">←</span><span>JavaScript Loop and Iteration</span></a
+    >
+    
+    
+    <a
+      class="ml-auto flex w-1/2 items-center justify-end rounded-r-md p-6 pl-3 no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
+      href="/posts/05-data-structure/"
+      ><span>JavaScript Data Structure</span><span class="ml-1.5">→</span></a
+    >
+    
+  </nav>
+  
+
+  
+  
+
+  
+  
+</article>
+
+
+    </main>
+
+    <footer
+  class="opaco mx-auto flex h-[5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
+>
+  <div class="mr-auto">
+    &copy; 2023
+    <a class="link" href="">JavaScript Manual</a>
+  </div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >Powered by Hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >Theme Paper</a
+  >
+</footer>
+
+  </body>
+</html>

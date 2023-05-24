@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready text-sm lg:text-base"
+  style="--bg: #faf6f1"
+  lang="en-us"
+>
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>JavaScript Expressions and Operators - JavaScript Manual</title>
+
+  
+  <meta name="theme-color" />
+
+  
+  
+  
+  <meta name="description" content="Table of Content
+Expression and Operators Types of Operator Assignment Operator Comparision Operator Arithematic Operator Logical Operator Logical AND (&amp;&amp;) Logical OR (||) Logical NOT (!) Conditional (Ternary) Operator Unary Operator Relational Operator Expression and Operators An expression is a valid piece of code that resolves to a value. There are two types of expressions: those that have effects such as asssigning the value and those who evaluate value.
+For example: x = 7 is a expression that assigns the value of 7 to the variable x usig the = operator while the expression 2&#43;2 uses the operator &#43; to add 2 and 2 together and returns a value of 4." />
+  <meta name="author" content="Prabesh Thapa" />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="/main.min.css" />
+
+  
+  <script
+    defer
+    src="highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
+  
+
+  
+   
+  <link rel="preload" as="image" href="theme.png" />
+
+  
+  
+  
+  <link rel="preload" as="image" href="https://gravatar.com/avatar/bc5b4d21951d97f450e166dbaea458f6" />
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  <link rel="icon" href="favicon.ico" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.112.2">
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="JavaScript Expressions and Operators" />
+<meta property="og:description" content="Table of Content
+Expression and Operators Types of Operator Assignment Operator Comparision Operator Arithematic Operator Logical Operator Logical AND (&amp;&amp;) Logical OR (||) Logical NOT (!) Conditional (Ternary) Operator Unary Operator Relational Operator Expression and Operators An expression is a valid piece of code that resolves to a value. There are two types of expressions: those that have effects such as asssigning the value and those who evaluate value.
+For example: x = 7 is a expression that assigns the value of 7 to the variable x usig the = operator while the expression 2&#43;2 uses the operator &#43; to add 2 and 2 together and returns a value of 4." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/09-javascript-operators/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-05-09T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-05-09T00:00:00+00:00" />
+
+  
+  <meta itemprop="name" content="JavaScript Expressions and Operators">
+<meta itemprop="description" content="Table of Content
+Expression and Operators Types of Operator Assignment Operator Comparision Operator Arithematic Operator Logical Operator Logical AND (&amp;&amp;) Logical OR (||) Logical NOT (!) Conditional (Ternary) Operator Unary Operator Relational Operator Expression and Operators An expression is a valid piece of code that resolves to a value. There are two types of expressions: those that have effects such as asssigning the value and those who evaluate value.
+For example: x = 7 is a expression that assigns the value of 7 to the variable x usig the = operator while the expression 2&#43;2 uses the operator &#43; to add 2 and 2 together and returns a value of 4."><meta itemprop="datePublished" content="2023-05-09T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2023-05-09T00:00:00+00:00" />
+<meta itemprop="wordCount" content="1651">
+<meta itemprop="keywords" content="" />
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="JavaScript Expressions and Operators"/>
+<meta name="twitter:description" content="Table of Content
+Expression and Operators Types of Operator Assignment Operator Comparision Operator Arithematic Operator Logical Operator Logical AND (&amp;&amp;) Logical OR (||) Logical NOT (!) Conditional (Ternary) Operator Unary Operator Relational Operator Expression and Operators An expression is a valid piece of code that resolves to a value. There are two types of expressions: those that have effects such as asssigning the value and those who evaluate value.
+For example: x = 7 is a expression that assigns the value of 7 to the variable x usig the = operator while the expression 2&#43;2 uses the operator &#43; to add 2 and 2 together and returns a value of 4."/>
+
+  
+  
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[5rem] max-w-3xl px-8 lg:justify-center">
+  <div class="relative z-50 mr-auto flex items-center">
+    <a
+      class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
+      href="/"
+      >JavaScript Manual</a
+    >
+    <div
+      class="btn-dark text-[0] ml-6 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.png)_left_center/_auto_theme('spacing.6')_no-repeat] [transition:_background-position_0.4s_steps(5)] dark:[background-position:right]"
+      role="button"
+      aria-label="Dark"
+    ></div>
+  </div>
+
+  <div
+    class="btn-menu relative z-50 -mr-8 flex h-[5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
+    role="button"
+    aria-label="Menu"
+  ></div>
+
+  
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = `"#faf6f1"`.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+  >
+    
+    
+
+    
+  </div>
+</header>
+
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-10rem)] max-w-3xl px-8 pt-16 pb-24 dark:prose-invert"
+    >
+      
+
+<article>
+  <header class="mb-20">
+    <h1 class="!my-0 pb-2.5">JavaScript Expressions and Operators</h1>
+
+    
+    <div class="text-sm opacity-60">
+      
+      <time>May 9, 2023</time>
+      
+      
+      
+      
+      <span class="mx-1">&middot;</span>
+      <span>Prabesh Thapa</span>
+      
+    </div>
+    
+  </header>
+
+  <section><p><strong>Table of Content</strong></p>
+<ul>
+<li><a href="#expression-and-operators">Expression and Operators</a>
+<ul>
+<li><a href="#types-of-operator">Types of Operator</a>
+<ul>
+<li><a href="#assignment-operator"><code>Assignment Operator</code></a></li>
+<li><a href="#comparision-operator"><code>Comparision Operator</code></a></li>
+<li><a href="#arithematic-operator"><code>Arithematic Operator</code></a></li>
+<li><a href="#logical-operator"><code>Logical Operator</code></a>
+<ul>
+<li><a href="#logical-and-"><code>Logical AND (&amp;&amp;)</code></a></li>
+<li><a href="#logical-or-"><code>Logical OR (||)</code></a></li>
+<li><a href="#logical-not-"><code>Logical NOT (!)</code></a></li>
+</ul>
+</li>
+<li><a href="#conditional-ternary-operator"><code>Conditional (Ternary) Operator</code></a></li>
+<li><a href="#unary-operator"><code>Unary Operator</code></a></li>
+<li><a href="#relational-operator"><code>Relational Operator</code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="expression-and-operators">Expression and Operators</h1>
+<p>An expression is a valid piece of code that resolves to a value. There are two types of expressions: those that have effects such as asssigning the value and those who evaluate value.</p>
+<p>For example: <code>x = 7</code> is a expression that assigns the value of 7 to the variable <code>x</code> usig the <code>=</code> operator while the expression <code>2+2</code> uses the operator <code>+</code> to add 2 and 2 together and returns a value of 4.</p>
+<h2 id="types-of-operator">Types of Operator</h2>
+<h3 id="assignment-operator"><code>Assignment Operator</code></h3>
+<p>It assigns a value to its left operand to the value at its right operand with the operator <code>=</code>.</p>
+<h3 id="comparision-operator"><code>Comparision Operator</code></h3>
+<p>It compares its operands and returns a logical value based on whether the comparision is <code>true</code> or <code>false</code>. If two operands are not of same type, JS attempts to convert them to appropriate type for comparision.</p>
+<table>
+<thead>
+<tr>
+<th>Operator</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Equal (==)</td>
+<td>Returns true if the operands are equal.</td>
+</tr>
+<tr>
+<td>Not equal (!=)</td>
+<td>Returns true if the operands are not equal.</td>
+</tr>
+<tr>
+<td>Strict equal (===)</td>
+<td>Returns true if the operands are equal and of the same type. See also Object.is and sameness in JS.</td>
+</tr>
+<tr>
+<td>Strict not equal (!==)</td>
+<td>Returns true if the operands are of the same type but not equal, or are of different type.</td>
+</tr>
+<tr>
+<td>Greater than (&gt;)</td>
+<td>Returns true if the left operand is greater than the right operand.</td>
+</tr>
+<tr>
+<td>Greater than or equal (&gt;=)</td>
+<td>Returns true if the left operand is greater than or equal to the right operand.</td>
+</tr>
+<tr>
+<td>Less than (&lt;)</td>
+<td>Returns true if the left operand is less than the right operand.</td>
+</tr>
+<tr>
+<td>Less than or equal (&lt;=)</td>
+<td>Returns true if the left operand is less than or equal to the right operand.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="arithematic-operator"><code>Arithematic Operator</code></h3>
+<p>It takes numerical values as operands and returns single numerical value.The standard arithematic operations are addition <code>(+)</code>, subtraction <code>(-)</code>, multiplication <code>(*)</code> and division <code>(/)</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#ae81ff">20</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>; <span style="color:#75715e">//10
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>; <span style="color:#75715e">//4
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#ae81ff">10</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span>; <span style="color:#75715e">//20
+</span></span></span></code></pre></div><p>In addition to the standard arithematic operations <code>(+,-,*,/)</code>, JS also provides other arithematic operators.</p>
+<table>
+<thead>
+<tr>
+<th>Operator</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Equal (==)</td>
+<td>Returns true if the operands are equal.</td>
+</tr>
+<tr>
+<td>Not equal (!=)</td>
+<td>Returns true if the operands are not equal.</td>
+</tr>
+<tr>
+<td>Strict equal (===)</td>
+<td>Returns true if the operands are equal and of the same type.</td>
+</tr>
+<tr>
+<td>Strict not equal (!==)</td>
+<td>Returns true if the operands are of the same type but not equal, or are of different type.</td>
+</tr>
+<tr>
+<td>Greater than (&gt;)</td>
+<td>Returns true if the left operand is greater than the right operand.</td>
+</tr>
+<tr>
+<td>Greater than or equal (&gt;=)</td>
+<td>Returns true if the left operand is greater than or equal to the right operand.</td>
+</tr>
+<tr>
+<td>Less than (&lt;)</td>
+<td>Returns true if the left operand is less than the right operand.</td>
+</tr>
+<tr>
+<td>Less than or equal (&lt;=)</td>
+<td>Returns true if the left operand is less than or equal to the right operand.</td>
+</tr>
+</tbody>
+</table>
+<p>###<code> Bitwise Operator</code></p>
+<p>Bitwise operator treats their operands as a set of 32 bits (1s and 0s). For example, the decimal <code>7</code> has a binary represntation of <code>111</code>. Bitwise operators perform their operations on such binary representations but they return numerical values.</p>
+<table>
+<thead>
+<tr>
+<th>Operator</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bitwise AND (<code>a &amp; b</code>)</td>
+<td>Returns a one in each bit position for which the corresponding bits of both operands are ones.</td>
+</tr>
+<tr>
+<td>Bitwise OR (<code>a | b</code>)</td>
+<td>Returns a zero in each bit position for which the corresponding bits of both operands are zeros.</td>
+</tr>
+<tr>
+<td>Bitwise XOR (<code>a ^ b</code>)</td>
+<td>Returns a zero in each bit position for which the corresponding bits are the same.</td>
+</tr>
+<tr>
+<td>Bitwise NOT (<code>~ a</code>)</td>
+<td>Inverts the bits of its operand.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="logical-operator"><code>Logical Operator</code></h3>
+<p>They are typically used with boolean values however <code>&amp;&amp;</code> and <code>||</code> operators actually return the value of one of the specified operands,so if the operands are used with non-boolean values, they may return non-boolean values.</p>
+<table>
+<thead>
+<tr>
+<th>Operator</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Logical AND <code>(&amp;&amp;)</code></td>
+<td><code>(a &amp;&amp; b)</code> returns <code>a</code> if it can be converted to false; otherwise, it returns <code>b</code>. Thus, when used with Boolean values, <code>&amp;&amp;</code> returns <code>true</code> if both operands are <code>true</code>; otherwise, returns <code>false</code>.</td>
+</tr>
+<tr>
+<td>Logical OR <code>(||)</code></td>
+<td><code>(a || b)</code> returns <code>a</code> if it can be converted to true; otherwise, it returns <code>b</code>. Thus, when used with Boolean values, <code>||</code> returns <code>true</code> if either operand is <code>true</code>; if both are <code>false</code>, returns <code>false</code>.</td>
+</tr>
+<tr>
+<td>Logical NOT <code>(!)</code></td>
+<td><code>(!a)</code> returns <code>false</code> if its single operand can be converted to <code>true</code>; otherwise, it returns <code>true</code>.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="logical-and-"><code>Logical AND (&amp;&amp;)</code></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">weirdo</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Cat&#34;</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#e6db74">&#34;Dog&#34;</span>; <span style="color:#75715e">//OUTPUT: Dog
+</span></span></span></code></pre></div><p>Here, <code>Cat &amp;&amp; Dog</code> evaluates to &ldquo;Dog&rdquo; because as mentioned above, <code>&amp;&amp;</code> operator when used with two operands, evaluates left operand first and if it can be converted to <code>false</code>, it returns the left-hand operand <em>(Cat in this case)</em> else returns the right-hand operand <em>(Dog in this case)</em>.</p>
+<p>To elaborate, the left-hand operand &ldquo;Cat&rdquo; can be converted to <code>true</code>, since it is not a empty string. Therefore, JavaScript proceeds to evaluate right-hand operand &ldquo;Dog&rdquo; which also can be converted to <code>true</code>. <em>Since, both the operands are <code>true</code>, logical AND operator returns the right-hand operator</em> i.e. Dog.</p>
+<p><strong>More Examples of <code>&amp;&amp;</code> Operator:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">a1</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#66d9ef">true</span>; <span style="color:#75715e">// returns true
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">a2</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#66d9ef">false</span>; <span style="color:#75715e">// returns false
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">a3</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#66d9ef">true</span>; <span style="color:#75715e">// returns false
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">a4</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">4</span>; <span style="color:#75715e">// returns false
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">a5</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Cat&#34;</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#e6db74">&#34;Dog&#34;</span>; <span style="color:#75715e">// returns Dog
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">a6</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#e6db74">&#34;Cat&#34;</span>; <span style="color:#75715e">// returns false
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">a7</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Cat&#34;</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#66d9ef">false</span>; <span style="color:#75715e">// returns false
+</span></span></span></code></pre></div><p>You should try to understand these expressions and the reasons for yourself.</p>
+<h4 id="logical-or-"><code>Logical OR (||)</code></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">nextWeirdo</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Cat&#34;</span> <span style="color:#f92672">||</span> <span style="color:#e6db74">&#34;Dog&#34;</span>; <span style="color:#75715e">//OUPUT: Cat
+</span></span></span></code></pre></div><p>Here, <code>Cat || Dog</code> evaluates to &ldquo;Cat&rdquo; because as mentioned above, <code>||</code> operator when used with two operands, evaluates left operand first and if it can be converted to <code>true</code>, it returns the left-hand operand <em>(Cat in this case)</em> else returns the right-hand operand <em>(Dog in this case)</em>.</p>
+<p>To elaborate, the left-hand operand &ldquo;Cat&rdquo; can be converted to <code>true</code>, since it is not a empty string. Therefore, JavaScript returns the left-hand operand i.e. &ldquo;Cat&rdquo;. The right-hand operand &ldquo;Dog&rdquo; is not even evaluated since the right-hand operand is already <code>true</code>.</p>
+<p><strong>More Examples of <code>||</code> Operator:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">o1</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span> <span style="color:#f92672">||</span> <span style="color:#66d9ef">true</span>; <span style="color:#75715e">// returns true
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">o2</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span> <span style="color:#f92672">||</span> <span style="color:#66d9ef">true</span>; <span style="color:#75715e">// returns true
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">o3</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span> <span style="color:#f92672">||</span> <span style="color:#66d9ef">false</span>; <span style="color:#75715e">// returns true
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">o4</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span> <span style="color:#f92672">||</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">4</span>; <span style="color:#75715e">// returns false
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">o5</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Cat&#34;</span> <span style="color:#f92672">||</span> <span style="color:#e6db74">&#34;Dog&#34;</span>; <span style="color:#75715e">// returns Cat
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">o6</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span> <span style="color:#f92672">||</span> <span style="color:#e6db74">&#34;Cat&#34;</span>; <span style="color:#75715e">// returns Cat
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">o7</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Cat&#34;</span> <span style="color:#f92672">||</span> <span style="color:#66d9ef">false</span>; <span style="color:#75715e">// returns Cat
+</span></span></span></code></pre></div><h4 id="logical-not-"><code>Logical NOT (!)</code></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">n1</span> <span style="color:#f92672">=</span> <span style="color:#f92672">!</span><span style="color:#66d9ef">true</span>; <span style="color:#75715e">// returns false
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">n2</span> <span style="color:#f92672">=</span> <span style="color:#f92672">!</span><span style="color:#66d9ef">false</span>; <span style="color:#75715e">// returns true
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">n3</span> <span style="color:#f92672">=</span> <span style="color:#f92672">!</span><span style="color:#e6db74">&#34;Cat&#34;</span>; <span style="color:#75715e">// returns false
+</span></span></span></code></pre></div><h3 id="conditional-ternary-operator"><code>Conditional (Ternary) Operator</code></h3>
+<p>Conditional Operator is the only JavaScript operator that takes three operands.</p>
+<p>Syntax:</p>
+<pre tabindex="0"><code>condition ? val1 : val2;
+</code></pre><p>If the condition is <code>true</code>, the operator has the value of <code>val1</code> else it has the value of <code>val2</code>. We can use the ternary operator anywhere we would use standard operator.</p>
+<p>Example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">entry</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">age</span> <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">18</span> <span style="color:#f92672">?</span> <span style="color:#e6db74">&#34;accepted&#34;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;rejected&#34;</span>;
+</span></span></code></pre></div><p>This statement assigns the value of <code>entry</code> to &ldquo;accepted&rdquo; if the age is 18 or more else it assigns the value to &ldquo;rejected&rdquo;.</p>
+<h3 id="unary-operator"><code>Unary Operator</code></h3>
+<p>A unary operation is an operation with only one operand.</p>
+<ul>
+<li><code>delete</code>: it deletes and object&rsquo;s property.</li>
+</ul>
+<pre tabindex="0"><code>delete object.property;
+delete object[propertyKey];
+delete objectName[index];
+</code></pre><p>If the <code>delete</code> operator succeeds, it removes the property from the object. When we try to access that property afterwards, it will return <code>undefined</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">delete</span> Math.<span style="color:#a6e22e">PI</span>; <span style="color:#75715e">// returns false (cannot delete non-configurable properties)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">myObj</span> <span style="color:#f92672">=</span> { <span style="color:#a6e22e">x</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">2</span> };
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">delete</span> <span style="color:#a6e22e">myObj</span>.<span style="color:#a6e22e">h</span>; <span style="color:#75715e">// returns true (can delete user-defined properties)
+</span></span></span></code></pre></div><ul>
+<li><code>typeof</code>: This operator returns a string indicating the type of the operand.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">addFunc</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Function(<span style="color:#e6db74">&#34;2 + 2&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">shape</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;round&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">size</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">12</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">fruits</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;Apple&#34;</span>, <span style="color:#e6db74">&#34;Mango&#34;</span>, <span style="color:#e6db74">&#34;Orange&#34;</span>];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">today</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Date();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">isSingle</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">typeof</span> <span style="color:#a6e22e">addFunc</span>; <span style="color:#75715e">// returns &#34;function&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">typeof</span> <span style="color:#a6e22e">shape</span>; <span style="color:#75715e">// returns &#34;string&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">typeof</span> <span style="color:#a6e22e">size</span>; <span style="color:#75715e">// returns &#34;number&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">typeof</span> <span style="color:#a6e22e">fruits</span>; <span style="color:#75715e">// returns &#34;object&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">typeof</span> <span style="color:#a6e22e">today</span>; <span style="color:#75715e">// returns &#34;object&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">typeof</span> <span style="color:#a6e22e">doesntExist</span>; <span style="color:#75715e">// returns &#34;undefined&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">typeof</span> <span style="color:#a6e22e">isSingle</span>; <span style="color:#75715e">// returns &#34;boolean&#34;
+</span></span></span></code></pre></div><h3 id="relational-operator"><code>Relational Operator</code></h3>
+<p>A relational operator compares its operands and returns a value based on whether the comparison is truthy.</p>
+<ul>
+<li><code>in</code>: This operator returns <code>true</code> if the specified property is in the specified object.</li>
+</ul>
+<p>Syntax:</p>
+<pre tabindex="0"><code>propertyName in objectName;
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// Arrays
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">fruits</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;mango&#34;</span>, <span style="color:#e6db74">&#34;apple&#34;</span>, <span style="color:#e6db74">&#34;grape&#34;</span>, <span style="color:#e6db74">&#34;plum&#34;</span>, <span style="color:#e6db74">&#34;papaya&#34;</span>];
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">0</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">fruits</span>; <span style="color:#75715e">// returns true
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#ae81ff">3</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">fruits</span>; <span style="color:#75715e">// returns true
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#ae81ff">6</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">fruits</span>; <span style="color:#75715e">// returns false
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#e6db74">&#34;apple&#34;</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">fruits</span>; <span style="color:#75715e">// returns false
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// (you must specify the index number, not the value at that index)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#e6db74">&#34;length&#34;</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">fruits</span>; <span style="color:#75715e">// returns true (length is an Array property)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// built-in objects
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#e6db74">&#34;PI&#34;</span> <span style="color:#66d9ef">in</span> Math; <span style="color:#75715e">// returns true
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">myName</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> String(<span style="color:#e6db74">&#34;entry&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;length&#34;</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">myString</span>; <span style="color:#75715e">// returns true
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Custom objects
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">myFriends</span> <span style="color:#f92672">=</span> { <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Yogendra&#34;</span>, <span style="color:#a6e22e">hobby</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Sleeping&#34;</span>, <span style="color:#a6e22e">year</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">2000</span> };
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;name&#34;</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">myFriends</span>; <span style="color:#75715e">// returns true
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#e6db74">&#34;hobby&#34;</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">myFriends</span>; <span style="color:#75715e">// returns true
+</span></span></span></code></pre></div><pre tabindex="0"><code>Well, you may be wondering why `0 in fruits` evaluates to `true` but `apple in fruits` evaluate to `false`.
+</code></pre><p>The reason for this is because the <code>in</code> operator in JavaScript is used to check if a specified property/key exists in an <code>object</code> or <code>array</code>.</p>
+<p>In the case of <code>0 in fruits</code>, it is checking whether the fruits array has a property/key of 0, which it does since arrays in JavaScript are objects with numeric keys starting from 0. Therefore, the expression 0 in fruits returns <code>true</code>.</p>
+<p>However, &ldquo;apple&rdquo; in fruits is checking whether the fruits array has a property/key of &ldquo;apple&rdquo;, which it does not, since the elements of the array are not considered keys. Therefore, the expression &ldquo;apple&rdquo; in fruits returns <code>false</code>.</p>
+<p>To check if a value exists in an array, you can use the <code>includes()</code> method instead: <code>fruits.includes(&quot;apple&quot;)</code> would return <code>true</code> because the value &ldquo;apple&rdquo; exists in the array.</p>
+</section>
+
+  
+  
+
+  
+  
+  
+  <nav class="mt-24 flex rounded-lg bg-black/[3%] text-lg dark:bg-white/[8%]">
+    
+    <a
+      class="flex w-1/2 items-center rounded-l-md p-6 pr-3 no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
+      href="/posts/11-javascript-this-keyword/"
+      ><span class="mr-1.5">←</span><span>JavaScript `this` Keyword</span></a
+    >
+    
+    
+    <a
+      class="ml-auto flex w-1/2 items-center justify-end rounded-r-md p-6 pl-3 no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
+      href="/posts/08-control-flow/"
+      ><span>JavaScript Control Flow</span><span class="ml-1.5">→</span></a
+    >
+    
+  </nav>
+  
+
+  
+  
+
+  
+  
+</article>
+
+
+    </main>
+
+    <footer
+  class="opaco mx-auto flex h-[5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
+>
+  <div class="mr-auto">
+    &copy; 2023
+    <a class="link" href="">JavaScript Manual</a>
+  </div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >Powered by Hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >Theme Paper</a
+  >
+</footer>
+
+  </body>
+</html>

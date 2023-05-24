@@ -1,0 +1,12 @@
+baseUrl = 'http://example.org/'
+languageCode = 'en-us'
+title = 'JavaScript Manual'
+theme = 'paper'
+
+[params]
+  color = 'linen'                           # linen, wheat, gray, light
+
+  # home page profile
+  avatar = 'https://gravatar.com/avatar/bc5b4d21951d97f450e166dbaea458f6'               
+  name = 'Prabesh Thapa'
+  bio = 'Just an introvert trying to learn living.'

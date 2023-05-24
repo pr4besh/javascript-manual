@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready text-sm lg:text-base"
+  style="--bg: #faf6f1"
+  lang="en-us"
+>
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>JavaScript Control Flow - JavaScript Manual</title>
+
+  
+  <meta name="theme-color" />
+
+  
+  
+  
+  <meta name="description" content="Table of Content
+Conditional Statement if statement else statement else-if statement switch Exception Handling Catching Exceptions JavaScript Error Types Throwing Custom Exceptions Conditional Statement Conditional Statements control behavior in JavaScript and determine weather certain code blocks can run or not. There are different conditional statements in JavaScript such as -
+if statement: if a condition is true, it is used to run a certain block of code. else statement: if a condition is false, it is used to run a certain block of code." />
+  <meta name="author" content="Prabesh Thapa" />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="/main.min.css" />
+
+  
+  <script
+    defer
+    src="highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
+  
+
+  
+   
+  <link rel="preload" as="image" href="theme.png" />
+
+  
+  
+  
+  <link rel="preload" as="image" href="https://gravatar.com/avatar/bc5b4d21951d97f450e166dbaea458f6" />
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  <link rel="icon" href="favicon.ico" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.112.2">
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="JavaScript Control Flow" />
+<meta property="og:description" content="Table of Content
+Conditional Statement if statement else statement else-if statement switch Exception Handling Catching Exceptions JavaScript Error Types Throwing Custom Exceptions Conditional Statement Conditional Statements control behavior in JavaScript and determine weather certain code blocks can run or not. There are different conditional statements in JavaScript such as -
+if statement: if a condition is true, it is used to run a certain block of code. else statement: if a condition is false, it is used to run a certain block of code." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/08-control-flow/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-05-08T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-05-08T00:00:00+00:00" />
+
+  
+  <meta itemprop="name" content="JavaScript Control Flow">
+<meta itemprop="description" content="Table of Content
+Conditional Statement if statement else statement else-if statement switch Exception Handling Catching Exceptions JavaScript Error Types Throwing Custom Exceptions Conditional Statement Conditional Statements control behavior in JavaScript and determine weather certain code blocks can run or not. There are different conditional statements in JavaScript such as -
+if statement: if a condition is true, it is used to run a certain block of code. else statement: if a condition is false, it is used to run a certain block of code."><meta itemprop="datePublished" content="2023-05-08T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2023-05-08T00:00:00+00:00" />
+<meta itemprop="wordCount" content="1260">
+<meta itemprop="keywords" content="" />
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="JavaScript Control Flow"/>
+<meta name="twitter:description" content="Table of Content
+Conditional Statement if statement else statement else-if statement switch Exception Handling Catching Exceptions JavaScript Error Types Throwing Custom Exceptions Conditional Statement Conditional Statements control behavior in JavaScript and determine weather certain code blocks can run or not. There are different conditional statements in JavaScript such as -
+if statement: if a condition is true, it is used to run a certain block of code. else statement: if a condition is false, it is used to run a certain block of code."/>
+
+  
+  
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[5rem] max-w-3xl px-8 lg:justify-center">
+  <div class="relative z-50 mr-auto flex items-center">
+    <a
+      class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
+      href="/"
+      >JavaScript Manual</a
+    >
+    <div
+      class="btn-dark text-[0] ml-6 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.png)_left_center/_auto_theme('spacing.6')_no-repeat] [transition:_background-position_0.4s_steps(5)] dark:[background-position:right]"
+      role="button"
+      aria-label="Dark"
+    ></div>
+  </div>
+
+  <div
+    class="btn-menu relative z-50 -mr-8 flex h-[5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
+    role="button"
+    aria-label="Menu"
+  ></div>
+
+  
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = `"#faf6f1"`.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+  >
+    
+    
+
+    
+  </div>
+</header>
+
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-10rem)] max-w-3xl px-8 pt-16 pb-24 dark:prose-invert"
+    >
+      
+
+<article>
+  <header class="mb-20">
+    <h1 class="!my-0 pb-2.5">JavaScript Control Flow</h1>
+
+    
+    <div class="text-sm opacity-60">
+      
+      <time>May 8, 2023</time>
+      
+      
+      
+      
+      <span class="mx-1">&middot;</span>
+      <span>Prabesh Thapa</span>
+      
+    </div>
+    
+  </header>
+
+  <section><p><strong>Table of Content</strong></p>
+<ul>
+<li><a href="#conditional-statement">Conditional Statement</a>
+<ul>
+<li><a href="#if-statement"><code>if</code> statement</a></li>
+<li><a href="#else-statement"><code>else</code> statement</a></li>
+<li><a href="#else-if-statement"><code>else-if</code> statement</a></li>
+<li><a href="#switch">switch</a></li>
+</ul>
+</li>
+<li><a href="#exception-handling">Exception Handling</a>
+<ul>
+<li><a href="#catching-exceptions">Catching Exceptions</a></li>
+<li><a href="#javascript-error-types">JavaScript Error Types</a></li>
+<li><a href="#throwing-custom-exceptions">Throwing Custom Exceptions</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="conditional-statement">Conditional Statement</h1>
+<p>Conditional Statements control behavior in JavaScript and determine weather certain code blocks can run or not. There are different conditional statements in JavaScript such as -</p>
+<ul>
+<li><code>if</code> statement: if a condition is <code>true</code>, it is used to run a certain block of code.</li>
+<li><code>else</code> statement: if a condition is <code>false</code>, it is used to run a certain block of code.</li>
+<li><code>else if</code> statement: runs a certain block of code if the previous condition is <code>false</code>.</li>
+</ul>
+<h2 id="if-statement"><code>if</code> statement</h2>
+<p>This is the most common type of conditional used and the code below if statement runs only if the specified condition in parentheses <code>()</code> is <code>true</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (<span style="color:#ae81ff">2</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">5</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;This is inside if block&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">result</span>); <span style="color:#75715e">//OUTPUT: &#34;This is inside if block&#34;
+</span></span></span></code></pre></div><p>The condition in the <code>if-statement</code> (2 &lt; 5) evaluates to <code>true</code> since 2 is less than 5. After the condition is wevaluated to <code>true</code>, the code inside the block is run which assigns the value of <code>result</code> as &ldquo;This is inside if block&rdquo;.</p>
+<h2 id="else-statement"><code>else</code> statement</h2>
+<p>We can add an <code>else</code> statement after the <code>if</code> statement. We can add an extra block of code to run if the condition does not evaluates as <code>true</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (<span style="color:#ae81ff">2</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">5</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;This is inside if block&#34;</span>;
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;This is inside else block&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">result</span>); <span style="color:#75715e">//OUTPUT: &#34;This is inside else block&#34;
+</span></span></span></code></pre></div><h2 id="else-if-statement"><code>else-if</code> statement</h2>
+<p>We can also add an <code>else-if</code> statement to our <code>if</code> statement which adds another condition and it&rsquo;s own code block. We can use multiple <code>else-if</code> condition but we have to keep in mind that only the first <code>else-if</code> code block is run if the condition is truthy while other remaining <code>else-if</code> statements are skipped.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (<span style="color:#ae81ff">2</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">5</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;This is inside if block&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#ae81ff">2</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">2</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;This is inside else-if block&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;This is inside else block&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">result</span>); <span style="color:#75715e">//OUTPUT: &#34;This is inside else-if block&#34;
+</span></span></span></code></pre></div><h2 id="switch">switch</h2>
+<p>We can replace our <code>if-statements</code> with <code>switch</code> when we wncounter multiple checks. <code>switch</code> gives us more descriptive and concise ways to compare a value. We can have one or more <code>case</code> blocks and optional <code>default</code>.</p>
+<p>The value (expression) in the parentheses is strictly compared (===) with the value from the first case (value1 in this case) then to the second case and so on until the condition evaluates to <code>true</code>. If the equality is encountered, the code from the corresponding case is executed until the nearest <code>break</code> is found. If no case is matched, then the <code>default</code> code is executed (if it exists).</p>
+<p><em>Syntax:</em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">switch</span> (<span style="color:#a6e22e">expression</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">value1</span><span style="color:#f92672">:</span> <span style="color:#75715e">// if (expression === value1)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">statements</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">value2</span><span style="color:#f92672">:</span> <span style="color:#75715e">// if (expression === value2)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">statements</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">value3</span><span style="color:#f92672">:</span> <span style="color:#75715e">// if (expression === value3)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">statements</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">default</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">statements</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">goat</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Ronaldo&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">switch</span> (<span style="color:#a6e22e">goat</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;Messi&#34;</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Almost&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;Pele&#34;</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Legend&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;Ronaldo&#34;</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;GOAT&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;Maradona&#34;</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Magnifico&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">default</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;It&#39;s your opinion.&#34;</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><em>Example 2:</em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">switch</span> (<span style="color:#a6e22e">browser</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;Edge&#34;</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#34;You&#39;ve got the Edge!&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;Chrome&#34;</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;Firefox&#34;</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;Safari&#34;</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;Opera&#34;</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#34;Okay we support these browsers too&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">default</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#34;We hope that this page looks ok!&#34;</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h1 id="exception-handling">Exception Handling</h1>
+<p>Exception Handling is the process of turning a error message into a user-friendly error message. When JavaScript finds an error, JavaScript interpreter looks for exception handling code rather than moving forward to next statement.</p>
+<h2 id="catching-exceptions">Catching Exceptions</h2>
+<p>We can add an exception handler with <code>try...catch</code> block. The code in the <code>try</code> block gets executed first but when the exception occurs, the <code>catch</code> block is executed. This helps us to output the error message rather than unexpected termination of the program.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">divideNumbers</span>(<span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">b</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> Error(<span style="color:#e6db74">&#34;Divide by zero&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">/</span> <span style="color:#a6e22e">b</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">result</span>);
+</span></span><span style="display:flex;"><span>  } <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">error</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">error</span>(<span style="color:#a6e22e">error</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">null</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">divideNumbers</span>(<span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">0</span>); <span style="color:#75715e">//OUTPUT: Error: Divide by zero
+</span></span></span></code></pre></div><p>In this example, we&rsquo;re using <code>try</code> and <code>catch</code> to handle any errors that may occur when dividing two numbers. If the second number is 0, a divide-by-zero error will be thrown, which will cause the code inside the <code>catch</code> block to execute.</p>
+<p>Inside the <code>catch</code> block, we&rsquo;re logging an error message to the console using <code>console.error</code> and returning null to indicate that the division failed. By using try-catch in this way, we can ensure that our function doesn&rsquo;t crash when it encounters an error, and instead handles the error gracefully.</p>
+<p><strong>finally</strong></p>
+<p>We can also define an optional <code>finally</code> block if we want to run specific code if either of <code>try</code> or <code>cacth</code> block is executed.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">divideNumbers</span>(<span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">b</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> Error(<span style="color:#e6db74">&#34;Divide by zero&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">/</span> <span style="color:#a6e22e">b</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">result</span>);
+</span></span><span style="display:flex;"><span>  } <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">error</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">error</span>(<span style="color:#a6e22e">error</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">null</span>;
+</span></span><span style="display:flex;"><span>  } <span style="color:#66d9ef">finally</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Finished dividing numbers&#34;</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><pre tabindex="0"><code>divideNumbers(12,2);
+*OUTPUT:*
+6
+&#34;Finished dividing numbers.
+</code></pre><pre tabindex="0"><code>divideNumbers(12,0);
+*OUTPUT:*
+Error: Divide by 0
+&#34;Finished dividing numbers.
+</code></pre><p>The code inside the <code>finally</code> block is executed regardless of whether an error was throw or not.</p>
+<h2 id="javascript-error-types">JavaScript Error Types</h2>
+<ul>
+<li><code>SyntaxError</code>: We face such error when we make some mistake syntatically lilke spellings (e.g. funcion insted of function) or missing brackets.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#a6e22e">condition</span>) { <span style="color:#75715e">//SyntaxError
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">conosle</span>.<span style="color:#a6e22e">log</span>(<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#a6e22e">hello</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li><code>ReferencError</code>: We face such error when we try to access non-existent variable.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">doSomething</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">result</span>); <span style="color:#75715e">//ReferenceError
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><ul>
+<li><code>TypeError</code>: We face such error when the value is not of expected type.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">num</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">str</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;hello&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">num</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">str</span>; <span style="color:#75715e">// TypeError: can&#39;t convert &#39;number&#39; to string
+</span></span></span></code></pre></div><ul>
+<li><code>RangeError</code>: We get this error when a value isn&rsquo;t in the set or range of allowed values.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">gravity</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">9.81</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">gravity</span>.<span style="color:#a6e22e">toFixed</span>(<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>)); <span style="color:#75715e">//RangeError
+</span></span></span></code></pre></div><p>Typically, <code>toFixed()</code> function expects a value to be between 0 and 100 but since we passed a negative number, a <code>RangeError</code> is thrown.</p>
+<ul>
+<li>URIError: These are the error thrown by URI-handling functions such as <code>encodeURI()</code> and <code>decodeURI()</code> when they encounter malformed URIs.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">takeMe</span> <span style="color:#f92672">=</span> decodeURIComponent(<span style="color:#e6db74">&#34;%&#34;</span>); <span style="color:#75715e">//URIError
+</span></span></span></code></pre></div><ul>
+<li>EvalError: This error is thrown when passing a string containing invalid JavaScript code to the <code>eval()</code> function.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>eval(<span style="color:#e6db74">&#34;consolr.logg(x)&#34;</span>); <span style="color:#75715e">//EvalError
+</span></span></span></code></pre></div><h2 id="throwing-custom-exceptions">Throwing Custom Exceptions</h2>
+<p>We can throw or display our own exceptions when an error occurs with <code>throw</code> keyword. The <code>throw</code> statement accepts any kind of value or object.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">throw</span> <span style="color:#e6db74">&#34;You encountered an error.&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">throw</span> <span style="color:#ae81ff">20</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">throw</span> { <span style="color:#a6e22e">message</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;An error&#34;</span>, <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;MyError&#34;</span> };
+</span></span></code></pre></div><p>The more practical way of throwing an error would be to create a Error object using the <code>Error()</code> constructor.</p>
+<p><em><code>Error()</code> can be called with or without <code>new</code> keyword. Both creates a new <code>Error</code> instance.</em></p>
+<p><strong>Syntax:</strong></p>
+<pre tabindex="0"><code>new Error(message)
+
+Error(message)
+</code></pre><p>We can create a generic <code>Error</code> object by passing optional messages to the constructor.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> Error(<span style="color:#e6db74">&#34;Error has occurred.&#34;</span>);
+</span></span></code></pre></div><p>We can also provide optional parameters to the <code>Error()</code> constructor.</p>
+<pre tabindex="0"><code>Error(message, options);
+</code></pre><ul>
+<li><code>options</code>: This is an object that has folloeing properties:
+<ul>
+<li><code>cause</code>: indicates the sepcific cause of the error</li>
+<li><code>fileName</code>: path to the file that raised the error</li>
+<li><code>lineNumber</code>: line number witin the file on which the error was raised</li>
+</ul>
+</li>
+</ul>
+<p>Yes, we can pass a file name and the line number as the second and third paramter but they are difficult to maintain as our files change.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> Error(<span style="color:#e6db74">&#34;Love does not exist.&#34;</span>, <span style="color:#e6db74">&#34;script.js&#34;</span>, <span style="color:#ae81ff">143</span>);
+</span></span></code></pre></div><p>Although it is fine to throw an error with <code>Error()</code> , but it is recommended to use a standaed Error types whenever possible.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">RangeError</span>(<span style="color:#e6db74">&#34;Age value must be between 16 to 40&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">TypeError</span>(<span style="color:#e6db74">&#34;Age must be a number&#34;</span>);
+</span></span></code></pre></div></section>
+
+  
+  
+
+  
+  
+  
+  <nav class="mt-24 flex rounded-lg bg-black/[3%] text-lg dark:bg-white/[8%]">
+    
+    <a
+      class="flex w-1/2 items-center rounded-l-md p-6 pr-3 no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
+      href="/posts/09-javascript-operators/"
+      ><span class="mr-1.5">←</span><span>JavaScript Expressions and Operators</span></a
+    >
+    
+    
+    <a
+      class="ml-auto flex w-1/2 items-center justify-end rounded-r-md p-6 pl-3 no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
+      href="/posts/07-loops-and-iterations/"
+      ><span>JavaScript Loop and Iteration</span><span class="ml-1.5">→</span></a
+    >
+    
+  </nav>
+  
+
+  
+  
+
+  
+  
+</article>
+
+
+    </main>
+
+    <footer
+  class="opaco mx-auto flex h-[5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
+>
+  <div class="mr-auto">
+    &copy; 2023
+    <a class="link" href="">JavaScript Manual</a>
+  </div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >Powered by Hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >Theme Paper</a
+  >
+</footer>
+
+  </body>
+</html>

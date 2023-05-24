@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready text-sm lg:text-base"
+  style="--bg: #faf6f1"
+  lang="en-us"
+>
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>JavaScript Engine - JavaScript Manual</title>
+
+  
+  <meta name="theme-color" />
+
+  
+  
+  
+  <meta name="description" content="Table of Content
+JavaScript Engine How engine works? (Summary) Inside the JavaScript Engine Compilation Interpretation Just in Time (JIT) compilation in JavaScript Call Stack and Memory Heap Call Stack Memory Heap Stack vs Heap References in JavaScript Garbage Collection Execution Context Types of Execution Context Execution Stack Creation of Execution Stack Lexical Environment JavaScript Engine JavaScript engine is a software or a program responsible to run our JavaScript code. Almost every modern day browsers we use have their own JavaScript engine running in the background." />
+  <meta name="author" content="Prabesh Thapa" />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="/main.min.css" />
+
+  
+  <script
+    defer
+    src="highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
+  
+
+  
+   
+  <link rel="preload" as="image" href="theme.png" />
+
+  
+  
+  
+  <link rel="preload" as="image" href="https://gravatar.com/avatar/bc5b4d21951d97f450e166dbaea458f6" />
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  <link rel="icon" href="favicon.ico" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.112.2">
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="JavaScript Engine" />
+<meta property="og:description" content="Table of Content
+JavaScript Engine How engine works? (Summary) Inside the JavaScript Engine Compilation Interpretation Just in Time (JIT) compilation in JavaScript Call Stack and Memory Heap Call Stack Memory Heap Stack vs Heap References in JavaScript Garbage Collection Execution Context Types of Execution Context Execution Stack Creation of Execution Stack Lexical Environment JavaScript Engine JavaScript engine is a software or a program responsible to run our JavaScript code. Almost every modern day browsers we use have their own JavaScript engine running in the background." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/01-javascript-engine/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-05-01T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-05-01T00:00:00+00:00" />
+
+  
+  <meta itemprop="name" content="JavaScript Engine">
+<meta itemprop="description" content="Table of Content
+JavaScript Engine How engine works? (Summary) Inside the JavaScript Engine Compilation Interpretation Just in Time (JIT) compilation in JavaScript Call Stack and Memory Heap Call Stack Memory Heap Stack vs Heap References in JavaScript Garbage Collection Execution Context Types of Execution Context Execution Stack Creation of Execution Stack Lexical Environment JavaScript Engine JavaScript engine is a software or a program responsible to run our JavaScript code. Almost every modern day browsers we use have their own JavaScript engine running in the background."><meta itemprop="datePublished" content="2023-05-01T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2023-05-01T00:00:00+00:00" />
+<meta itemprop="wordCount" content="1066">
+<meta itemprop="keywords" content="" />
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="JavaScript Engine"/>
+<meta name="twitter:description" content="Table of Content
+JavaScript Engine How engine works? (Summary) Inside the JavaScript Engine Compilation Interpretation Just in Time (JIT) compilation in JavaScript Call Stack and Memory Heap Call Stack Memory Heap Stack vs Heap References in JavaScript Garbage Collection Execution Context Types of Execution Context Execution Stack Creation of Execution Stack Lexical Environment JavaScript Engine JavaScript engine is a software or a program responsible to run our JavaScript code. Almost every modern day browsers we use have their own JavaScript engine running in the background."/>
+
+  
+  
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[5rem] max-w-3xl px-8 lg:justify-center">
+  <div class="relative z-50 mr-auto flex items-center">
+    <a
+      class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
+      href="/"
+      >JavaScript Manual</a
+    >
+    <div
+      class="btn-dark text-[0] ml-6 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.png)_left_center/_auto_theme('spacing.6')_no-repeat] [transition:_background-position_0.4s_steps(5)] dark:[background-position:right]"
+      role="button"
+      aria-label="Dark"
+    ></div>
+  </div>
+
+  <div
+    class="btn-menu relative z-50 -mr-8 flex h-[5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
+    role="button"
+    aria-label="Menu"
+  ></div>
+
+  
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = `"#faf6f1"`.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+  >
+    
+    
+
+    
+  </div>
+</header>
+
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-10rem)] max-w-3xl px-8 pt-16 pb-24 dark:prose-invert"
+    >
+      
+
+<article>
+  <header class="mb-20">
+    <h1 class="!my-0 pb-2.5">JavaScript Engine</h1>
+
+    
+    <div class="text-sm opacity-60">
+      
+      <time>May 1, 2023</time>
+      
+      
+      
+      
+      <span class="mx-1">&middot;</span>
+      <span>Prabesh Thapa</span>
+      
+    </div>
+    
+  </header>
+
+  <section><p><strong>Table of Content</strong></p>
+<ul>
+<li><a href="#javascript-engine">JavaScript Engine</a>
+<ul>
+<li><a href="#how-engine-works-summary">How engine works? (Summary)</a></li>
+<li><a href="#inside-the-javascript-engine">Inside the JavaScript Engine</a>
+<ul>
+<li><a href="#compilation">Compilation</a></li>
+<li><a href="#interpretation">Interpretation</a></li>
+</ul>
+</li>
+<li><a href="#just-in-time-jit-compilation-in-javascript">Just in Time (JIT) compilation in JavaScript</a></li>
+<li><a href="#call-stack-and-memory-heap">Call Stack and Memory Heap</a>
+<ul>
+<li><a href="#call-stack">Call Stack</a></li>
+<li><a href="#memory-heap">Memory Heap</a></li>
+<li><a href="#stack-vs-heap">Stack vs Heap</a>
+<ul>
+<li><a href="#references-in-javascript">References in JavaScript</a></li>
+<li><a href="#garbage-collection">Garbage Collection</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#execution-context">Execution Context</a>
+<ul>
+<li><a href="#types-of-execution-context">Types of Execution Context</a></li>
+<li><a href="#execution-stack">Execution Stack</a>
+<ul>
+<li><a href="#creation-of-execution-stack">Creation of Execution Stack</a></li>
+</ul>
+</li>
+<li><a href="#lexical-environment">Lexical Environment</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="javascript-engine">JavaScript Engine</h1>
+<p>JavaScript engine is a software or a program responsible to run our JavaScript code. Almost every modern day browsers we use have their own JavaScript engine running in the background. Some of the most popular JavaScript engine are -</p>
+<ul>
+<li><strong>v8</strong> - Developed by <strong>Google_</strong> for <strong>Chrome</strong></li>
+<li><strong>SpiderMonkey</strong> - Developed by <strong><em>Mozilla</em></strong> for <strong>Firefox</strong></li>
+<li><strong>JavaScriptCore</strong> - Developed by <strong><em>Apple</em></strong> for Safari</li>
+<li><strong>Chakra</strong> - Developed by <strong><em>Microsoft</em></strong> for <strong>Edge</strong></li>
+</ul>
+<p><strong><em>Brendan Eich is the creator of JavaScript language and the co-founder of Mozilla project.</em></strong></p>
+<h2 id="how-engine-works-summary">How engine works? (Summary)</h2>
+<ul>
+<li>The engine parses/read the script.</li>
+<li>Then the script is compiled into machine code.</li>
+<li>Then, the machine runs the code.</li>
+</ul>
+<h2 id="inside-the-javascript-engine">Inside the JavaScript Engine</h2>
+<p>Computers can only understand binary (0s and 1s) which is the reason our computer program needs to be converted into binary which is also called machine code. We convert our program into machine code via compilation or interpretation.</p>
+<h4 id="compilation">Compilation</h4>
+<p>During compilation, the entire source code is converted into machine code all at once. The code is written into a portable file that can be executed anywhere- regardless of platform or operating system. The program is first converted into machine code and later executed on the machine. The execution of the machine code happens right after the compilation.</p>
+<h4 id="interpretation">Interpretation</h4>
+<p>During interpretation, the interpreter runs through the source code and executes it line by line. The code is read and executed at the same time. The conversion of code into machine code does not happen of time, instead, right before execution. Interpreted programming language are much slower in terms of performance when compared to compiled language.</p>
+<h2 id="just-in-time-jit-compilation-in-javascript">Just in Time (JIT) compilation in JavaScript</h2>
+<p>Although most people consider JavaScript as an interpreted language, that is no longer the case. Modern JavaScript use the concept of both compilation and interpretation at the same time knows as <strong><em>Just-In-Time (JIT) Compilation</em></strong>.</p>
+<p>In this approach, whole program gets compiled into machine language at once and then it is executed. Unlike the compiled language like C, where the compilation is done ahead of time (before actual execution of code), with JavaScript, the compilation is done during execution.</p>
+<h2 id="call-stack-and-memory-heap">Call Stack and Memory Heap</h2>
+<h3 id="call-stack">Call Stack</h3>
+<p>JavaScript is a single-threaded language i.e. it has only one call stack and it can process one statement at time. The call stack keeps track of functions to be executed. Call Stack follows the <strong>Last in, First Out</strong> principle which means it always process the call on top of the stack at first.</p>
+<p>When a function is called, it is added to the stack. When a function calls another function, it&rsquo;s added on top of the calling function.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">greet</span> <span style="color:#f92672">=</span> () =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">sayHello</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;I am a robot.&#34;</span>);
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">sayHello</span> <span style="color:#f92672">=</span> () =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Hello&#34;</span>);
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">greet</span>();
+</span></span></code></pre></div><p>To summarize, - At first, greet() is added to the call stack. - greet() then calls sayHello() function and adds sayHello() to the call stack.</p>
+<p>At this point, the call stack status is currently -</p>
+<table>
+<thead>
+<tr>
+<th>Call Stack</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sayHello()</td>
+</tr>
+<tr>
+<td>greet()</td>
+</tr>
+</tbody>
+</table>
+<p>sayhello() is now at the top of the stack and is executed. It prints out <strong>Hello</strong> to the console and is removed from the stack.</p>
+<table>
+<thead>
+<tr>
+<th>Call Stack</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>greet()</td>
+</tr>
+</tbody>
+</table>
+<p>Now, greet() is at the top of the stack and prints out <strong>I am robot</strong> to the console and thus removed from the stack.</p>
+<p>The call stack is empty now and the final output would look like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#e6db74">&#34;Hello&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;I am a robot.&#34;</span>;
+</span></span></code></pre></div><h3 id="memory-heap">Memory Heap</h3>
+<p>JavaScript stores objects and functions in heap. Unlike stack, JavaScript engine doesn&rsquo;t allocate a fixed memory for these objects. Instead, more spaces will be allocated as needed. This is called the <strong>dynamic memory allocation.</strong></p>
+<h3 id="stack-vs-heap">Stack vs Heap</h3>
+<p><strong>Stack</strong></p>
+<ul>
+<li>Primitive values and references</li>
+<li>Size is known at compile time</li>
+<li>Allocates a fixed amount of memory.</li>
+</ul>
+<p><strong>Heap</strong></p>
+<ul>
+<li>Objects and functions</li>
+<li>Size is known at run time</li>
+<li>No size limit per object</li>
+</ul>
+<p><strong>Examples</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">myProfile</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">firstName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Prabesh&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">lastName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Thapa&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">age</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">23</span>,
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p><strong>JavaScript allocates memory for this object in stack.</strong>
+<strong><em>But the actual values of the objects are still primitive. Hence, they are stored in stack.</em></strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">hobbies</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;anime&#34;</span>, <span style="color:#e6db74">&#34;football&#34;</span>, <span style="color:#e6db74">&#34;cricket&#34;</span>];
+</span></span></code></pre></div><p><strong>Arrays are objects as well in JavaScript. Hence, they are stored in heap.</strong></p>
+<h4 id="references-in-javascript">References in JavaScript</h4>
+<p>All variables first point to stack. If it is not primitive value, the stack contains a reference to the object in the heap.</p>
+<h4 id="garbage-collection">Garbage Collection</h4>
+<p>JavaScript not only allocate memory for objects, they also release the memory. Once the variable or a function is nor required anymore, JavaScript releases the memory it occupied.</p>
+<h2 id="execution-context">Execution Context</h2>
+<p>Execution Context is an concept of an environment where JavaScript code is evaluated and executed.</p>
+<h3 id="types-of-execution-context">Types of Execution Context</h3>
+<ul>
+<li>
+<p><strong>Global Execution Context</strong> : This is the default execution context. It does two thing: <strong><em>creates a global object (window object) and sets the value of <em>this</em> to global object.</em></strong></p>
+</li>
+<li>
+<p><strong>Functional Execution Context</strong> : New execution context is created every time a function is invoked. Every function has their own execution context, but they are created only when the function is called.</p>
+</li>
+</ul>
+<h3 id="execution-stack">Execution Stack</h3>
+<p>JavaScript engine creates a global execution context and pushes it to the current execution stack. When the engine finds the function invocation, it creates a new execution context for that function and pushes it at the top of stack. The engine executes the function which is at the top of stack and removes it from the stack once the execution of that function is completed.</p>
+<h4 id="creation-of-execution-stack">Creation of Execution Stack</h4>
+<p>The execution stack is created in two phase:</p>
+<ol>
+<li><strong>LexicalEnvironment</strong> is created.</li>
+<li><strong>VariableEnvironment</strong> is created.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">ExecutionContext</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">LexicalEnvironment</span> <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">reference</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">LexicalEnvironment</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">memory</span><span style="color:#f92672">&gt;</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">VariableEnvironment</span> <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">reference</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">VariableEnvironment</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">memory</span><span style="color:#f92672">&gt;</span>,
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="lexical-environment">Lexical Environment</h3>
+<p>Lexical Environment is a structure that holds identifier-variable mapping. (<em>identifier refers to name of variables/functions and the variable is reference to actual object including function object and array object</em>).</p>
+<p>Example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">b</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">foo</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;bar&#34;</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The lexical environment for above code loos like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">LexicalEnvironment</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">a</span><span style="color:#f92672">:</span><span style="color:#ae81ff">10</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">b</span><span style="color:#f92672">:</span><span style="color:#ae81ff">20</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">foo</span><span style="color:#f92672">:</span> <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">reference</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">foo</span> <span style="color:#66d9ef">function</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">memory</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Each Lexical Environment has three component:</p>
+<ul>
+<li>Environment Record</li>
+<li>Reference to outer environment</li>
+<li><em>this</em> binding</li>
+</ul>
+</section>
+
+  
+  
+
+  
+  
+  
+  <nav class="mt-24 flex rounded-lg bg-black/[3%] text-lg dark:bg-white/[8%]">
+    
+    <a
+      class="flex w-1/2 items-center rounded-l-md p-6 pr-3 no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
+      href="/posts/02-all-about-variables/"
+      ><span class="mr-1.5">←</span><span>JavaScript Variables</span></a
+    >
+    
+    
+  </nav>
+  
+
+  
+  
+
+  
+  
+</article>
+
+
+    </main>
+
+    <footer
+  class="opaco mx-auto flex h-[5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
+>
+  <div class="mr-auto">
+    &copy; 2023
+    <a class="link" href="">JavaScript Manual</a>
+  </div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >Powered by Hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >Theme Paper</a
+  >
+</footer>
+
+  </body>
+</html>

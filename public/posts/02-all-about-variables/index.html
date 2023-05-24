@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready text-sm lg:text-base"
+  style="--bg: #faf6f1"
+  lang="en-us"
+>
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>JavaScript Variables - JavaScript Manual</title>
+
+  
+  <meta name="theme-color" />
+
+  
+  
+  
+  <meta name="description" content="Table of Content
+Variables in JavaScript Variable Declarations Variable Naming Rules Variable Scopes Global Scope Local Scope Function Scope Block Scope Hoisting Hoisting in var Hoisting with let/const Temproal Dead Zone Variables in JavaScript Variables are simply the identifiers used to store information.
+Variable Declarations We can create variable in JavaScript with keywords like let/const/var.
+let name; var age; const gravity; We can store some data in these variables using the assignment operator &rsquo;=&rsquo;." />
+  <meta name="author" content="Prabesh Thapa" />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="/main.min.css" />
+
+  
+  <script
+    defer
+    src="highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
+  
+
+  
+   
+  <link rel="preload" as="image" href="theme.png" />
+
+  
+  
+  
+  <link rel="preload" as="image" href="https://gravatar.com/avatar/bc5b4d21951d97f450e166dbaea458f6" />
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  <link rel="icon" href="favicon.ico" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.112.2">
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="JavaScript Variables" />
+<meta property="og:description" content="Table of Content
+Variables in JavaScript Variable Declarations Variable Naming Rules Variable Scopes Global Scope Local Scope Function Scope Block Scope Hoisting Hoisting in var Hoisting with let/const Temproal Dead Zone Variables in JavaScript Variables are simply the identifiers used to store information.
+Variable Declarations We can create variable in JavaScript with keywords like let/const/var.
+let name; var age; const gravity; We can store some data in these variables using the assignment operator &rsquo;=&rsquo;." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/02-all-about-variables/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-05-02T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-05-02T00:00:00+00:00" />
+
+  
+  <meta itemprop="name" content="JavaScript Variables">
+<meta itemprop="description" content="Table of Content
+Variables in JavaScript Variable Declarations Variable Naming Rules Variable Scopes Global Scope Local Scope Function Scope Block Scope Hoisting Hoisting in var Hoisting with let/const Temproal Dead Zone Variables in JavaScript Variables are simply the identifiers used to store information.
+Variable Declarations We can create variable in JavaScript with keywords like let/const/var.
+let name; var age; const gravity; We can store some data in these variables using the assignment operator &rsquo;=&rsquo;."><meta itemprop="datePublished" content="2023-05-02T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2023-05-02T00:00:00+00:00" />
+<meta itemprop="wordCount" content="1162">
+<meta itemprop="keywords" content="" />
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="JavaScript Variables"/>
+<meta name="twitter:description" content="Table of Content
+Variables in JavaScript Variable Declarations Variable Naming Rules Variable Scopes Global Scope Local Scope Function Scope Block Scope Hoisting Hoisting in var Hoisting with let/const Temproal Dead Zone Variables in JavaScript Variables are simply the identifiers used to store information.
+Variable Declarations We can create variable in JavaScript with keywords like let/const/var.
+let name; var age; const gravity; We can store some data in these variables using the assignment operator &rsquo;=&rsquo;."/>
+
+  
+  
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[5rem] max-w-3xl px-8 lg:justify-center">
+  <div class="relative z-50 mr-auto flex items-center">
+    <a
+      class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
+      href="/"
+      >JavaScript Manual</a
+    >
+    <div
+      class="btn-dark text-[0] ml-6 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.png)_left_center/_auto_theme('spacing.6')_no-repeat] [transition:_background-position_0.4s_steps(5)] dark:[background-position:right]"
+      role="button"
+      aria-label="Dark"
+    ></div>
+  </div>
+
+  <div
+    class="btn-menu relative z-50 -mr-8 flex h-[5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
+    role="button"
+    aria-label="Menu"
+  ></div>
+
+  
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = `"#faf6f1"`.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+  >
+    
+    
+
+    
+  </div>
+</header>
+
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-10rem)] max-w-3xl px-8 pt-16 pb-24 dark:prose-invert"
+    >
+      
+
+<article>
+  <header class="mb-20">
+    <h1 class="!my-0 pb-2.5">JavaScript Variables</h1>
+
+    
+    <div class="text-sm opacity-60">
+      
+      <time>May 2, 2023</time>
+      
+      
+      
+      
+      <span class="mx-1">&middot;</span>
+      <span>Prabesh Thapa</span>
+      
+    </div>
+    
+  </header>
+
+  <section><p><strong>Table of Content</strong></p>
+<ul>
+<li><a href="#variables-in-javascript">Variables in JavaScript</a>
+<ul>
+<li><a href="#variable-declarations">Variable Declarations</a></li>
+<li><a href="#variable-naming-rules">Variable Naming Rules</a></li>
+<li><a href="#variable-scopes">Variable Scopes</a>
+<ul>
+<li><a href="#global-scope">Global Scope</a></li>
+<li><a href="#local-scope">Local Scope</a>
+<ul>
+<li><a href="#function-scope">Function Scope</a></li>
+<li><a href="#block-scope">Block Scope</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#hoisting">Hoisting</a>
+<ul>
+<li><a href="#hoisting-in-var">Hoisting in var</a></li>
+<li><a href="#hoisting-with-letconst">Hoisting with let/const</a></li>
+<li><a href="#temproal-dead-zone">Temproal Dead Zone</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="variables-in-javascript">Variables in JavaScript</h1>
+<p>Variables are simply the identifiers used to store information.</p>
+<h2 id="variable-declarations">Variable Declarations</h2>
+<p>We can create variable in JavaScript with keywords like <em>let/const/var</em>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">name</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">age</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">gravity</span>;
+</span></span></code></pre></div><p>We can store some data in these variables using the assignment operator <strong>&rsquo;=&rsquo;</strong>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">name</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Prabesh&#34;</span>;
+</span></span></code></pre></div><p>But the better option would be to combile the variable declarations and assignment in one line.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">age</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">23</span>;
+</span></span></code></pre></div><p>We can also declare multiple variables in one line.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Prabesh&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">age</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">23</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">nickname</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;entry&#34;</span>;
+</span></span></code></pre></div><h2 id="variable-naming-rules">Variable Naming Rules</h2>
+<p>There are basically two rules while naming variable:</p>
+<ol>
+<li>It must contain only letters(a-z), digits(0-9), or the symbols <strong>$ and _</strong>.</li>
+<li>The first character must not be a digit.</li>
+</ol>
+<p><strong>Case Matters</strong> - <em>Variables with name &lsquo;age&rsquo; and &lsquo;AGE&rsquo; are two different variables.</em></p>
+<p><strong>Valid Variable Names</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Prabesh&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">_age</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">23</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">$</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">127</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">nickName404</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;entry&#34;</span>;
+</span></span></code></pre></div><p><strong>Invalid Variable Name</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#ae81ff">2</span><span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;My Name&#34;</span>; <span style="color:#75715e">// Cannot start with digit
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">my</span><span style="color:#f92672">-</span><span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;My Name&#34;</span>; <span style="color:#75715e">//hyphens (-) aren&#39;t allowed
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//Symbols except &#39;$ and _&#39; aren&#39;t allowed.
+</span></span></span></code></pre></div><h2 id="variable-scopes">Variable Scopes</h2>
+<p>When we declare a variable, it cannot just be accessed from anywhere in our code.</p>
+<h3 id="global-scope">Global Scope</h3>
+<p>If a variable is available globally, the code can read or modify the variable from anywhere. We can declare the variable globally by declaring it outside the function.</p>
+<p>There is only one Global scope throughout our program. When we begin writing our code, we are already in global scope. Something is considered global in JavaScript when the variable is the direct child of our browser&rsquo;s <strong>window</strong> object.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">number</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span>; <span style="color:#75715e">//Global Variable
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">addby2</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//Local Scope(Function)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">number</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>; <span style="color:#75715e">//Global variable can be accessed anywhere
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(window.<span style="color:#a6e22e">a</span>); <span style="color:#75715e">//OUTPUT: 20
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//variables declared with var belong to window object
+</span></span></span></code></pre></div><p><em>NOTE: Variables declared outside the function with both var and let are in global scope but the difference is that <strong>variables declared with var belong to window object</strong> but <strong>variables declared with let do not belong to window object</strong>.</em></p>
+<h3 id="local-scope">Local Scope</h3>
+<p>In JavaScript, we have two types of local scope.</p>
+<ul>
+<li>Function Scope</li>
+<li>Block Scope</li>
+</ul>
+<h4 id="function-scope">Function Scope</h4>
+<p>Whenever we create a new function, a new scope is created. Every function has their own scope. So, when we declare a variable inside a function, we can access that variable within only that function. That variable cannot be accessed outside that function.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">firstName</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Prabesh&#34;</span>; <span style="color:#75715e">//Global Scope Variable
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">displayname</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//Local Scope Begins
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">lastName</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Thapa&#34;</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">firstName</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">lastName</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//displayName local scope ends
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">displayName</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">lastname</span>);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// OUTPUT: ReferenceError: lastName is not defined
+</span></span></span></code></pre></div><h4 id="block-scope">Block Scope</h4>
+<p>By using <strong>let and const</strong>, we can declare local scope in block statements like <strong>for loop, if statements etc</strong>.</p>
+<p>When we declare a variable with <strong>var</strong>, the variable has either global scope or local scope (inside a function). Even if we declare the variable with var inside any block like <strong>for, while, if statement</strong>, the variable is still avaiable throughout the function.</p>
+<p>But when we declare the variable with <strong>let or const</strong> within a block, we can access that variable only within that block.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getGender</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">gender</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;male&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">gender</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;male&#34;</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">gender</span><span style="color:#e6db74">}</span><span style="color:#e6db74">: Boy`</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//OUTPUT: male: Boy
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">gender</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//OUTPUT: ReferenceError: gender is not defined.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><h2 id="hoisting">Hoisting</h2>
+<p>Hoisting is the default behavior of JavaScript where it defines all the declarations at the top of scope before code execution. JavaScript only hoists declarations, not initialization.</p>
+<p>JavaScript engine treats all variable declarations using <em>var</em> as if they are declared at the top of global scope (if declared outside function) or at the top of functional scope (if declared inside function) regardless of where the actual declaration is made. This simply is <strong><em>Hoisting</em></strong>.</p>
+<h3 id="hoisting-in-var">Hoisting in var</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">name</span>); <span style="color:#75715e">//OUTPUT: undefined
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Prabesh&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">name</span>); <span style="color:#75715e">//OUTPUT: &#34;Prabesh&#34;
+</span></span></span></code></pre></div><p>Normally, we would expect to get an error (ReferenceError) in the first <em>console.log</em> since the variable name wasn&rsquo;t already declared before. But JavaScript hoists all variable declarations at the top.</p>
+<p><strong>Behind the Scene in interpreter</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">//variable declaration gets hoisted at top
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">name</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">name</span>); <span style="color:#75715e">//OUTPUT: undefined
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Prabesh&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">name</span>); <span style="color:#75715e">//OUTPUT: &#34;Prabesh&#34;
+</span></span></span></code></pre></div><p><em>In JavaScript, undeclared variable is assigned as type of undefined while ReferenceError is thrown when trying to access undeclared variable.</em></p>
+<p><strong>Hoisting in Functional Scope</strong></p>
+<p>Variables declared within function are in the local scope. variables in the local scope are only accessible within the function in which they are defined. Hence, we can use variable with same name and use it in different function.</p>
+<p>If we declare local variable and a global variable with same name, the local variable will take precedence when we use it inside a function. In simple words, local variable shadows global variables.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getName</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">name</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Prabesh&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">getName</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//OUTPUT: undefined
+</span></span></span></code></pre></div><p><strong>Behind the Scene in interpreter</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getName</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">name</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">name</span>); <span style="color:#75715e">//OUTPUT: &#34;Prabesh&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Prabesh&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">getName</span>();
+</span></span></code></pre></div><p>To avoid such inconvinence, we need to declare and initialize the variable before we use it.</p>
+<p><strong><em>Note to Remember: JavaScript declares the variable first in the background, then initialize them.</em></strong></p>
+<p>ALl of the undeclared variables are global varibles.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// Example of Hoisting
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">hoisting</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Prabesh&#34;</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">age</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">23</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">hoisting</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">name</span>); <span style="color:#75715e">// Reference Error: name is not defined.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">age</span>); <span style="color:#75715e">// Output: 23
+</span></span></span></code></pre></div><p><strong>So what exactly happened here?</strong></p>
+<p>In the above code, we have a function called hoisting() where we did not declare a variable using let/var/const and another variable declared with let. As mentioned above, <em>assigning the undeclared variable to the global scope is done by JavaScript</em>. Hence, age variable is availabe even outsode of scope(globally) but the scope of name variable is within the function, so we get the ReferenceError.</p>
+<h3 id="hoisting-with-letconst">Hoisting with let/const</h3>
+<p>In ES6, <em>let</em> does not allow us to use undeclard variables and throws a ReferenceError. This makes sure that we always declare our variable first.</p>
+<p><strong>Example 1:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">num</span>);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//OUTPUT: ReferenceError: Cannot access &#39;num&#39; before initialization
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">num</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">num</span>); <span style="color:#75715e">//OUTPUT: 20
+</span></span></span></code></pre></div><p>Let&rsquo;s have a look at another example:
+<strong>Example 2:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">number2</span>);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//OUTPUT: ReferenceError: number2 is not defined.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">number</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span>;
+</span></span></code></pre></div><p><strong><em>Do you notice something different in example 1 and 2?</em></strong></p>
+<p>The error in example 1 says: <em>ReferenceError: Cannot access &rsquo;num&rsquo; before initialization</em> but the error in example 2 is <em>ReferenceError: number2 is not defined</em></p>
+<p>The error &ldquo;is not defined&rdquo; means our JavaScript engine has no idea what <em>number2</em> variable is because we never defined it.
+But the error &ldquo;cannot access before initialization&rdquo; means our JS engine knows the &ldquo;num&rdquo; variable since &ldquo;num&rdquo; is hoisted to the top of global scope.</p>
+<p><em>To summarize, variables declared with <strong>let</strong> or <strong>const</strong> are hoisted <strong>without</strong> a default initialization but the variables declared with <strong>var</strong> are hoisted <strong>with</strong> default initialization of undefined.</em></p>
+<h3 id="temproal-dead-zone">Temproal Dead Zone</h3>
+<p>This is a period during execution where <em>let/const</em> variables are hoisted but not accessible.</p>
+</section>
+
+  
+  
+
+  
+  
+  
+  <nav class="mt-24 flex rounded-lg bg-black/[3%] text-lg dark:bg-white/[8%]">
+    
+    <a
+      class="flex w-1/2 items-center rounded-l-md p-6 pr-3 no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
+      href="/posts/03-data-types/"
+      ><span class="mr-1.5">←</span><span>JavaScript Data Types</span></a
+    >
+    
+    
+    <a
+      class="ml-auto flex w-1/2 items-center justify-end rounded-r-md p-6 pl-3 no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
+      href="/posts/01-javascript-engine/"
+      ><span>JavaScript Engine</span><span class="ml-1.5">→</span></a
+    >
+    
+  </nav>
+  
+
+  
+  
+
+  
+  
+</article>
+
+
+    </main>
+
+    <footer
+  class="opaco mx-auto flex h-[5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
+>
+  <div class="mr-auto">
+    &copy; 2023
+    <a class="link" href="">JavaScript Manual</a>
+  </div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >Powered by Hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >Theme Paper</a
+  >
+</footer>
+
+  </body>
+</html>

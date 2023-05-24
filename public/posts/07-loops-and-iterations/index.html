@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready text-sm lg:text-base"
+  style="--bg: #faf6f1"
+  lang="en-us"
+>
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>JavaScript Loop and Iteration - JavaScript Manual</title>
+
+  
+  <meta name="theme-color" />
+
+  
+  
+  
+  <meta name="description" content="Table of Content
+Loops and Iteration while Loops do-while loop for loops for...of loop for...in loop Controlling Loops Loops and Iteration We regularly face conditions when we need to run our code over and over again until some condition is met. JavaScript provides us several forms to achive this condition.
+while Loops A while loop uses the while keyword followed by a conditional expression in parentheses () and a code block." />
+  <meta name="author" content="Prabesh Thapa" />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="/main.min.css" />
+
+  
+  <script
+    defer
+    src="highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
+  
+
+  
+   
+  <link rel="preload" as="image" href="theme.png" />
+
+  
+  
+  
+  <link rel="preload" as="image" href="https://gravatar.com/avatar/bc5b4d21951d97f450e166dbaea458f6" />
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  <link rel="icon" href="favicon.ico" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.112.2">
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="JavaScript Loop and Iteration" />
+<meta property="og:description" content="Table of Content
+Loops and Iteration while Loops do-while loop for loops for...of loop for...in loop Controlling Loops Loops and Iteration We regularly face conditions when we need to run our code over and over again until some condition is met. JavaScript provides us several forms to achive this condition.
+while Loops A while loop uses the while keyword followed by a conditional expression in parentheses () and a code block." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/07-loops-and-iterations/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-05-07T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-05-07T00:00:00+00:00" />
+
+  
+  <meta itemprop="name" content="JavaScript Loop and Iteration">
+<meta itemprop="description" content="Table of Content
+Loops and Iteration while Loops do-while loop for loops for...of loop for...in loop Controlling Loops Loops and Iteration We regularly face conditions when we need to run our code over and over again until some condition is met. JavaScript provides us several forms to achive this condition.
+while Loops A while loop uses the while keyword followed by a conditional expression in parentheses () and a code block."><meta itemprop="datePublished" content="2023-05-07T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2023-05-07T00:00:00+00:00" />
+<meta itemprop="wordCount" content="840">
+<meta itemprop="keywords" content="" />
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="JavaScript Loop and Iteration"/>
+<meta name="twitter:description" content="Table of Content
+Loops and Iteration while Loops do-while loop for loops for...of loop for...in loop Controlling Loops Loops and Iteration We regularly face conditions when we need to run our code over and over again until some condition is met. JavaScript provides us several forms to achive this condition.
+while Loops A while loop uses the while keyword followed by a conditional expression in parentheses () and a code block."/>
+
+  
+  
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[5rem] max-w-3xl px-8 lg:justify-center">
+  <div class="relative z-50 mr-auto flex items-center">
+    <a
+      class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
+      href="/"
+      >JavaScript Manual</a
+    >
+    <div
+      class="btn-dark text-[0] ml-6 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.png)_left_center/_auto_theme('spacing.6')_no-repeat] [transition:_background-position_0.4s_steps(5)] dark:[background-position:right]"
+      role="button"
+      aria-label="Dark"
+    ></div>
+  </div>
+
+  <div
+    class="btn-menu relative z-50 -mr-8 flex h-[5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
+    role="button"
+    aria-label="Menu"
+  ></div>
+
+  
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = `"#faf6f1"`.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+  >
+    
+    
+
+    
+  </div>
+</header>
+
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-10rem)] max-w-3xl px-8 pt-16 pb-24 dark:prose-invert"
+    >
+      
+
+<article>
+  <header class="mb-20">
+    <h1 class="!my-0 pb-2.5">JavaScript Loop and Iteration</h1>
+
+    
+    <div class="text-sm opacity-60">
+      
+      <time>May 7, 2023</time>
+      
+      
+      
+      
+      <span class="mx-1">&middot;</span>
+      <span>Prabesh Thapa</span>
+      
+    </div>
+    
+  </header>
+
+  <section><p><strong>Table of Content</strong></p>
+<ul>
+<li><a href="#loops-and-iteration">Loops and Iteration</a>
+<ul>
+<li><a href="#while-loops"><code>while</code> Loops</a></li>
+<li><a href="#do-while-loop"><code>do-while</code> loop</a></li>
+<li><a href="#for-loops"><code>for</code> loops</a></li>
+<li><a href="#forof-loop"><code>for...of</code> loop</a></li>
+<li><a href="#forin-loop"><code>for...in</code> loop</a></li>
+<li><a href="#controlling-loops">Controlling Loops</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="loops-and-iteration">Loops and Iteration</h1>
+<p>We regularly face conditions when we need to run our code over and over again until some condition is met. JavaScript provides us several forms to achive this condition.</p>
+<h2 id="while-loops"><code>while</code> Loops</h2>
+<p>A <code>while</code> loop uses the <code>while</code> keyword followed by a conditional expression in parentheses <code>()</code> and a code block. The loop executes the code block again and again as long as the conditional expression remains truthy. The loop only stops when the condition is met and conditional expression becomes falsy. Else, the loop becomes <code>infinite</code> and never stops repeating.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">counter</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span> (<span style="color:#a6e22e">counter</span> <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">10</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">counter</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">counter</span><span style="color:#f92672">++</span>; <span style="color:#75715e">//counter = counter + 1;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><p>During the execution of <code>while</code> loop, JavaScript evaluates the conditional expression inside the parentheses <code>counter &lt;= 10</code>. Since, the initial value of the <code>counter</code> is 1, the condition evaluates to <code>true</code> and hence the JS engine runs the loop&rsquo;s code block. Inside the block, we output the value of counter and increase it&rsquo;s value by 1.</p>
+<p>After the first block iteration, JavaScript re-evaluates the conditional expression and sees that the counter value is increased by 1 i.e. 2 which still satisfies the condition and hence again output the counter value and increse by 1. This iteration countinues till the condition is no longer truthy i.e. the value of counter becomes greater than 10. When counter value exceeds 10, the loop stops.</p>
+<p><strong>Looping over Arrays with <code>while</code> loop</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">players</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;Ronaldo&#34;</span>, <span style="color:#e6db74">&#34;Messi&#34;</span>, <span style="color:#e6db74">&#34;Pele&#34;</span>, <span style="color:#e6db74">&#34;Maradona&#34;</span>, <span style="color:#e6db74">&#34;Zidane&#34;</span>];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">upperCase</span> <span style="color:#f92672">=</span> [];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">idx</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span> (<span style="color:#a6e22e">idx</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">players</span>.<span style="color:#a6e22e">length</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">convertToUpperCase</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">players</span>[<span style="color:#a6e22e">idx</span>].<span style="color:#a6e22e">toUpperCase</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">upperCase</span>.<span style="color:#a6e22e">push</span>(<span style="color:#a6e22e">convertToUpperCase</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">idx</span> <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>; <span style="color:#75715e">//idx = idx + 1;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">upperCase</span>); <span style="color:#75715e">//OUTPUT: [&#34;RONALDO&#34;,&#34;MESSI&#34;,&#34;PELE&#34;,&#34;MARADONA&#34;,&#34;ZIDANE&#34;]
+</span></span></span></code></pre></div><h2 id="do-while-loop"><code>do-while</code> loop</h2>
+<p>The major difference between <code>while</code> loop and <code>do-while</code> loop is that the <code>do-while</code> loop always executes the code in the block at least once while a <code>while</code> loop is not certain to do so since the initial condition may be falsy.</p>
+<p>In a <code>do-while</code> loop, the condition is evaluated at last instead of the begining which allows the code block to run at least once even when the initial condition is falsy.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">input</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">do</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">input</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">prompt</span>(<span style="color:#e6db74">&#34;Would you like to play the game again? (y/n)&#34;</span>);
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">while</span> (<span style="color:#a6e22e">input</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;y&#34;</span>);
+</span></span></code></pre></div><p>When the above code is run, weget a prompt <code>Would you like to play the game again? (y/n)</code> and if we enter the lowercase <code>y</code>, we get the prompt again as long as we enter <code>y</code> but once we enter anything other than the letter <code>y</code>, the loop stops.</p>
+<h2 id="for-loops"><code>for</code> loops</h2>
+<p><code>for</code> loops works the same way as <code>while</code> loop but with a more strethched and complex syntax.A <code>for</code> loop combines variable initialization, loop condition, and the increment/decrement expression in one single line.</p>
+<p><em>Syntax</em></p>
+<pre tabindex="0"><code>for (initialization; condition; increment) {
+    //loop code block
+}
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">players</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;Ronaldo&#34;</span>, <span style="color:#e6db74">&#34;Messi&#34;</span>, <span style="color:#e6db74">&#34;Pele&#34;</span>, <span style="color:#e6db74">&#34;Maradona&#34;</span>, <span style="color:#e6db74">&#34;Zidane&#34;</span>];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">upperCase</span> <span style="color:#f92672">=</span> [];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">idx</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">idx</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">players</span>.<span style="color:#a6e22e">length</span>; <span style="color:#a6e22e">idx</span><span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">convertToUpperCase</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">players</span>[<span style="color:#a6e22e">idx</span>].<span style="color:#a6e22e">toUpperCase</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">upperCase</span>.<span style="color:#a6e22e">push</span>(<span style="color:#a6e22e">convertToUpperCase</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">upperCase</span>); <span style="color:#75715e">//OUTPUT: [&#34;RONALDO&#34;,&#34;MESSI&#34;,&#34;PELE&#34;,&#34;MARADONA&#34;,&#34;ZIDANE&#34;]
+</span></span></span></code></pre></div><p>Steps involved:</p>
+<ol>
+<li>Declare and initialize the <code>idx</code> variable to 0.</li>
+<li>If <code>idx</code> is not less than length of array, go to step 6.</li>
+<li>If <code>idx</code> is less than length of array, execute the loop code.</li>
+<li>Increment <code>idx</code>.</li>
+<li>Go back to Step 2.</li>
+<li>Output the results.</li>
+</ol>
+<h2 id="forof-loop"><code>for...of</code> loop</h2>
+<p>We can use <code>for...of</code> statement to loop over an iterable object such as Array, String, Map, Set etc.</p>
+<p><em>Syntax:</em></p>
+<pre tabindex="0"><code>for (variable of iterable) {
+    statement;
+}
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">odd</span> <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">9</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">num</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">odd</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">num</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/* OUTPUT:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">3
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">5
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">7
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">9
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">*/</span>
+</span></span></code></pre></div><h2 id="forin-loop"><code>for...in</code> loop</h2>
+<p>The <code>for...in</code> loop is used to loop through an object&rsquo;s properties.</p>
+<p><em>Syntax:</em></p>
+<pre tabindex="0"><code>for (variable in object) {
+    statement;
+}
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">vars</span> <span style="color:#f92672">=</span> { <span style="color:#a6e22e">x</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">2</span>, <span style="color:#a6e22e">y</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">4</span>, <span style="color:#a6e22e">z</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">6</span> };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">num</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">vars</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">num</span><span style="color:#e6db74">}</span><span style="color:#e6db74">: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">vars</span>[<span style="color:#a6e22e">num</span>]<span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/*OUTPUT:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">&#34;x: 2&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">&#34;y: 4&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">&#34;z: 6&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">*/</span>
+</span></span></code></pre></div><h2 id="controlling-loops">Controlling Loops</h2>
+<p>We can have more control over loops with the keywords <code>continue</code> and <code>break</code> provided by JavaScript.</p>
+<ul>
+<li><code>continue</code> lets us start a new iteration.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">players</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;Ronaldo&#34;</span>, <span style="color:#e6db74">&#34;Messi&#34;</span>, <span style="color:#e6db74">&#34;Pele&#34;</span>, <span style="color:#e6db74">&#34;Maradona&#34;</span>, <span style="color:#e6db74">&#34;Zidane&#34;</span>];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">upperCase</span> <span style="color:#f92672">=</span> [];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">idx</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">idx</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">players</span>.<span style="color:#a6e22e">length</span>; <span style="color:#a6e22e">idx</span><span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">players</span>[<span style="color:#a6e22e">idx</span>] <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;Pele&#34;</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">continue</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">convertToUpperCase</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">players</span>[<span style="color:#a6e22e">idx</span>].<span style="color:#a6e22e">toUpperCase</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">upperCase</span>.<span style="color:#a6e22e">push</span>(<span style="color:#a6e22e">convertToUpperCase</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">upperCase</span>); <span style="color:#75715e">//OUTPUT: [&#34;RONALDO&#34;,&#34;MESSI&#34;,&#34;MARADONA&#34;,&#34;ZIDANE&#34;]
+</span></span></span></code></pre></div><p>As we can see, the <code>upperCase</code> array no longer has &lsquo;PELE&rsquo;. That is because when the loop encounters the <code>continue</code> keyword, it skips rest of the code and starts a new iteration.</p>
+<ul>
+<li><code>break</code> lets us terminate a loop before condition is met.</li>
+</ul>
+<p>There might be some cases when we want to skip the remaining iteration of loops. For example, when we are searching for an certain element in an array, we probably would want to stop the iteration once we find it.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">even</span> <span style="color:#f92672">=</span> [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">14</span>];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">indexOfSix</span> <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">even</span>.<span style="color:#a6e22e">length</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">even</span>[<span style="color:#a6e22e">i</span>] <span style="color:#f92672">===</span> <span style="color:#ae81ff">6</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">indexOfSix</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">i</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">indexOfSix</span>);
+</span></span></code></pre></div></section>
+
+  
+  
+
+  
+  
+  
+  <nav class="mt-24 flex rounded-lg bg-black/[3%] text-lg dark:bg-white/[8%]">
+    
+    <a
+      class="flex w-1/2 items-center rounded-l-md p-6 pr-3 no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
+      href="/posts/08-control-flow/"
+      ><span class="mr-1.5">←</span><span>JavaScript Control Flow</span></a
+    >
+    
+    
+    <a
+      class="ml-auto flex w-1/2 items-center justify-end rounded-r-md p-6 pl-3 no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
+      href="/posts/06-equaltiy-comparisions/"
+      ><span>JavaScript Equality Comparision</span><span class="ml-1.5">→</span></a
+    >
+    
+  </nav>
+  
+
+  
+  
+
+  
+  
+</article>
+
+
+    </main>
+
+    <footer
+  class="opaco mx-auto flex h-[5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
+>
+  <div class="mr-auto">
+    &copy; 2023
+    <a class="link" href="">JavaScript Manual</a>
+  </div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >Powered by Hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >Theme Paper</a
+  >
+</footer>
+
+  </body>
+</html>

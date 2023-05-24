@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready text-sm lg:text-base"
+  style="--bg: #faf6f1"
+  lang="en-us"
+>
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>JavaScript Functions - JavaScript Manual</title>
+
+  
+  <meta name="theme-color" />
+
+  
+  
+  
+  <meta name="description" content="Table of Content
+Functions Function Declarations and Function Expression Difference between function declaration and function expression Function Parameters Default Parameter Rest Parameter Difference Between Arguments and Rest Parameter Arrow Functions Function Scope Lecxical Scoping Closures IIFEs Recursion JavaScript Built-In Functions Number Methods Boolean Methods String Object Array Methods Functions A function is a block of code that runs when the function is called.
+Syntax:
+function functionName(paramter1, paremeter2, ...., parameterN) { // Block of Code } To declare a function, we use a function keyword followed by the name of the fucntion which is followed by thr parrameter enclosed in () followed by pair of curly braces {} which covers the block of code to be executed." />
+  <meta name="author" content="Prabesh Thapa" />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="/main.min.css" />
+
+  
+  <script
+    defer
+    src="highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
+  
+
+  
+   
+  <link rel="preload" as="image" href="theme.png" />
+
+  
+  
+  
+  <link rel="preload" as="image" href="https://gravatar.com/avatar/bc5b4d21951d97f450e166dbaea458f6" />
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  <link rel="icon" href="favicon.ico" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.112.2">
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="JavaScript Functions" />
+<meta property="og:description" content="Table of Content
+Functions Function Declarations and Function Expression Difference between function declaration and function expression Function Parameters Default Parameter Rest Parameter Difference Between Arguments and Rest Parameter Arrow Functions Function Scope Lecxical Scoping Closures IIFEs Recursion JavaScript Built-In Functions Number Methods Boolean Methods String Object Array Methods Functions A function is a block of code that runs when the function is called.
+Syntax:
+function functionName(paramter1, paremeter2, ...., parameterN) { // Block of Code } To declare a function, we use a function keyword followed by the name of the fucntion which is followed by thr parrameter enclosed in () followed by pair of curly braces {} which covers the block of code to be executed." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/10-javascript-functions/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-05-20T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-05-20T00:00:00+00:00" />
+
+  
+  <meta itemprop="name" content="JavaScript Functions">
+<meta itemprop="description" content="Table of Content
+Functions Function Declarations and Function Expression Difference between function declaration and function expression Function Parameters Default Parameter Rest Parameter Difference Between Arguments and Rest Parameter Arrow Functions Function Scope Lecxical Scoping Closures IIFEs Recursion JavaScript Built-In Functions Number Methods Boolean Methods String Object Array Methods Functions A function is a block of code that runs when the function is called.
+Syntax:
+function functionName(paramter1, paremeter2, ...., parameterN) { // Block of Code } To declare a function, we use a function keyword followed by the name of the fucntion which is followed by thr parrameter enclosed in () followed by pair of curly braces {} which covers the block of code to be executed."><meta itemprop="datePublished" content="2023-05-20T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2023-05-20T00:00:00+00:00" />
+<meta itemprop="wordCount" content="2389">
+<meta itemprop="keywords" content="" />
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="JavaScript Functions"/>
+<meta name="twitter:description" content="Table of Content
+Functions Function Declarations and Function Expression Difference between function declaration and function expression Function Parameters Default Parameter Rest Parameter Difference Between Arguments and Rest Parameter Arrow Functions Function Scope Lecxical Scoping Closures IIFEs Recursion JavaScript Built-In Functions Number Methods Boolean Methods String Object Array Methods Functions A function is a block of code that runs when the function is called.
+Syntax:
+function functionName(paramter1, paremeter2, ...., parameterN) { // Block of Code } To declare a function, we use a function keyword followed by the name of the fucntion which is followed by thr parrameter enclosed in () followed by pair of curly braces {} which covers the block of code to be executed."/>
+
+  
+  
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[5rem] max-w-3xl px-8 lg:justify-center">
+  <div class="relative z-50 mr-auto flex items-center">
+    <a
+      class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
+      href="/"
+      >JavaScript Manual</a
+    >
+    <div
+      class="btn-dark text-[0] ml-6 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.png)_left_center/_auto_theme('spacing.6')_no-repeat] [transition:_background-position_0.4s_steps(5)] dark:[background-position:right]"
+      role="button"
+      aria-label="Dark"
+    ></div>
+  </div>
+
+  <div
+    class="btn-menu relative z-50 -mr-8 flex h-[5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
+    role="button"
+    aria-label="Menu"
+  ></div>
+
+  
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = `"#faf6f1"`.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+  >
+    
+    
+
+    
+  </div>
+</header>
+
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-10rem)] max-w-3xl px-8 pt-16 pb-24 dark:prose-invert"
+    >
+      
+
+<article>
+  <header class="mb-20">
+    <h1 class="!my-0 pb-2.5">JavaScript Functions</h1>
+
+    
+    <div class="text-sm opacity-60">
+      
+      <time>May 20, 2023</time>
+      
+      
+      
+      
+      <span class="mx-1">&middot;</span>
+      <span>Prabesh Thapa</span>
+      
+    </div>
+    
+  </header>
+
+  <section><p><strong>Table of Content</strong></p>
+<ul>
+<li><a href="#functions">Functions</a>
+<ul>
+<li><a href="#function-declarations-and-function-expression">Function Declarations and Function Expression</a>
+<ul>
+<li><a href="#difference-between-function-declaration-and-function-expression">Difference between function declaration and function expression</a></li>
+</ul>
+</li>
+<li><a href="#function-parameters">Function Parameters</a>
+<ul>
+<li><a href="#default-parameter">Default Parameter</a></li>
+<li><a href="#rest-parameter">Rest Parameter</a></li>
+<li><a href="#difference-between-arguments-and-rest-parameter">Difference Between Arguments and Rest Parameter</a></li>
+</ul>
+</li>
+<li><a href="#arrow-functions">Arrow Functions</a></li>
+<li><a href="#function-scope">Function Scope</a>
+<ul>
+<li><a href="#lecxical-scoping">Lecxical Scoping</a></li>
+<li><a href="#closures">Closures</a></li>
+</ul>
+</li>
+<li><a href="#iifes">IIFEs</a></li>
+<li><a href="#recursion">Recursion</a></li>
+<li><a href="#javascript-built-in-functions">JavaScript Built-In Functions</a>
+<ul>
+<li><a href="#number-methods">Number Methods</a></li>
+<li><a href="#boolean-methods">Boolean Methods</a></li>
+<li><a href="#string-object">String Object</a></li>
+<li><a href="#array-methods">Array Methods</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="functions">Functions</h1>
+<p>A <code>function</code> is a block of code that runs when the function is called.</p>
+<p>Syntax:</p>
+<pre tabindex="0"><code>function functionName(paramter1, paremeter2, ...., parameterN) {
+    // Block of Code
+}
+</code></pre><p>To declare a function, we use a <code>function</code> keyword followed by the name of the fucntion which is followed by thr <code>parrameter</code> enclosed in <code>()</code> followed by pair of curly braces <code>{}</code> which covers the block of code to be executed.</p>
+<p>We can call (invoke) a function just with the name of fucntion followed by <code>()</code>.</p>
+<pre tabindex="0"><code>functionName();
+</code></pre><p>There are times when function require additional data to work in the form of <code>arguments</code>. Arguments are values passed on to functions when calling the fucntions inside the pair of parentheses <code>()</code>.</p>
+<p>Although, <code>parameter</code> and <code>arguments</code> are often understood to be same, they have slightly different meanings.</p>
+<p>A parameter is a variable that the function expects to receive as input in order to perform the specified tasks.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">findSum</span>(<span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">b</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Here, <code>a</code> and <code>b</code> are the paremeters of <code>findSum</code> function.</p>
+<p>Arguments is a value that is passed to function when it is called. They are the actual values that are used to replace the paremeter in a fucntion.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">findSum</span>(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">result</span>); <span style="color:#75715e">//OUTPUT: 5
+</span></span></span></code></pre></div><p>Here, 2 and 3 are the arguments passed to <code>findSum</code> function. The value 2 is passed as argument for the <code>a</code> parameter while value 3 is passed as argument for <code>b</code> paremeter.</p>
+<h2 id="function-declarations-and-function-expression">Function Declarations and Function Expression</h2>
+<p>We have two ways to create functinos in JavaScript: <code>function declaration</code> and <code>function expression</code>.</p>
+<p>Function declaration is a way to create a named fucntion using <code>function</code> keyword like we mentioned above.</p>
+<p>Function expression on other hand is a way to create anonymous function that can be assigned to variable or passed as an argument to another function.</p>
+<p>Example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">greet</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">name</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Hello&#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">name</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;!&#34;</span>);
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>This creates a function expression that assigns the anonymous function to the variable <code>greet</code>. This function takes one parameter named <code>name</code> and logs a greeting message with the name passed as an argument.</p>
+<p>The most important difference between function expression and function declaration is that we can define a function without a name in function expression.</p>
+<h3 id="difference-between-function-declaration-and-function-expression">Difference between function declaration and function expression</h3>
+<p>One key difference between function declaration and function expression is that fucntion declarations are hoisted to the top of their scope, which means they can be called before they are defined. On other hand, function expressions are not hoisted and cannot be called before they are defined.</p>
+<p>What is <code>hoisting</code> you may ask if you have already forgotten.</p>
+<pre tabindex="0"><code>Hoisting is the behavior where variables and functions are moved to top of their respective scopes during compilation before the code is actually executed.
+</code></pre><p>So, what does all this means?</p>
+<p>This means that the following code will work absolutely fine without problems.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">sum</span>(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>)); <span style="color:#75715e">//OUTPUT: 6
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">sum</span>(<span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">b</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Although, we are calling the <code>sum()</code> function before defining it, we do not get any error - thanks to function hoisting.</p>
+<p>However, we must always remember that hoisting is limited to function declaration - <strong>NOT TO FUNCTION EXPRESSION</strong></p>
+<p>Example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">sum</span>(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">sum</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">b</span>;
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><pre tabindex="0"><code>OUTPUT:
+Uncaught TypeError: sum is not a function
+</code></pre><p>This code throws an error because of hoisting in JavaScript. When a variable is declared using the <code>var</code> keyword, its declaration is hoisted to the top of its scope during compilation, but its initialization is not. This means that the variable sum is being hoisted to the top of its scope, but it is still undefined at the point where it is called in the <code>console.log</code> statement.</p>
+<h2 id="function-parameters">Function Parameters</h2>
+<p>There are two kinds of parameter syntax: <code>default paremeter</code> and <code>rest parameter</code>.</p>
+<h3 id="default-parameter">Default Parameter</h3>
+<p>In JavaScript, parameters of a function defaults to <code>undefined</code>. It means that if no arguments is passed to the function, its parameter wil have the default value od <code>undefined</code>.</p>
+<p>Example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">greet</span>(<span style="color:#a6e22e">name</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Hello &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">name</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">greet</span>(); <span style="color:#75715e">//OUTPUT: Hello undefined
+</span></span></span></code></pre></div><p>Here, the <code>greet()</code> function takes the <code>name</code> parameter but we did not pass any arguments to the function, hence the value of <code>name</code> parameter is set to <code>undefiend</code>.</p>
+<p>However, we can set that to a different default value. ES6 provides us easier ways to set default values to the parameter. We use the assignment operator <code>=</code> and the default value after the parameter name to set a default parameter.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">greet</span>(<span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;User&#34;</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Hello &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">name</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">greet</span>(); <span style="color:#75715e">// OUTPUT: Hello User
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">greet</span>(<span style="color:#e6db74">&#34;Prabesh&#34;</span>); <span style="color:#75715e">//OUTPUT: Hello Prabesh
+</span></span></span></code></pre></div><h3 id="rest-parameter">Rest Parameter</h3>
+<p>The rest parameter syntax <code>...</code> allows us to accept indefinite number of arguments as an array. It is used as a prefix of the function&rsquo;s last parameter.</p>
+<p><em>Example:</em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">userInfo</span>(<span style="color:#a6e22e">firstName</span>, <span style="color:#a6e22e">lastName</span>, ...<span style="color:#a6e22e">otherInfo</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">otherInfo</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The rest operator <code>...</code> accepts the rest of user-specified arguments as an array and assign that array to the <code>otherinfo</code> parameter.</p>
+<p>Now,we caninvoke the function with as many arguments as we like.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">userInfo</span>(<span style="color:#e6db74">&#34;Prabesh&#34;</span>, <span style="color:#e6db74">&#34;Thapa&#34;</span>, <span style="color:#ae81ff">23</span>, <span style="color:#e6db74">&#34;entry&#34;</span>, <span style="color:#e6db74">&#34;Web Developer&#34;</span>);
+</span></span></code></pre></div><p>This invocation will return an array of the argumnets other than the values &ldquo;Prabesh&rdquo; and &ldquo;Thapa&rdquo; that got assigned to <code>firstName</code> and <code>lastName</code> parameters.</p>
+<p><em>OUPUT:</em></p>
+<pre tabindex="0"><code>[23, &#34;entry&#34;, &#34;Web Developer&#34;]
+</code></pre><h3 id="difference-between-arguments-and-rest-parameter">Difference Between Arguments and Rest Parameter</h3>
+<ul>
+<li>
+<p><strong><code>arguments</code> object is an array-like object - not a real array.</strong>: JavaScript arguments object is array-like object that does not have comprehensive features of regular arrays but the rest parameteris a real array object we can call use all kind of array methods on it.</p>
+</li>
+<li>
+<p><strong>We cannot use <code>arguments</code> object in arrow function</strong>: The <code>arguments</code> object is not available within arrow functions but we can use arrow functions in rest parameters.</p>
+</li>
+</ul>
+<h2 id="arrow-functions">Arrow Functions</h2>
+<p>The second way we can declare the function is with arrow functions which was made available in ES2015.</p>
+<p><em>Example:</em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">greet</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">name</span>) =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Hello &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">name</span>);
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>You may be wondering while both the regular and arrow syntaxes define functions, when would you use one or another?</p>
+<p>We will learn more about the arrow functions and how they differ from normal function delcarations when we understand <strong><code>this</code></strong> keyword in next section.</p>
+<h2 id="function-scope">Function Scope</h2>
+<p>A function creates a scope so that variables defined within the function cannot be accessed outside the function or within other functions.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">myFunction</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">var1</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;something&#34;</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">var1</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">myFunction</span>();
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">var1</span>); <span style="color:#75715e">//OUTPUT: var1 is not defined
+</span></span></span></code></pre></div><h3 id="lecxical-scoping">Lecxical Scoping</h3>
+<p>Lexical scoping is a key concept in JavaScript that determines how variables and functions are accessed within nested scopes, based on their position in the code. In simple terms, lexical scoping means that we can access the variables of outer scopes from inside our inside scope.</p>
+<p>In JavaScript, every time you create a new function, it creates a new scope. When you reference a variable or function within a particular scope, JavaScript looks for it first within that scope. If it can&rsquo;t find it there, it looks in the next outer scope, and so on until it reaches the global scope.</p>
+<p>This means that variables and functions declared in an outer scope can be accessed by inner scopes, but variables and functions declared in an inner scope cannot be accessed by outer scopes.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">myFunction</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">outerVar</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Outer Scope&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">innerFunction</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">innerVar</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Inner Scope&#34;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">outerVar</span>); <span style="color:#75715e">// Accessible from inner scope
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">//OUTPUT: &#34;Outer Scope&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">innerFunction</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">innerVar</span>); <span style="color:#75715e">// Not Accessible from outer scope
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// OUTPUT: ReferenceError: innerVar is not defined
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">myFunction</span>();
+</span></span></code></pre></div><p>In the example above, <code>myFunction</code> creates a new scope that has <code>outerVar</code> variable and <code>innerFunction</code> function. <code>innerFunction()</code> creates a new scope that has <code>innerVar</code> variable. When <code>innerFunction()</code> is called, it logs the value of <code>outerVar</code> which is in outer scope but we will get an error when we try to log the value of <code>innerVar</code> because it is not accessible outside the inner scope.</p>
+<h3 id="closures">Closures</h3>
+<p>Closures in JavaScript are created when a function is defined inside another function and the inner function is returned or passed as parameter to another function.</p>
+<p>Closure is a function that has access to variables in its outer function&rsquo;s scope, even after outer function has returned. This allows inner function to continue to access and manipulate outer function&rsquo;s variables even after the outer function has finished executing. In simple terms, closure is a function that remembers the variables from the place it is defined, regardless of where it is executed later.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">outerScope</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">outerVar</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;outer scope&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">innerScope</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">outerVar</span>); <span style="color:#75715e">// OUTPUT: &#34;outer scope&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">innerScope</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">inner</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">outerScope</span>();
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">inner</span>(); <span style="color:#75715e">// OUTPUT: &#34;outer scope&#34;
+</span></span></span></code></pre></div><p>In this example, <code>innerScope()</code> is defined inside <code>outsideScope()</code> and has access to the <code>outerVar</code> variable. When the <code>outerScope()</code> function is called and <code>innerScope()</code> function is returned,a closure is created that allows <code>innerScope()</code> function to access the <code>outerVar</code> variable even though <code>outerScope()</code> function has finished executing.</p>
+<h2 id="iifes">IIFEs</h2>
+<p><code>Immediately Invoked Function Expression</code> or IIFEs is a design pattern to protect the scope of our functions and the variables within (create a private scope).</p>
+<p>An IIFE is created by wrapping a function in parentheses and immediately invoking it.</p>
+<p><em>Example:</em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>(<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">myFunction</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//code block
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>})();
+</span></span></code></pre></div><p>When the code is executed, the function is immediately invoked and its code in executed. This means that any variables and functions defined within the function are only accessible within the function&rsquo;s scope and do not leak into global namespaces.</p>
+<p>Let&rsquo;s declare a normal function.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getSum</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">y</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">sum</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">y</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">sum</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">getSum</span>();
+</span></span></code></pre></div><p>Here, we have a function that simply adds two variables together and console logs the sum. We then call the function after. But there may be situation where we want to call the function once to get an output and never use it again. Although our variables cannot be accessed outside the function, we would lile to make sure that the function also cannot be accessed globally. <strong>That&rsquo;s where IIFE comes in handy.</strong></p>
+<p>Now, we can rewrite the code as below:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>(<span style="color:#66d9ef">function</span> () {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">y</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">sum</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">y</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">sum</span>);
+</span></span><span style="display:flex;"><span>})();
+</span></span></code></pre></div><p>Since, we do not intend to call the function again after the invocation, we do not need to give the function a name anymore.</p>
+<h2 id="recursion">Recursion</h2>
+<p>Recursion is a programming pattern where a function calls itself repeatedly until certain condition is met. This is a powerful technique that allows us to solve complex problems by breaking them down into smaller, more simple parts.</p>
+<p>A recursive function typically has two parts: <code>base case</code> and <code>recursive case</code>. The base case is the condition that stops the recursion and returns a value. The recursive case is where the fucntion call itself with a modified arguments.</p>
+<p>Let&rsquo;s discuss it with a simple function that raises a number to a natural power of n.
+Example:</p>
+<pre tabindex="0"><code>power(2,3) = 8 // 2*2*2 == 8
+</code></pre><p>Let&rsquo;s implement this function with <code>for</code> loop:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">power</span>(<span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">n</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">n</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">result</span> <span style="color:#f92672">*=</span> <span style="color:#a6e22e">a</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">result</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">power</span>(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>)); <span style="color:#75715e">//OUTPUT: 8
+</span></span></span></code></pre></div><p>This is how we normally approach this problem.
+Now, let&rsquo;s think recursively and simplify the task.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">power</span>(<span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">n</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">n</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// base case
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">a</span>;
+</span></span><span style="display:flex;"><span>  } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// recursive case
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">power</span>(<span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">n</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">power</span>(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>)); <span style="color:#75715e">//OUTPUT: 8
+</span></span></span></code></pre></div><p>In this example, the base case is when <code>n</code> equals to 1 and the function returns <code>a</code>.The recursive case is when <code>n</code> is greater than 0, and the function calls itself with <code>a</code> and <code>n-1</code> as the argument.</p>
+<p>When the function is called with <code>power(2,3)</code>, it will recursively call itslef with <code>power(2,2)</code>, <code>power(2,1)</code> until it reaches the base case of <code>power(2,0)</code>.</p>
+<p>We can also rewrite the same code using ternary operator replacing the if-else statement.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">power</span>(<span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">n</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">n</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">?</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">power</span>(<span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">n</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="javascript-built-in-functions">JavaScript Built-In Functions</h2>
+<h3 id="number-methods">Number Methods</h3>
+<ul>
+<li><code>constructor()</code>: returns the function that created the object&rsquo;s instance. By default, this is a Number object.</li>
+<li><code>toFixed()</code>: formats a number with a specific number of digits to the right of decimal.</li>
+<li><code>toString()</code>: returns the string representation of the number&rsquo;s value</li>
+<li><code>valueOf()</code>: returns the number&rsquo;s value</li>
+</ul>
+<h3 id="boolean-methods">Boolean Methods</h3>
+<ul>
+<li><code>toSource()</code>: returns a string containing the source of the Boolean object</li>
+<li><code>toString()</code>: returns a string of either <code>true</code> or <code>false</code> depending upon the value of object</li>
+<li><code>valueOf()</code>: returns the primitive value of a Boolean object</li>
+</ul>
+<h3 id="string-object">String Object</h3>
+<ul>
+<li><code>charAt()</code>: returns the character at specified index</li>
+<li><code>concat()</code>: combines the text of two strings and returns a new string</li>
+<li><code>indexOf()</code>: returns the index of first occurence of specified value within an array of string (<code>-1</code> if not found)</li>
+<li><code>lastIndexOf()</code>: returns the index of last occurence od specified calue within an array of string (<code>-1</code> if not found)</li>
+<li><code>length()</code>: returns the length of string</li>
+<li><code>match()</code>: used to match regular expression against a string</li>
+<li><code>replace()</code>: used to find a match between regular expression and a string, and replace the matched substring with a new substring</li>
+<li><code>slice()</code>: splits a string object into array of string by seperating the string into substrings</li>
+</ul>
+<h3 id="array-methods">Array Methods</h3>
+<ul>
+<li><code>concat()</code>: returns a new array compromised of the array joined with other array(s)</li>
+<li><code>every()</code>: returns <code>true</code> if every element in this array satisfies the provided testing fucntion</li>
+<li><code>filter()</code>: creates a new array with all elements of this array for which the provided filtering function returns <code>true</code></li>
+<li><code>indexOf()</code>: returns the first index of an element within the array equal to specified value (<code>-1</code> if not found)</li>
+<li><code>join()</code>: joins all the elements of an array into string</li>
+<li><code>pop()</code>: removes and returns the last element from an array</li>
+<li><code>push()</code>: adds one or more elements to the end of an array and returns the new length of the array</li>
+<li><code>shift()</code>: removes and returns the first element of the array</li>
+<li><code>unshift()</code>: adds one or more elements to the front of array and returns the new length of array</li>
+<li><code>slice()</code>: extracts a section of array and returns a new array</li>
+<li><code>splice()</code>: add, remove or replace elements in an array based on their index</li>
+</ul>
+</section>
+
+  
+  
+
+  
+  
+  
+  <nav class="mt-24 flex rounded-lg bg-black/[3%] text-lg dark:bg-white/[8%]">
+    
+    
+    <a
+      class="ml-auto flex w-1/2 items-center justify-end rounded-r-md p-6 pl-3 no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
+      href="/posts/12-asynchronous-javascript/"
+      ><span>Understanding  Asynchronous JavaScript</span><span class="ml-1.5">→</span></a
+    >
+    
+  </nav>
+  
+
+  
+  
+
+  
+  
+</article>
+
+
+    </main>
+
+    <footer
+  class="opaco mx-auto flex h-[5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
+>
+  <div class="mr-auto">
+    &copy; 2023
+    <a class="link" href="">JavaScript Manual</a>
+  </div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >Powered by Hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >Theme Paper</a
+  >
+</footer>
+
+  </body>
+</html>

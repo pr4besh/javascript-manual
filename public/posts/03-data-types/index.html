@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready text-sm lg:text-base"
+  style="--bg: #faf6f1"
+  lang="en-us"
+>
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>JavaScript Data Types - JavaScript Manual</title>
+
+  
+  <meta name="theme-color" />
+
+  
+  
+  
+  <meta name="description" content="Table of Content
+Data Types in JavaScript Numeric Data Type String Data Type Boolean Data Type Null Data Type Undefined Data Type Symbols Data Type Objects in JavaScript Create, Read, Update and Delete (CRUD) in Objects Create Read Update Delete Other Useful Methods to Know Data Types in JavaScript There are six types of primitive data types we use in JavaScript.
+numeric string Boolean null undefined symbol (introduced in ES6) Numeric Data Type Numeric data type handles numbers." />
+  <meta name="author" content="Prabesh Thapa" />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="/main.min.css" />
+
+  
+  <script
+    defer
+    src="highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
+  
+
+  
+   
+  <link rel="preload" as="image" href="theme.png" />
+
+  
+  
+  
+  <link rel="preload" as="image" href="https://gravatar.com/avatar/bc5b4d21951d97f450e166dbaea458f6" />
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  <link rel="icon" href="favicon.ico" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.112.2">
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="JavaScript Data Types" />
+<meta property="og:description" content="Table of Content
+Data Types in JavaScript Numeric Data Type String Data Type Boolean Data Type Null Data Type Undefined Data Type Symbols Data Type Objects in JavaScript Create, Read, Update and Delete (CRUD) in Objects Create Read Update Delete Other Useful Methods to Know Data Types in JavaScript There are six types of primitive data types we use in JavaScript.
+numeric string Boolean null undefined symbol (introduced in ES6) Numeric Data Type Numeric data type handles numbers." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/03-data-types/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-05-03T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-05-03T00:00:00+00:00" />
+
+  
+  <meta itemprop="name" content="JavaScript Data Types">
+<meta itemprop="description" content="Table of Content
+Data Types in JavaScript Numeric Data Type String Data Type Boolean Data Type Null Data Type Undefined Data Type Symbols Data Type Objects in JavaScript Create, Read, Update and Delete (CRUD) in Objects Create Read Update Delete Other Useful Methods to Know Data Types in JavaScript There are six types of primitive data types we use in JavaScript.
+numeric string Boolean null undefined symbol (introduced in ES6) Numeric Data Type Numeric data type handles numbers."><meta itemprop="datePublished" content="2023-05-03T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2023-05-03T00:00:00+00:00" />
+<meta itemprop="wordCount" content="709">
+<meta itemprop="keywords" content="" />
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="JavaScript Data Types"/>
+<meta name="twitter:description" content="Table of Content
+Data Types in JavaScript Numeric Data Type String Data Type Boolean Data Type Null Data Type Undefined Data Type Symbols Data Type Objects in JavaScript Create, Read, Update and Delete (CRUD) in Objects Create Read Update Delete Other Useful Methods to Know Data Types in JavaScript There are six types of primitive data types we use in JavaScript.
+numeric string Boolean null undefined symbol (introduced in ES6) Numeric Data Type Numeric data type handles numbers."/>
+
+  
+  
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[5rem] max-w-3xl px-8 lg:justify-center">
+  <div class="relative z-50 mr-auto flex items-center">
+    <a
+      class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
+      href="/"
+      >JavaScript Manual</a
+    >
+    <div
+      class="btn-dark text-[0] ml-6 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.png)_left_center/_auto_theme('spacing.6')_no-repeat] [transition:_background-position_0.4s_steps(5)] dark:[background-position:right]"
+      role="button"
+      aria-label="Dark"
+    ></div>
+  </div>
+
+  <div
+    class="btn-menu relative z-50 -mr-8 flex h-[5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
+    role="button"
+    aria-label="Menu"
+  ></div>
+
+  
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = `"#faf6f1"`.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+  >
+    
+    
+
+    
+  </div>
+</header>
+
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-10rem)] max-w-3xl px-8 pt-16 pb-24 dark:prose-invert"
+    >
+      
+
+<article>
+  <header class="mb-20">
+    <h1 class="!my-0 pb-2.5">JavaScript Data Types</h1>
+
+    
+    <div class="text-sm opacity-60">
+      
+      <time>May 3, 2023</time>
+      
+      
+      
+      
+      <span class="mx-1">&middot;</span>
+      <span>Prabesh Thapa</span>
+      
+    </div>
+    
+  </header>
+
+  <section><p><strong>Table of Content</strong></p>
+<ul>
+<li><a href="#data-types-in-javascript">Data Types in JavaScript</a>
+<ul>
+<li><a href="#numeric-data-type">Numeric Data Type</a></li>
+<li><a href="#string-data-type">String Data Type</a></li>
+<li><a href="#boolean-data-type">Boolean Data Type</a></li>
+<li><a href="#null-data-type">Null Data Type</a></li>
+<li><a href="#undefined-data-type">Undefined Data Type</a></li>
+<li><a href="#symbols-data-type">Symbols Data Type</a></li>
+</ul>
+</li>
+<li><a href="#objects-in-javascript">Objects in JavaScript</a>
+<ul>
+<li><a href="#create-read-update-and-delete-crud-in-objects">Create, Read, Update and Delete (CRUD) in Objects</a>
+<ul>
+<li><a href="#create">Create</a></li>
+<li><a href="#read">Read</a></li>
+<li><a href="#update">Update</a></li>
+<li><a href="#delete">Delete</a></li>
+<li><a href="#other-useful-methods-to-know">Other Useful Methods to Know</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="data-types-in-javascript">Data Types in JavaScript</h1>
+<p>There are six types of primitive data types we use in JavaScript.</p>
+<ul>
+<li>numeric</li>
+<li>string</li>
+<li>Boolean</li>
+<li>null</li>
+<li>undefined</li>
+<li>symbol (introduced in ES6)</li>
+</ul>
+<h2 id="numeric-data-type">Numeric Data Type</h2>
+<p>Numeric data type handles numbers. It can be any numbers including decimal numbers like 3.14.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">number</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">integer</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.12345</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">negativeNumber</span> <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">negativeInteger</span> <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1.1234</span>;
+</span></span></code></pre></div><h2 id="string-data-type">String Data Type</h2>
+<p>String data type holds letters and symbols. We wrap our string of texts in quotation marks. We can use either of single(&rsquo;&rsquo;) or double quotation (&quot;&quot;) mark. But we need to make sure we start and end with the same quotation. in some case, if we want to include the quotation in our string of texts, we can escape the string quotes by placing a backslash infornt of them.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">quote</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Everybody has a monster&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">mixedQuote</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;This keeps the &#34;Quotation Mark&#34;.&#39;</span>;
+</span></span></code></pre></div><h2 id="boolean-data-type">Boolean Data Type</h2>
+<p>Boolean data type holds the value either true or false. We can store <em>true/false</em> in a variable by typing them without quotation.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">isSingle</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+</span></span></code></pre></div><h2 id="null-data-type">Null Data Type</h2>
+<p>When we want a variable to be empty but not undefined , we set the variable to null (without quotation mark).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">salary</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>;
+</span></span></code></pre></div><h2 id="undefined-data-type">Undefined Data Type</h2>
+<p>JavaScript is a weakly typed language, therefore the data type for variable are determined only after some value is stored in the variable. So, if no value is stored in a varibale, it is initalized as undefined.</p>
+<h2 id="symbols-data-type">Symbols Data Type</h2>
+<p>Symbols data types are the primitive data types introsuces in ECMAScript 2015. Once we create a symbol, its value are kept private and for internal use. All that remains is the symbol reference.</p>
+<p>We can create a symbol by simply calling Symbol() function.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">myVariable</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Symbol</span>();
+</span></span></code></pre></div><p>We get a new and unique symbol everytime we invoke a Symbol function(). Each symbol is guaranteed to be different from other symbols created.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">Symbol</span>() <span style="color:#f92672">===</span> <span style="color:#a6e22e">Symbol</span>(); <span style="color:#75715e">//OUTPUT: false
+</span></span></span></code></pre></div><p>We can also pass parameter to Symbol() function which can be useful for debugging.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">Symbol</span>(<span style="color:#e6db74">&#34;Some Test&#34;</span>));
+</span></span></code></pre></div><p>We mostly use Symbols to avoid name clashing between object properties sicnce no symbol is equal to other.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">NAME</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Symbol</span>();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">person</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  [<span style="color:#a6e22e">NAME</span>]<span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Flavio&#34;</span>,
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">person</span>[<span style="color:#a6e22e">NAME</span>]; <span style="color:#75715e">//&#39;Flavio&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">RUN</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Symbol</span>();
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">person</span>[<span style="color:#a6e22e">RUN</span>] <span style="color:#f92672">=</span> () =&gt; <span style="color:#e6db74">&#34;Person is running&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">person</span>[<span style="color:#a6e22e">RUN</span>]());
+</span></span></code></pre></div><p><strong>typeof operator</strong></p>
+<p>If we ever want to know the data type of a certain variable, we can use <strong>typeof</strong> operator.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Prabesh&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#66d9ef">typeof</span> <span style="color:#a6e22e">name</span>); <span style="color:#75715e">//OUTPUT: String
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">isSingle</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#66d9ef">typeof</span> <span style="color:#a6e22e">isSingle</span>); <span style="color:#75715e">//OUTPUT: Boolean
+</span></span></span></code></pre></div><h1 id="objects-in-javascript">Objects in JavaScript</h1>
+<p><strong>In JavaScript, EVERYTHING is an Object.</strong></p>
+<p>Objects are the primitibe data structure in JavaScript. We define objects using curly brackets {} and keep key-value pairs seperated by comma.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">myself</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">firstName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Prabesh&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">lastName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Thapa&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">email</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;iamprabesh@proton.me&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">nickName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;entry&#34;</span>,
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><h2 id="create-read-update-and-delete-crud-in-objects">Create, Read, Update and Delete (CRUD) in Objects</h2>
+<h3 id="create">Create</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// Creating an empty object
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">player</span> <span style="color:#f92672">=</span> {};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">player</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Cristiano Ronaldo&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">player</span>[<span style="color:#e6db74">&#34;sports&#34;</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Football&#34;</span>; <span style="color:#75715e">//Using [] is also valid
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">player</span>.<span style="color:#a6e22e">nickname</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;GOAT&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">player</span>.<span style="color:#a6e22e">country</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Portugal&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">player</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// OUTPUT:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// {
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//     &#34;name&#34;: &#34;Cristiano Ronaldo&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//     &#34;sports&#34;: &#34;Football&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//     &#34;nickname&#34;: &#34;GOAT&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//     &#34;country&#34;: &#34;Portugal&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// }
+</span></span></span></code></pre></div><p>Or, we can simply add all key-value pairs at oncce.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">player</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Cristiano Ronaldo&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">sports</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Football&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">nickname</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;GOAT&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">country</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Portugal&#34;</span>,
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><h3 id="read">Read</h3>
+<p>We use the <code>.</code> operator to access the values of an object.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">player</span>.<span style="color:#a6e22e">name</span>; <span style="color:#75715e">//OUTPUT: &#34;Cristiano Ronaldo
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">player</span>.<span style="color:#a6e22e">nickname</span>; <span style="color:#75715e">//OUTPUT: &#34;GOAT&#34;
+</span></span></span></code></pre></div><p>We can also use the square brackets <code>[]</code> to access these properties.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">player</span>[<span style="color:#e6db74">&#34;sports&#34;</span>]; <span style="color:#75715e">//OUTPUT: &#34;Football&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">player</span>[<span style="color:#e6db74">&#34;country&#34;</span>]; <span style="color:#75715e">//OUTPUT: &#34;Portugal&#34;
+</span></span></span></code></pre></div><h3 id="update">Update</h3>
+<p>We can update the value of a key by overriding the previous value.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">player</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Cristiano Alveiro Dos Santos Ronaldo&#34;</span>;
+</span></span></code></pre></div><h3 id="delete">Delete</h3>
+<p>We can use the <code>delete</code> operator to remove a property from an object.</p>
+<p>SYNTAX:</p>
+<pre tabindex="0"><code>delete object.property
+delete object[property]
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">user</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">firstname</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Entry&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">lastname</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Eemroy&#34;</span>,
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">firstname</span>);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// OUTPUT: &#34;Eemroy&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">delete</span> <span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">firstname</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">firstname</span>);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// OUTPUT: undefined
+</span></span></span></code></pre></div><h3 id="other-useful-methods-to-know">Other Useful Methods to Know</h3>
+<p><strong>Print Keys from the object</strong></p>
+<p><code>Object.keys(player);</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>[<span style="color:#e6db74">&#34;name&#34;</span>, <span style="color:#e6db74">&#34;sports&#34;</span>, <span style="color:#e6db74">&#34;nickname&#34;</span>, <span style="color:#e6db74">&#34;country&#34;</span>];
+</span></span></code></pre></div><p><strong>Print values from the object</strong></p>
+<p><code>Object.values(player);</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>[<span style="color:#e6db74">&#34;Cristiano Ronaldo&#34;</span>, <span style="color:#e6db74">&#34;Football&#34;</span>, <span style="color:#e6db74">&#34;GOAT&#34;</span>, <span style="color:#e6db74">&#34;Portugal&#34;</span>];
+</span></span></code></pre></div><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+</section>
+
+  
+  
+
+  
+  
+  
+  <nav class="mt-24 flex rounded-lg bg-black/[3%] text-lg dark:bg-white/[8%]">
+    
+    <a
+      class="flex w-1/2 items-center rounded-l-md p-6 pr-3 no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
+      href="/posts/04-type-casting/"
+      ><span class="mr-1.5">←</span><span>Type Casting and Conversion in JavaScript</span></a
+    >
+    
+    
+    <a
+      class="ml-auto flex w-1/2 items-center justify-end rounded-r-md p-6 pl-3 no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
+      href="/posts/02-all-about-variables/"
+      ><span>JavaScript Variables</span><span class="ml-1.5">→</span></a
+    >
+    
+  </nav>
+  
+
+  
+  
+
+  
+  
+</article>
+
+
+    </main>
+
+    <footer
+  class="opaco mx-auto flex h-[5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
+>
+  <div class="mr-auto">
+    &copy; 2023
+    <a class="link" href="">JavaScript Manual</a>
+  </div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >Powered by Hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >Theme Paper</a
+  >
+</footer>
+
+  </body>
+</html>

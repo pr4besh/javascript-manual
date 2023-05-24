@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on JavaScript Manual</title>
+    <link>/posts/</link>
+    <description>Recent content in Posts on JavaScript Manual</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 20 May 2023 00:00:00 +0000</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>JavaScript Functions</title>
+      <link>/posts/10-javascript-functions/</link>
+      <pubDate>Sat, 20 May 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/10-javascript-functions/</guid>
+      <description>Table of Content
+Functions Function Declarations and Function Expression Difference between function declaration and function expression Function Parameters Default Parameter Rest Parameter Difference Between Arguments and Rest Parameter Arrow Functions Function Scope Lecxical Scoping Closures IIFEs Recursion JavaScript Built-In Functions Number Methods Boolean Methods String Object Array Methods Functions A function is a block of code that runs when the function is called.
+Syntax:
+function functionName(paramter1, paremeter2, ...., parameterN) { // Block of Code } To declare a function, we use a function keyword followed by the name of the fucntion which is followed by thr parrameter enclosed in () followed by pair of curly braces {} which covers the block of code to be executed.</description>
+    </item>
+    
+    <item>
+      <title>Understanding  Asynchronous JavaScript</title>
+      <link>/posts/12-asynchronous-javascript/</link>
+      <pubDate>Fri, 12 May 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/12-asynchronous-javascript/</guid>
+      <description>Table of Content
+Understanding Asynchronous JavaScript Callbacks Synchronous Callbacks Asynchronous Callbacks Promises .then() promise handler .catch() promise handler .finally() promise handler Promise Chaining ⛓️ Async/Await async await Error Handling async/await Understanding Asynchronous JavaScript JavaScript is single-threaded programming language which means only one thing can happen at a time. This helps us to simplify our code but this also means that we can&amp;rsquo;t perform long operations such as reading from a file without blocking the main thread.</description>
+    </item>
+    
+    <item>
+      <title>JavaScript `this` Keyword</title>
+      <link>/posts/11-javascript-this-keyword/</link>
+      <pubDate>Thu, 11 May 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/11-javascript-this-keyword/</guid>
+      <description>Table of Content
+this Keyword this in function this in methods this in event handlers this in arrow functions Function Borrowing Implicit Binding Explicit Binding bind() 🤝 call() 🤙 apply() 👏 this Keyword In simple terms, this keyword in JavaScript refers to an object upon which a function is invoked. This means that this can only be used in a function, or globally.
+this is used to point to an instance of an object from its own constructor or its method and also to keep track of the execution context (lexical scope) - which is often based on where the function is called from.</description>
+    </item>
+    
+    <item>
+      <title>JavaScript Expressions and Operators</title>
+      <link>/posts/09-javascript-operators/</link>
+      <pubDate>Tue, 09 May 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/09-javascript-operators/</guid>
+      <description>Table of Content
+Expression and Operators Types of Operator Assignment Operator Comparision Operator Arithematic Operator Logical Operator Logical AND (&amp;amp;&amp;amp;) Logical OR (||) Logical NOT (!) Conditional (Ternary) Operator Unary Operator Relational Operator Expression and Operators An expression is a valid piece of code that resolves to a value. There are two types of expressions: those that have effects such as asssigning the value and those who evaluate value.
+For example: x = 7 is a expression that assigns the value of 7 to the variable x usig the = operator while the expression 2+2 uses the operator + to add 2 and 2 together and returns a value of 4.</description>
+    </item>
+    
+    <item>
+      <title>JavaScript Control Flow</title>
+      <link>/posts/08-control-flow/</link>
+      <pubDate>Mon, 08 May 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/08-control-flow/</guid>
+      <description>Table of Content
+Conditional Statement if statement else statement else-if statement switch Exception Handling Catching Exceptions JavaScript Error Types Throwing Custom Exceptions Conditional Statement Conditional Statements control behavior in JavaScript and determine weather certain code blocks can run or not. There are different conditional statements in JavaScript such as -
+if statement: if a condition is true, it is used to run a certain block of code. else statement: if a condition is false, it is used to run a certain block of code.</description>
+    </item>
+    
+    <item>
+      <title>JavaScript Loop and Iteration</title>
+      <link>/posts/07-loops-and-iterations/</link>
+      <pubDate>Sun, 07 May 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/07-loops-and-iterations/</guid>
+      <description>Table of Content
+Loops and Iteration while Loops do-while loop for loops for...of loop for...in loop Controlling Loops Loops and Iteration We regularly face conditions when we need to run our code over and over again until some condition is met. JavaScript provides us several forms to achive this condition.
+while Loops A while loop uses the while keyword followed by a conditional expression in parentheses () and a code block.</description>
+    </item>
+    
+    <item>
+      <title>JavaScript Equality Comparision</title>
+      <link>/posts/06-equaltiy-comparisions/</link>
+      <pubDate>Sat, 06 May 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/06-equaltiy-comparisions/</guid>
+      <description>Table of Content
+Value Comparison Operators Comparing Objects in JavaScript Referential Equality Manual Comparision Shallow Equality Deep Equality Value Comparison Operators When we have to compare two values in JavaScript, we use comparison operators provided by default in JavaScript. When we compare twovalues, a boolean (true or false) value is returned.
+There are eight comparision operators in JavaScript.
+&amp;gt; : greater than - Returns true if the operand on the left is greater than on the right of the operand.</description>
+    </item>
+    
+    <item>
+      <title>JavaScript Data Structure</title>
+      <link>/posts/05-data-structure/</link>
+      <pubDate>Fri, 05 May 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/05-data-structure/</guid>
+      <description>Table of Content
+Data Structure in JavaScript Indexed Collection Array Object Properties of an Array Adding element to an Array Array Methods TypedArray Object Keyed Collections Map Weak Map Set Data Structure in JavaScript Groups of data in different forms are one of the fundamental data structures in most of the programming languages. Normally, groups of data expressed through different data types are known as Collection.
+The three main Collection groups in JavaScript are -</description>
+    </item>
+    
+    <item>
+      <title>Type Casting and Conversion in JavaScript</title>
+      <link>/posts/04-type-casting/</link>
+      <pubDate>Thu, 04 May 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/04-type-casting/</guid>
+      <description>Table of Content
+Type Casting Implicit Type Casting in JavaScript Implicit Type Conversion to Number Implicit Type Conversion to String Explicit Type Casting Explicit Type Conversion to Number Explicit Type Conversion to String Explicit Type Conversion to Boolean Type Conversion vs Type Coercion Type Casting JavaScript provides us many data types to work with and although JavaScript is a losely typed language, there will be some cases where we want to change the data types of certain variables.</description>
+    </item>
+    
+    <item>
+      <title>JavaScript Data Types</title>
+      <link>/posts/03-data-types/</link>
+      <pubDate>Wed, 03 May 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/03-data-types/</guid>
+      <description>Table of Content
+Data Types in JavaScript Numeric Data Type String Data Type Boolean Data Type Null Data Type Undefined Data Type Symbols Data Type Objects in JavaScript Create, Read, Update and Delete (CRUD) in Objects Create Read Update Delete Other Useful Methods to Know Data Types in JavaScript There are six types of primitive data types we use in JavaScript.
+numeric string Boolean null undefined symbol (introduced in ES6) Numeric Data Type Numeric data type handles numbers.</description>
+    </item>
+    
+    <item>
+      <title>JavaScript Variables</title>
+      <link>/posts/02-all-about-variables/</link>
+      <pubDate>Tue, 02 May 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/02-all-about-variables/</guid>
+      <description>Table of Content
+Variables in JavaScript Variable Declarations Variable Naming Rules Variable Scopes Global Scope Local Scope Function Scope Block Scope Hoisting Hoisting in var Hoisting with let/const Temproal Dead Zone Variables in JavaScript Variables are simply the identifiers used to store information.
+Variable Declarations We can create variable in JavaScript with keywords like let/const/var.
+let name; var age; const gravity; We can store some data in these variables using the assignment operator &amp;rsquo;=&amp;rsquo;.</description>
+    </item>
+    
+    <item>
+      <title>JavaScript Engine</title>
+      <link>/posts/01-javascript-engine/</link>
+      <pubDate>Mon, 01 May 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/01-javascript-engine/</guid>
+      <description>Table of Content
+JavaScript Engine How engine works? (Summary) Inside the JavaScript Engine Compilation Interpretation Just in Time (JIT) compilation in JavaScript Call Stack and Memory Heap Call Stack Memory Heap Stack vs Heap References in JavaScript Garbage Collection Execution Context Types of Execution Context Execution Stack Creation of Execution Stack Lexical Environment JavaScript Engine JavaScript engine is a software or a program responsible to run our JavaScript code. Almost every modern day browsers we use have their own JavaScript engine running in the background.</description>
+    </item>
+    
+  </channel>
+</rss>
